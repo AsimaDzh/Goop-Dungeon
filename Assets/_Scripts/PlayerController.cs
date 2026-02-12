@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
-
     private Rigidbody2D _rb2D;
+
 
     private void Awake()
     {
@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float _horizontalInput = Input.GetAxis("Horizontal");
-        _rb2D.linearVelocity = new Vector2(_horizontalInput * speed, _rb2D.linearVelocity.y);
+        _rb2D.linearVelocity = new Vector2(
+            _horizontalInput * speed, 
+            _rb2D.linearVelocity.y);
         
         //Jump
         if (Input.GetKey(KeyCode.Space))
