@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && IsGrounded())
-            _rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        if(context.started && IsGrounded())
+            _rb2D.linearVelocity = new Vector2(_rb2D.linearVelocity.x, jumpForce);
     }
 
 
@@ -53,18 +52,9 @@ public class PlayerController : MonoBehaviour
     {
         return Physics2D.OverlapBox(
             groundCheck.position,
-            new Vector2(0.25f, 0.05f),
+            new Vector2(0.25f, 0.2f),
             0,
             groundLayer);
     }
     #endregion
-
-    //private void Update()
-    //{
-
-    //    //Jump
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //        _rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-
-    //}
 }
