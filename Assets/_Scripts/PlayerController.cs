@@ -41,9 +41,17 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-6, 6, 6);
     }
 
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if(context.performed && IsGrounded())
+            _rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+
+
     private bool IsGrounded()
     {
-        return.Physics2D.OverlapBox(
+        return Physics2D.OverlapBox(
             groundCheck.position,
             new Vector2(0.25f, 0.05f),
             0,
