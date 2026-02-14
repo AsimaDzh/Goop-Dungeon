@@ -53,8 +53,7 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapBox(
             groundCheck.position,
             new Vector2(0.25f, 0.2f),
-            0,
-            groundLayer);
+            0, groundLayer);
     }
     #endregion
 }
