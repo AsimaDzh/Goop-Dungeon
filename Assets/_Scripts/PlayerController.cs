@@ -55,7 +55,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        CheckCollisions();
+        HandleJump();
+        HandleDirection();
+        HandleGravity();
+        ApplyMovement();
     }
 
 
@@ -81,17 +85,56 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.started && IsGrounded())
-            _rb2D.linearVelocity = new Vector2(_rb2D.linearVelocity.x, jumpForce);
-    }
+        if(context.started)
+        {
+            _frameInput.JumpDown = true;
+            _jumpToConsume = true;
+            _timeJumpWasPressed = _time;
+        }
 
+        if (context.canceled) _frameInput.JumpHeld = false;
 
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapBox(
-            groundCheck.position,
-            new Vector2(0.25f, 0.2f),
-            0, groundLayer);
+        if (context.performed) _frameInput.JumpHeld = true;
     }
     #endregion
+
+
+    private void CheckCollisions()
+    {
+        Physics2D.queriesStartInColliders = false;
+
+        bool _groundHit = Physics2D.BoxCast(
+            _boxCollider.bounds.center,
+            _boxCollider.size,
+            0, Vector2.down,
+            stats.GrounderDistance,
+            ~stats.PlayerLayer);
+
+        bool _ceilingHit = Physics2D.BoxCast(
+            _boxCollider.bounds.center,
+            _boxCollider.size,
+            0, Vector2.up,
+            stats.GrounderDistance,
+            ~stats.PlayerLayer);
+
+        if (_ceilingHit) 
+            _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
+
+        if(!_grounded && _groundHit)
+        {
+            _grounded = true;
+            _coyoteUsable = true;
+            _bufferedJumpUsable = true;
+            _endedJumpEarly = false;
+            GroundedChanged?.Invoke(true, Mathf.Abs(_frameVelocity.y));
+        }
+        else if (_grounded && !_groundHit)
+        {
+            _grounded = false;
+            _frameLeftGrounded = _time;
+            GroundedChanged?.Invoke(false, 0);
+        }
+
+        Physics2D.queriesStartInColliders = _cachedQueryStartInCol;
+    }
 }
