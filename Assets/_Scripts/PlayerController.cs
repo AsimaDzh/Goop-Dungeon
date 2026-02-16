@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("========== Player Settings ==========")]
+    [SerializeField] private ScriptableStats stats;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
 
