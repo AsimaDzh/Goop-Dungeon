@@ -5,16 +5,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("========== Player Settings ==========")]
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
-
-    [Header("========== Grounding ==========")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ScriptableStats stats;
 
     private Rigidbody2D _rb2D;
-    private float _horizontal;
+    private BoxCollider2D _boxCollider;
+
+    private FrameInput _frameInput;
+    private Vector2 _frameVelocity;
+
+    private bool _cachedQueryStartInCol;
+
+    public Vector2 FrameInput => _frameInput.Move;
+    public event Action<bool, float> GroundedChanged;
+    public event Action Jumped;
+
+    private float _time;
+
+    private float _frameLeftGrounded = float.MinValue;
+    private bool _grounded;
+
+    private bool _jumpToConsume;
+    private bool _bufferedJumpUsable;
+    private bool _endedJumpEarly;
+    private bool _coyoteUsable;
+    private float _timeJumpWasPressed;
+
+    private bool HasBufferedJump =>
+        _bufferedJumpUsable &&
+        _time < _timeJumpWasPressed + stats.JumpBuffer;
+
+    private bool CanUseCoyote =>
+        _coyoteUsable && !_grounded &&
+        _time < _frameLeftGrounded + stats.CoyoteTime;
 
 
     private void Awake()
