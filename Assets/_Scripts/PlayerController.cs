@@ -126,10 +126,12 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         if (!_jumpToConsume && !HasBufferedJump) return;
 
-        if (_grounded || CanUseCoyote) ExecuteJump();
-
-        _jumpToConsume = false;
-        _frameInput.JumpDown = false;
+        if (_grounded || CanUseCoyote)
+        {
+            ExecuteJump();
+            _jumpToConsume = false;
+            _frameInput.JumpDown = false;
+        }
     }
 
 

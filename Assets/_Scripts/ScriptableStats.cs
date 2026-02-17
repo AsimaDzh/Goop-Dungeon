@@ -1,6 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+
+[CreateAssetMenu(fileName = "PlayerStats", menuName = "Stats/Player Stats")]
 public class ScriptableStats : ScriptableObject
 {
     public LayerMask PlayerLayer;
