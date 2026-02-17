@@ -181,4 +181,21 @@ public class PlayerController : MonoBehaviour
 
         Physics2D.queriesStartInColliders = _cachedQueryStartInCol;
     }
+
+
+    private void HandleGravity()
+    {
+        if (_grounded && _frameVelocity.y <= 0)
+            _frameVelocity.y = stats.GroundingForce;
+        else
+        {
+            if (_endedJumpEarly && _frameVelocity.y > 0)
+                stats.FallAcceleration *= stats.JumpEndEarlyGravMod;
+
+            _frameVelocity.y = Mathf.MoveTowards(
+                _frameVelocity.y,
+                -stats.MaxFallSpeed,
+                stats.FallAcceleration * Time.fixedDeltaTime);
+        }
+    }
 }
