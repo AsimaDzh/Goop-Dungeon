@@ -83,6 +83,26 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    // Smoothly accelerates and slows down player compared to different sensations on the ground and in the air.
+    private void HandleDirection()
+    {
+        if (_frameInput.Move.x == 0)
+        {
+            var _decel = _grounded ? stats.GroundDeceleration : stats.AirDeceleration;
+            _frameVelocity.x = Mathf.MoveTowards(
+                _frameVelocity.x, 0, 
+                _decel * Time.deltaTime);
+        }
+        else
+        {
+            _frameVelocity.x = Mathf.MoveTowards(
+                _frameVelocity.x,
+                _frameInput.Move.x * stats.MaxSpeed,
+                stats.Acceleration * Time.fixedDeltaTime);
+        }
+    }
+
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.started)
