@@ -96,6 +96,30 @@ public class PlayerController : MonoBehaviour
 
         if (context.performed) _frameInput.JumpHeld = true;
     }
+
+
+    private void HandleJump()
+    {
+        if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb2D.linearVelocity.y > 0)
+            _endedJumpEarly = true;
+
+        if (!_jumpToConsume && !HasBufferedJump) return;
+
+        if (_grounded || CanUseCoyote) ExecuteJump();
+
+        _jumpToConsume = false;
+        _frameInput.JumpDown = false;
+    }
+
+
+    private void ExecuteJump()
+    {
+        _endedJumpEarly = false;
+        _bufferedJumpUsable = false;
+        _coyoteUsable = false;
+        _frameVelocity.y = stats.JumpPower;
+        Jumped?.Invoke();
+    }
     #endregion
 
 
