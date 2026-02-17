@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPlayerController
 {
     [SerializeField] private ScriptableStats stats;
 
@@ -59,18 +59,19 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleDirection();
         HandleGravity();
-        ApplyMovement();
+
+        _rb2D.linearVelocity = _frameVelocity;
     }
 
 
     #region PLAYER_CONTROLS
     public void OnMove(InputAction.CallbackContext context)
     {
-        _frameInput = context.ReadValue<Vector2>().x;
+        _frameInput.Move = context.ReadValue<Vector2>();
         
-        if (_frameInput > 0.01f)
+        if (_frameInput.Move.x > 0.01f)
             transform.localScale = new Vector3(6, 6, 6);
-        else if (_frameInput < -0.01f)
+        else if (_frameInput.Move.x < -0.01f)
             transform.localScale = new Vector3(-6, 6, 6);
 
         // Turns smooth input into hard one
@@ -189,13 +190,30 @@ public class PlayerController : MonoBehaviour
             _frameVelocity.y = stats.GroundingForce;
         else
         {
+            float _gravity = stats.FallAcceleration;
             if (_endedJumpEarly && _frameVelocity.y > 0)
-                stats.FallAcceleration *= stats.JumpEndEarlyGravMod;
+                _gravity *= stats.JumpEndEarlyGravMod;
 
             _frameVelocity.y = Mathf.MoveTowards(
                 _frameVelocity.y,
                 -stats.MaxFallSpeed,
-                stats.FallAcceleration * Time.fixedDeltaTime);
+                _gravity * Time.fixedDeltaTime);
         }
     }
+}
+
+
+public struct FrameInput
+{
+    public bool JumpDown;
+    public bool JumpHeld;
+    public Vector2 Move;
+}
+
+
+public interface IPlayerController
+{
+    public event Action<bool, float> GroundedChanged;
+    public event Action Jumped;
+    public Vector2 FrameInput { get; }
 }
