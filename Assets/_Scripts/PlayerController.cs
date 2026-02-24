@@ -13,22 +13,20 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private FrameInput _frameInput;
     private Vector2 _frameVelocity;
 
-    private bool _cachedQueryStartInCol;
-
     public Vector2 FrameInput => _frameInput.Move;
     public event Action<bool, float> GroundedChanged;
     public event Action Jumped;
 
     private float _time;
-
+    private float _timeJumpWasPressed;
     private float _frameLeftGrounded = float.MinValue;
-    private bool _grounded;
 
+    private bool _cachedQueryStartInCol;
+    private bool _grounded;
     private bool _jumpToConsume;
     private bool _bufferedJumpUsable;
     private bool _endedJumpEarly;
     private bool _coyoteUsable;
-    private float _timeJumpWasPressed;
 
     private bool HasBufferedJump =>
         _bufferedJumpUsable &&
@@ -201,6 +199,16 @@ public class PlayerController : MonoBehaviour, IPlayerController
                 -stats.MaxFallSpeed,
                 _gravity * Time.fixedDeltaTime);
         }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (_boxCollider == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(
+            _boxCollider.bounds.center + Vector3.down * stats.GrounderDistance,
+            _boxCollider.size);
     }
 }
 

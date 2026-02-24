@@ -17,7 +17,7 @@ public class ScriptableStats : ScriptableObject
     public float GroundDeceleration = 60;
     public float AirDeceleration = 30;
     public float GroundingForce = -1.5f;
-    public float GrounderDistance = 0.05f;
+    public float GrounderDistance = 0.2f;
 
     [Header("========== Jump ==========")]
     public float JumpPower = 36;
