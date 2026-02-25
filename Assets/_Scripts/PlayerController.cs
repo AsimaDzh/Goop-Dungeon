@@ -201,15 +201,54 @@ public class PlayerController : MonoBehaviour, IPlayerController
         }
     }
 
-
-    private void OnDrawGizmos()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
+        if (stats == null) return;
         if (_boxCollider == null) return;
-        Gizmos.color = Color.red;
+
+        // Центр и размер коллайдера
+        Vector3 center = _boxCollider.bounds.center;
+        Vector3 size3 = new Vector3(
+            _boxCollider.size.x, 
+            _boxCollider.size.y, 
+            0.1f);
+
+        // Нарисовать сам коллайдер жёлтым
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(center, size3);
+
+        // Нижняя точка коллайдера
+        Vector3 bottom = center - new Vector3(
+            0f, _boxCollider.size.y * 0.5f, 0f);
+
+        // Нарисовать линию вниз на GrounderDistance
+        Gizmos.color = Color.gray;
+        Gizmos.DrawLine(bottom, bottom + Vector3.down * stats.GrounderDistance);
+
+        // Нарисовать "финишную" тонкую прямую на конце проверочного расстояния
         Gizmos.DrawWireCube(
-            _boxCollider.bounds.center + Vector3.down * stats.GrounderDistance,
-            _boxCollider.size);
+            bottom + Vector3.down * stats.GrounderDistance, 
+            new Vector3(_boxCollider.size.x, 0.02f, 0.02f));
+
+        // Выполнить BoxCast и изменить цвет в зависимости от хита
+        RaycastHit2D hit = Physics2D.BoxCast(
+            (Vector2)center, 
+            _boxCollider.size, 0f, 
+            Vector2.down, 
+            stats.GrounderDistance, 
+            ~stats.PlayerLayer);
+        Gizmos.color = hit.collider != null ? Color.green : Color.red;
+
+        // Если есть хит, нарисовать место попадания (центроид хита) и длинную линию
+        if (hit.collider != null)
+        {
+            Vector3 hitPoint = (Vector3)hit.centroid;
+            Gizmos.DrawWireCube(hitPoint, size3);
+            Gizmos.DrawLine(bottom, hitPoint);
+        }
     }
+#endif
 }
 
 
