@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IPlayerController
 {
-    [SerializeField] private ScriptableStats stats;
+    [SerializeField] private GoopStats stats;
 
     private Rigidbody2D _rb2D;
     private BoxCollider2D _boxCollider;

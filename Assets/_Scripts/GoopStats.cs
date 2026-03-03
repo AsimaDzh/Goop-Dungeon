@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "PlayerStats", menuName = "Stats/Player Stats")]
-public class ScriptableStats : ScriptableObject
+public class GoopStats : ScriptableObject
 {
     public LayerMask PlayerLayer;
 
