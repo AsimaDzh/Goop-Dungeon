@@ -1001,6 +1001,7 @@ MonoBehaviour:
   grabPoint: {fileID: 31251508}
   rayPoint: {fileID: 1670619630}
   rayDistance: 0.2
+  throwForce: 17
 --- !u!1 &1670619629
 GameObject:
   m_ObjectHideFlags: 0
