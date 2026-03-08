@@ -29,15 +29,16 @@ public class GrabObjects : MonoBehaviour
             if (_grabbedObject == null)
             {
                 _grabbedObject = _hitInfo.collider.gameObject;
-                _grabbedObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                 _grabbedObject.GetComponent<BoxCollider2D>().enabled = false;
+                _grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 _grabbedObject.transform.position = grabPoint.position;
-                _grabbedObject.transform.SetParent(grabPoint);
+                _grabbedObject.transform.SetParent(transform);
             }
-            else if (_grabbedObject != _hitInfo.collider.gameObject)
+
+            if (Input.GetKeyDown(KeyCode.E) && _grabbedObject != null)
             {
                 _grabbedObject.GetComponent<BoxCollider2D>().enabled = true;
-                _grabbedObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                _grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 _grabbedObject.transform.SetParent(null);
                 _grabbedObject = null;
             }
