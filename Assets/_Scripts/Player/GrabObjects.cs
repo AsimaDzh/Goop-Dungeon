@@ -22,5 +22,27 @@ public class GrabObjects : MonoBehaviour
             rayPoint.position, 
             transform.right, 
             rayDistance);
+
+        if (_hitInfo.collider != null && _hitInfo.collider.gameObject.layer == _layerIndex)
+        {
+            // If the player is not already grabbing an object, grab the new one
+            if (_grabbedObject == null)
+            {
+                _grabbedObject = _hitInfo.collider.gameObject;
+                _grabbedObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                _grabbedObject.GetComponent<BoxCollider2D>().enabled = false;
+                _grabbedObject.transform.position = grabPoint.position;
+                _grabbedObject.transform.SetParent(grabPoint);
+            }
+            else if (_grabbedObject != _hitInfo.collider.gameObject)
+            {
+                _grabbedObject.GetComponent<BoxCollider2D>().enabled = true;
+                _grabbedObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                _grabbedObject.transform.SetParent(null);
+                _grabbedObject = null;
+            }
+        }
+
+        Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
     }
 }
