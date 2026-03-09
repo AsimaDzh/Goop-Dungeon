@@ -1001,9 +1001,9 @@ MonoBehaviour:
   grabPoint: {fileID: 31251508}
   rayPoint: {fileID: 1670619630}
   rayDistance: 0.2
-  throwForce: 5
-  throwAngle: 15
-  throwOffset: 1.7
+  throwForce: 7
+  throwAngle: 20
+  throwOffset: 1.8
   objectLayer:
     serializedVersion: 2
     m_Bits: 128

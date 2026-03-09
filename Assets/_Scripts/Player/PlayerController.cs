@@ -66,11 +66,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
     public void OnMove(InputAction.CallbackContext context)
     {
         _frameInput.Move = context.ReadValue<Vector2>();
-        
+
         if (_frameInput.Move.x > 0.01f)
-            transform.localScale = new Vector3(6, 6, 6);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (_frameInput.Move.x < -0.01f)
-            transform.localScale = new Vector3(-6, 6, 6);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
 
         // Turns smooth input into hard one
         if (stats.SnapInput)
@@ -207,31 +207,30 @@ public class PlayerController : MonoBehaviour, IPlayerController
         if (stats == null) return;
         if (_boxCollider == null) return;
 
-        // Центр и размер коллайдера
+        // Center and size of the box collider
         Vector3 center = _boxCollider.bounds.center;
         Vector3 size3 = new Vector3(
             _boxCollider.size.x, 
             _boxCollider.size.y, 
             0.1f);
 
-        // Нарисовать сам коллайдер жёлтым
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(center, size3);
 
-        // Нижняя точка коллайдера
+        // Bottom point of the box collider
         Vector3 bottom = center - new Vector3(
             0f, _boxCollider.size.y * 0.5f, 0f);
 
-        // Нарисовать линию вниз на GrounderDistance
+        // Draw the line representing the ground check distance
         Gizmos.color = Color.gray;
         Gizmos.DrawLine(bottom, bottom + Vector3.down * stats.GrounderDistance);
 
-        // Нарисовать "финишную" тонкую прямую на конце проверочного расстояния
+        // Draw a thin box at the end of the ground check line to visualize the area being checked for ground
         Gizmos.DrawWireCube(
             bottom + Vector3.down * stats.GrounderDistance, 
             new Vector3(_boxCollider.size.x, 0.02f, 0.02f));
 
-        // Выполнить BoxCast и изменить цвет в зависимости от хита
+        // Do a box cast to check for ground and change color based on whether it hits something or not
         RaycastHit2D hit = Physics2D.BoxCast(
             (Vector2)center, 
             _boxCollider.size, 0f, 
@@ -240,7 +239,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
             ~stats.PlayerLayer);
         Gizmos.color = hit.collider != null ? Color.green : Color.red;
 
-        // Если есть хит, нарисовать место попадания (центроид хита) и длинную линию
+        // If it hits something, draw a wire cube at the hit point and a line from the bottom of the box collider to the hit point
         if (hit.collider != null)
         {
             Vector3 hitPoint = (Vector3)hit.centroid;
