@@ -5,7 +5,11 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance;
+
     [SerializeField] private float throwForce;
+    [SerializeField] private float throwAngle = 20f;
+
+    [SerializeField] private float throwOffset = 0.5f;
     [SerializeField] private LayerMask objectLayer;
 
     private GameObject _grabbedObject;
@@ -32,7 +36,7 @@ public class GrabObjects : MonoBehaviour
             rayDistance,
             objectLayer);
 
-        if (_hitInfo.collider == null) return;
+        if (!_hitInfo) return;
 
         _grabbedObject = _hitInfo.collider.gameObject;
         _grabbedRb = _grabbedObject.GetComponent<Rigidbody2D>();
@@ -48,13 +52,18 @@ public class GrabObjects : MonoBehaviour
 
     private void ThrowObject()
     {
+        _grabbedObject.transform.SetParent(null);
+
         _grabbedCollider.enabled = true;
         _grabbedRb.isKinematic = false;
 
-        _grabbedObject.transform.SetParent(null);
+        _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
+        Vector2 _direction = (Quaternion.Euler(0, 0, throwAngle) * transform.right).normalized;
 
-        _grabbedRb.AddForce((transform.right + transform.up) * throwForce, ForceMode2D.Impulse);
+        _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
 
         _grabbedObject = null;
+        _grabbedRb = null;
+        _grabbedCollider = null;
     }
 }
