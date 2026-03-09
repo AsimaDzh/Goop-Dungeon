@@ -43,7 +43,7 @@ public class GrabObjects : MonoBehaviour
         _grabbedCollider = _grabbedObject.GetComponent<BoxCollider2D>();
 
         _grabbedCollider.enabled = false;
-        _grabbedRb.isKinematic = true;
+        _grabbedRb.bodyType = RigidbodyType2D.Kinematic;
 
         _grabbedObject.transform.position = grabPoint.position;
         _grabbedObject.transform.SetParent(transform);
@@ -55,7 +55,7 @@ public class GrabObjects : MonoBehaviour
         _grabbedObject.transform.SetParent(null);
 
         _grabbedCollider.enabled = true;
-        _grabbedRb.isKinematic = false;
+        _grabbedRb.bodyType = RigidbodyType2D.Dynamic;
 
         _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
         Vector2 _direction = (Quaternion.Euler(0, 0, throwAngle) * transform.right).normalized;
