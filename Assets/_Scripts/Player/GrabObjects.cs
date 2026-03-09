@@ -9,27 +9,15 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private LayerMask objectLayer;
 
     private GameObject _grabbedObject;
+    private Rigidbody2D _grabbedRb;
+    private BoxCollider2D _grabbedCollider;
+
 
 
     private void Update()
     {
-        RaycastHit2D _hitInfo = Physics2D.Raycast(
-            rayPoint.position, 
-            transform.right, 
-            rayDistance,
-            objectLayer);
+        if (_grabbedObject == null) GrabObject();
 
-        if (_hitInfo.collider != null)
-        {
-            if (_grabbedObject == null)
-            {
-                _grabbedObject = _hitInfo.collider.gameObject;
-                _grabbedObject.GetComponent<BoxCollider2D>().enabled = false;
-                _grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                _grabbedObject.transform.position = grabPoint.position;
-                _grabbedObject.transform.SetParent(transform);
-            }
-        }
 
         if (Input.GetKeyDown(KeyCode.E) && _grabbedObject != null)
         {
@@ -44,5 +32,27 @@ public class GrabObjects : MonoBehaviour
         }
 
         Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+    }
+
+
+    private void GrabObject()
+    {
+        RaycastHit2D _hitInfo = Physics2D.Raycast(
+            rayPoint.position,
+            transform.right,
+            rayDistance,
+            objectLayer);
+
+        if (_hitInfo.collider == null) return;
+
+        _grabbedObject = _hitInfo.collider.gameObject;
+        _grabbedRb = _grabbedObject.GetComponent<Rigidbody2D>();
+        _grabbedCollider = _grabbedObject.GetComponent<BoxCollider2D>();
+
+        _grabbedCollider.enabled = false;
+        _grabbedRb.isKinematic = true;
+
+        _grabbedObject.transform.position = grabPoint.position;
+        _grabbedObject.transform.SetParent(transform);
     }
 }
