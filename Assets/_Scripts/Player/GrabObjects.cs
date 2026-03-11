@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +10,6 @@ public class GrabObjects : MonoBehaviour
 
     [SerializeField] private float throwForce;
     [SerializeField] private float throwAngle = 20f;
-
     [SerializeField] private float throwOffset = 0.5f;
     [SerializeField] private LayerMask objectLayer;
 
@@ -22,8 +20,7 @@ public class GrabObjects : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_grabbedObject == null) 
-            GrabObject();
+        if (_grabbedObject == null) GrabObject();
 
         Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
     }
