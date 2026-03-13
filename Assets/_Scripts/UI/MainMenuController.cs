@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Button buttonPlay;
+    [SerializeField] private Button buttonExit;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        buttonPlay.onClick.AddListener(() => GameManager.Instance.StartGame());
+        buttonExit.onClick.AddListener(() => Application.Quit());
     }
 }
