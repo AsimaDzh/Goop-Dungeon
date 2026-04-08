@@ -43,7 +43,6 @@ public class InputManager : MonoBehaviour
             Debug.LogError("InputManager: there's no Input Actions Asset!");
             return;
         }
-
         uiActionMap = inputActions.FindActionMap("UI");
 
         if (playerActionMap == null)
@@ -51,6 +50,8 @@ public class InputManager : MonoBehaviour
             Debug.LogError("InputManager: Action Map 'Player' is not found!");
             return;
         }
+        playerActionMap = inputActions.FindActionMap("Player");
+
 
         pauseAction = playerActionMap.FindAction("Pause");
         cancelAction = uiActionMap.FindAction("Cancel");
@@ -59,7 +60,6 @@ public class InputManager : MonoBehaviour
             pauseAction.performed += OnPausePerformed;
         if (cancelAction != null)
             cancelAction.performed += OnCancelPerformed;
-
 
         EnablePlayerInput();
     }
@@ -98,6 +98,7 @@ public class InputManager : MonoBehaviour
         if (cancelAction != null)
             cancelAction.performed -= OnCancelPerformed;
     }
+
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {

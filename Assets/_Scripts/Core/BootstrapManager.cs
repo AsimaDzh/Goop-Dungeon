@@ -82,7 +82,7 @@ public class BootstrapManager : MonoBehaviour
         }
         GameObject go = new GameObject("InputManager");
         InputManager inputManager = go.AddComponent<InputManager>();
-        inputManager.inputActions = Resources.Load<InputActionAsset>("PlayerInputAction");
+        inputManager.inputActions = Resources.Load<InputActionAsset>("PlayerInputActions");
 
         if (inputManager.inputActions == null)
             Debug.LogError("BootstrapManager: Failed to load PlayerInputAction asset from Resources folder");
