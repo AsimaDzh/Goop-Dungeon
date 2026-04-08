@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+
 
 public class InputManager : MonoBehaviour
 {
@@ -13,8 +15,8 @@ public class InputManager : MonoBehaviour
     private InputAction pauseAction;
     private InputAction cancelAction;
 
-    public System.Action OnPausePressed;
-    public System.Action OnCancelPressed;
+    public Action OnPausePressed;
+    public Action OnCancelPressed;
 
 
     private void Awake()
@@ -132,8 +134,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleGamePaused()
     {
-        if (playerActionMap != null)
-            playerActionMap.Disable();
+        EnableUIInput();
 
         Debug.Log("InputManager: Player input disabled (game paused)");
     }
@@ -141,8 +142,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleGameResumed()
     {
-        if (playerActionMap != null)
-            playerActionMap.Enable();
+        EnablePlayerInput();
 
         Debug.Log("InputManager: Player input enabled (game resumed)");
     }
