@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IPlayerController
 {
-    [SerializeField] private GoopStats stats;
+    [SerializeField] private GoopData goopData;
 
     private Rigidbody2D _rb2D;
     private BoxCollider2D _boxCollider;
@@ -30,11 +30,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private bool HasBufferedJump =>
         _bufferedJumpUsable &&
-        _time < _timeJumpWasPressed + stats.JumpBuffer;
+        _time < _timeJumpWasPressed + goopData.JumpBuffer;
 
     private bool CanUseCoyote =>
         _coyoteUsable && !_grounded &&
-        _time < _frameLeftGrounded + stats.CoyoteTime;
+        _time < _frameLeftGrounded + goopData.CoyoteTime;
 
 
     private void Awake()
@@ -73,9 +73,9 @@ public class PlayerController : MonoBehaviour, IPlayerController
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
         // Turns smooth input into hard one
-        if (stats.SnapInput)
+        if (goopData.SnapInput)
         {
-            if (Mathf.Abs(_frameInput.Move.x) < stats.HorizontalDeadZoneThreshold)
+            if (Mathf.Abs(_frameInput.Move.x) < goopData.HorizontalDeadZoneThreshold)
                 _frameInput.Move.x = 0;
             else _frameInput.Move.x = Mathf.Sign(_frameInput.Move.x);
         }
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     {
         if (_frameInput.Move.x == 0)
         {
-            var _decel = _grounded ? stats.GroundDeceleration : stats.AirDeceleration;
+            var _decel = _grounded ? goopData.GroundDeceleration : goopData.AirDeceleration;
             _frameVelocity.x = Mathf.MoveTowards(
                 _frameVelocity.x, 0, 
                 _decel * Time.deltaTime);
@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
         {
             _frameVelocity.x = Mathf.MoveTowards(
                 _frameVelocity.x,
-                _frameInput.Move.x * stats.MaxSpeed,
-                stats.Acceleration * Time.fixedDeltaTime);
+                _frameInput.Move.x * goopData.MaxSpeed,
+                goopData.Acceleration * Time.fixedDeltaTime);
         }
     }
 
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
         _endedJumpEarly = false;
         _bufferedJumpUsable = false;
         _coyoteUsable = false;
-        _frameVelocity.y = stats.JumpPower;
+        _frameVelocity.y = goopData.JumpPower;
         Jumped?.Invoke();
     }
     #endregion
@@ -152,15 +152,15 @@ public class PlayerController : MonoBehaviour, IPlayerController
             _boxCollider.bounds.center,
             _boxCollider.size,
             0, Vector2.down,
-            stats.GrounderDistance,
-            ~stats.PlayerLayer);
+            goopData.GrounderDistance,
+            ~goopData.PlayerLayer);
 
         bool _ceilingHit = Physics2D.BoxCast(
             _boxCollider.bounds.center,
             _boxCollider.size,
             0, Vector2.up,
-            stats.GrounderDistance,
-            ~stats.PlayerLayer);
+            goopData.GrounderDistance,
+            ~goopData.PlayerLayer);
 
         if (_ceilingHit) 
             _frameVelocity.y = Mathf.Min(0, _frameVelocity.y);
@@ -187,16 +187,16 @@ public class PlayerController : MonoBehaviour, IPlayerController
     private void HandleGravity()
     {
         if (_grounded && _frameVelocity.y <= 0)
-            _frameVelocity.y = stats.GroundingForce;
+            _frameVelocity.y = goopData.GroundingForce;
         else
         {
-            float _gravity = stats.FallAcceleration;
+            float _gravity = goopData.FallAcceleration;
             if (_endedJumpEarly && _frameVelocity.y > 0)
-                _gravity *= stats.JumpEndEarlyGravMod;
+                _gravity *= goopData.JumpEndEarlyGravMod;
 
             _frameVelocity.y = Mathf.MoveTowards(
                 _frameVelocity.y,
-                -stats.MaxFallSpeed,
+                -goopData.MaxFallSpeed,
                 _gravity * Time.fixedDeltaTime);
         }
     }
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (stats == null) return;
+        if (goopData == null) return;
         if (_boxCollider == null) return;
 
         // Center and size of the box collider
@@ -223,11 +223,11 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
         // Draw the line representing the ground check distance
         Gizmos.color = Color.gray;
-        Gizmos.DrawLine(bottom, bottom + Vector3.down * stats.GrounderDistance);
+        Gizmos.DrawLine(bottom, bottom + Vector3.down * goopData.GrounderDistance);
 
         // Draw a thin box at the end of the ground check line to visualize the area being checked for ground
         Gizmos.DrawWireCube(
-            bottom + Vector3.down * stats.GrounderDistance, 
+            bottom + Vector3.down * goopData.GrounderDistance, 
             new Vector3(_boxCollider.size.x, 0.02f, 0.02f));
 
         // Do a box cast to check for ground and change color based on whether it hits something or not
@@ -235,8 +235,8 @@ public class PlayerController : MonoBehaviour, IPlayerController
             (Vector2)center, 
             _boxCollider.size, 0f, 
             Vector2.down, 
-            stats.GrounderDistance, 
-            ~stats.PlayerLayer);
+            goopData.GrounderDistance, 
+            ~goopData.PlayerLayer);
         Gizmos.color = hit.collider != null ? Color.green : Color.red;
 
         // If it hits something, draw a wire cube at the hit point and a line from the bottom of the box collider to the hit point
