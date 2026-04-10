@@ -6,6 +6,9 @@ public class GoopData : ScriptableObject
 {
     public LayerMask PlayerLayer;
 
+    [Header("========== Stats ==========")]
+    public float MaxHealth = 100;
+
     [Header("========== Inputs ==========")]
     public bool SnapInput = true;
     public float VerticalDeadZoneThreshold = 0.3f;
