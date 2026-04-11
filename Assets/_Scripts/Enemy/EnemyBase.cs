@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IDamageable
 {
     private enum EnemyState
     {
@@ -41,4 +41,160 @@ public class EnemyBase : MonoBehaviour
     protected Transform CurrentTarget => target;
 
     public event Action OnDied;
+
+
+    private void Awake()
+    {
+        currentHealth = enemyData != null ? enemyData.MaxHealth : 0f;
+    }
+
+
+    private void Start()
+    {
+        if (target == null && autoResolveTargetOnStart)
+            ResolveTargetOnce();
+    }
+
+
+    private void Update()
+    {
+        if (enemyData == null || _isDead || target == null) 
+            return;
+
+        IDamageable _targetDamageable = target.GetComponent<IDamageable>();
+
+        // if _targetDamageable == null
+        _targetDamageable ??= target.GetComponentInParent<IDamageable>();
+
+        if (_targetDamageable != null && _targetDamageable.IsDead)
+            return;
+
+        float _distanceToTarget = Vector3.Distance(transform.position, target.position);
+        
+        if (_distanceToTarget > DetectionRange) return;
+        if (_distanceToTarget <= AttackRange) 
+            _currentState = EnemyState.Attack;
+        else _currentState = EnemyState.Chase;
+
+        switch (_currentState)
+        {
+            case EnemyState.Attack:
+                TryAttack();
+                break;
+            case EnemyState.Chase:
+                MoveTowardsTarget();
+                break;
+        }
+    }
+
+
+    public void Setup(EnemyData data)
+    {
+        enemyData = data;
+        currentHealth = enemyData.MaxHealth;
+        _isDead = false;
+        _nextAttackTime = 0f;
+        _currentState = EnemyState.Chase;
+    }
+
+
+    public virtual void TakeDamage(float damage)
+    {
+        if (enemyData == null || damage <= 0f || _isDead) return;
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, MaxHealth);
+        Debug.Log($"{name}: got {damage} damage. Health: {currentHealth}/{MaxHealth}");
+
+        if (currentHealth <= 0f)
+            Die();
+    }
+
+
+    public virtual void Die()
+    {
+        if (_isDead) return;
+
+        _isDead = true;
+        _currentState = EnemyState.Dead;
+        Debug.Log($"{name} died :)");
+        OnDied?.Invoke();
+
+        bool _isPooledEnemy = GetComponent("PooledEnemy") != null;
+
+        if (!destroyOnDeath || _isPooledEnemy) return;
+        if (destroyDelayAfterDeath > 0f)
+            Destroy(gameObject, destroyDelayAfterDeath);
+        else Destroy(gameObject);
+    }
+
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
+
+    private void ResolveTargetOnce()
+    {
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+        if (player != null) target = player.transform;
+    }
+
+
+    public void MoveTowardsTarget()
+    {
+        if (target == null) return;
+
+        Vector3 _direction = (target.position - transform.position).normalized;
+        _direction.y = 0f;
+
+        transform.position += _direction * MoveSpeed * Time.deltaTime;
+
+        if (_direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation, 
+                lookRotation, 
+                Time.deltaTime * 5f);
+        }
+    }
+
+
+    public virtual void Attack()
+    {
+        if (target == null) return;
+
+        IDamageable damageable = target.GetComponent<IDamageable>();
+        if (damageable == null)
+            damageable = target.GetComponentInParent<IDamageable>();
+
+        if (damageable != null && !damageable.IsDead)
+            damageable.TakeDamage(Damage);
+
+        Debug.Log($"{name} attack {target.name} with {Damage} damage");
+    }
+
+
+    private void TryAttack()
+    {
+        if (Time.time < _nextAttackTime) return;
+
+        _nextAttackTime = Time.time + attackCooldown;
+        
+        Attack();
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        if (enemyData == null) return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, DetectionRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
+    }
 }
