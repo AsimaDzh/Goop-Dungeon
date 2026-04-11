@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f58ba971df6eb51448d8e2f1c116dcf9, type: 3}
-  m_Name: PlayerStatsDefault
+  m_Name: Player_Data_Default
   m_EditorClassIdentifier: 
   PlayerLayer:
     serializedVersion: 2
