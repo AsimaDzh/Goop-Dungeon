@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea90bc9dc001f8439a3c788ee58732a, type: 3}
   m_Name: Enemy_Data_Default
   m_EditorClassIdentifier: 
-  EnemyName: New Enemy
-  Type: 0
+  EnemyName: Red Goop
+  Type: 1
   MaxHealth: 50
-  MoveSpeed: 3
+  MoveSpeed: 6
   Damage: 10
-  AttackRange: 2
+  AttackRange: 5
   DetectionRange: 10
   ExperienceReward: 10
   Prefab: {fileID: 0}
