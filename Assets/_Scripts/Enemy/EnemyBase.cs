@@ -27,6 +27,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float destroyDelayAfterDeath = 0.15f;
     private bool _isDead;
+    private IDamageable _damageable;
 
     private EnemyState _currentState = EnemyState.Chase;
 
@@ -53,20 +54,19 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (target == null && autoResolveTargetOnStart)
             ResolveTargetOnce();
+
+        _damageable = GetComponent<IDamageable>();
     }
 
 
     private void Update()
     {
-        if (enemyData == null || _isDead || target == null) 
+        if (enemyData == null || _isDead || target == null)
             return;
-
-        IDamageable _targetDamageable = target.GetComponent<IDamageable>();
-
-        // if _targetDamageable == null
-        _targetDamageable ??= target.GetComponentInParent<IDamageable>();
-
-        if (_targetDamageable != null && _targetDamageable.IsDead)
+        
+        _damageable ??= target.GetComponent<IDamageable>(); // if _damageable == null
+        
+        if (_damageable != null && _damageable.IsDead)
             return;
 
         float _distanceToTarget = Vector3.Distance(transform.position, target.position);
@@ -166,12 +166,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (target == null) return;
 
-        IDamageable damageable = target.GetComponent<IDamageable>();
-        if (damageable == null)
-            damageable = target.GetComponentInParent<IDamageable>();
-
-        if (damageable != null && !damageable.IsDead)
-            damageable.TakeDamage(Damage);
+        if (_damageable != null && !_damageable.IsDead)
+            _damageable.TakeDamage(Damage);
 
         Debug.Log($"{name} attack {target.name} with {Damage} damage");
     }
