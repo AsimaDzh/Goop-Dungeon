@@ -1,15 +1,18 @@
 using UnityEngine;
 using System;
 
+enum EnemyState
+{
+    Idle = 0,
+    Patrolling = 1,
+    Chasing = 2,
+    Attacking = 3,
+    Dead = 4
+}
+
+
 public class EnemyBase : MonoBehaviour, IDamageable
 {
-    private enum EnemyState
-    {
-        Chase,
-        Attack,
-        Dead
-    }
-
     [Header("========== Enemy Data ==========")]
     [SerializeField] private EnemyData enemyData;
 
@@ -29,7 +32,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     private bool _isDead;
     private IDamageable _damageable;
 
-    private EnemyState _currentState = EnemyState.Chase;
+    private EnemyState _currentState = EnemyState.Chasing;
 
     public EnemyData Data => enemyData;
     public float CurrentHealth => currentHealth;
@@ -73,15 +76,15 @@ public class EnemyBase : MonoBehaviour, IDamageable
         
         if (_distanceToTarget > DetectionRange) return;
         if (_distanceToTarget <= AttackRange) 
-            _currentState = EnemyState.Attack;
-        else _currentState = EnemyState.Chase;
+            _currentState = EnemyState.Attacking;
+        else _currentState = EnemyState.Chasing;
 
         switch (_currentState)
         {
-            case EnemyState.Attack:
+            case EnemyState.Attacking:
                 TryAttack();
                 break;
-            case EnemyState.Chase:
+            case EnemyState.Chasing:
                 MoveTowardsTarget();
                 break;
         }
@@ -94,7 +97,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         currentHealth = enemyData.MaxHealth;
         _isDead = false;
         _nextAttackTime = 0f;
-        _currentState = EnemyState.Chase;
+        _currentState = EnemyState.Chasing;
     }
 
 
