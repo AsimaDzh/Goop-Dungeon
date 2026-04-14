@@ -19,20 +19,28 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
 
-    [Header("========== Stats ==========")]
+    [Header("========== Target ==========")]
     [SerializeField] private Transform target;
     [SerializeField] private bool autoResolveTargetOnStart = true; // if true, will try to find the player by tag on Start()
-    
+
+    [Header("========== Attack ==========")]
     [SerializeField] private float attackCooldown = 1f;
     private float _nextAttackTime;
+
+    [Header("========== Patrol ==========")]
+    [SerializeField] private float patrolRadius = 3f;
+    [SerializeField] private float waitTime = 2f;
+    private Vector2 _patrolTarget;
+    private float _waitCounter;
 
     [Header("========== Death ==========")]
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float destroyDelayAfterDeath = 0.15f;
     private bool _isDead;
     private IDamageable _damageable;
+    private Rigidbody2D rb;
 
-    private EnemyState _currentState = EnemyState.Chasing;
+    private EnemyState _currentState = EnemyState.Idle;
 
     public EnemyData Data => enemyData;
     public float CurrentHealth => currentHealth;
@@ -50,6 +58,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     private void Awake()
     {
         currentHealth = enemyData != null ? enemyData.MaxHealth : 0f;
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -58,7 +67,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (target == null && autoResolveTargetOnStart)
             ResolveTargetOnce();
 
-        _damageable = GetComponent<IDamageable>();
+        _waitCounter = waitTime;
     }
 
 
@@ -66,26 +75,37 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (enemyData == null || _isDead || target == null)
             return;
-        
-        _damageable ??= target.GetComponent<IDamageable>(); // if _damageable == null
-        
-        if (_damageable != null && _damageable.IsDead)
-            return;
 
-        float _distanceToTarget = Vector3.Distance(transform.position, target.position);
-        
-        if (_distanceToTarget > DetectionRange) return;
-        if (_distanceToTarget <= AttackRange) 
-            _currentState = EnemyState.Attacking;
-        else _currentState = EnemyState.Chasing;
+
+        float _distance = Vector2.Distance(transform.position, target.position);
+
+        if (_distance <= DetectionRange)
+        {
+            if (_distance <= AttackRange)
+                _currentState = EnemyState.Attacking;
+            else 
+                _currentState = EnemyState.Chasing;
+        }
+        else if (_currentState == EnemyState.Chasing || _currentState == EnemyState.Attacking)
+            _currentState = EnemyState.Idle;
+
 
         switch (_currentState)
         {
-            case EnemyState.Attacking:
-                TryAttack();
+            case EnemyState.Idle:
+                //HandleIdle();
                 break;
+
+            case EnemyState.Patrolling:
+                //HandlePatrol();
+                break;
+
             case EnemyState.Chasing:
                 MoveTowardsTarget();
+                break;
+
+            case EnemyState.Attacking:
+                TryAttack();
                 break;
         }
     }
