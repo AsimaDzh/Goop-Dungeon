@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.UIElements;
 
 enum EnemyState
 {
@@ -97,7 +98,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
                 break;
 
             case EnemyState.Patrolling:
-                //HandlePatrol();
+                HandlePatrol();
                 break;
 
             case EnemyState.Chasing:
@@ -120,6 +121,22 @@ public class EnemyBase : MonoBehaviour, IDamageable
         {
             //PickNewPatrolPoint();
             _currentState = EnemyState.Patrolling;
+        }
+    }
+
+
+    private void HandlePatrol()
+    {
+        Vector2 _direction = (_patrolTarget - (Vector2)transform.position).normalized;
+        rb.linearVelocity = _direction * MoveSpeed;
+
+        //Rotate(_direction);
+
+        if (Vector2.Distance(transform.position, _patrolTarget) < 0.2f)
+        {
+            rb.linearVelocity = Vector2.zero;
+            _waitCounter = waitTime;
+            _currentState = EnemyState.Idle;
         }
     }
 
