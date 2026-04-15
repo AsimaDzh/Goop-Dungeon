@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 enum EnemyState
 {
@@ -119,7 +119,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         _waitCounter -= Time.deltaTime;
         if (_waitCounter <= 0f)
         {
-            //PickNewPatrolPoint();
+            PickNewPatrolPoint();
             _currentState = EnemyState.Patrolling;
         }
     }
@@ -138,6 +138,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
             _waitCounter = waitTime;
             _currentState = EnemyState.Idle;
         }
+    }
+
+
+    private void PickNewPatrolPoint()
+    {
+        Vector2 _randomDirection = Random.insideUnitCircle.normalized;
+        _patrolTarget = (Vector2)transform.position + _randomDirection;
     }
 
 
