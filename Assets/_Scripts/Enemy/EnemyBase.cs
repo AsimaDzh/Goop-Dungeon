@@ -93,7 +93,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         switch (_currentState)
         {
             case EnemyState.Idle:
-                //HandleIdle();
+                HandleIdle();
                 break;
 
             case EnemyState.Patrolling:
@@ -107,6 +107,19 @@ public class EnemyBase : MonoBehaviour, IDamageable
             case EnemyState.Attacking:
                 TryAttack();
                 break;
+        }
+    }
+
+
+    private void HandleIdle()
+    {
+        rb.linearVelocity = Vector2.zero;
+
+        _waitCounter -= Time.deltaTime;
+        if (_waitCounter <= 0f)
+        {
+            //PickNewPatrolPoint();
+            _currentState = EnemyState.Patrolling;
         }
     }
 
