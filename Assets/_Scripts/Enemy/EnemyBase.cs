@@ -143,7 +143,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void PickNewPatrolPoint()
     {
-        Vector2 _randomDirection = Random.insideUnitCircle.normalized;
+        Vector2 _randomDirection = Random.insideUnitCircle * patrolRadius;
         _patrolTarget = (Vector2)transform.position + _randomDirection;
     }
 
@@ -198,8 +198,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         currentHealth = Mathf.Clamp(currentHealth, 0f, MaxHealth);
         Debug.Log($"{name}: got {damage} damage. Health: {currentHealth}/{MaxHealth}");
 
-        if (currentHealth <= 0f)
-            Die();
+        if (currentHealth <= 0f) Die();
     }
 
 
@@ -228,12 +227,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
         _isDead = false;
         _nextAttackTime = 0f;
         _currentState = EnemyState.Chasing;
-    }
-
-
-    public void SetTarget(Transform newTarget)
-    {
-        target = newTarget;
     }
 
 
