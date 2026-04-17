@@ -148,6 +148,18 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
 
 
+    public void MoveTowardsTarget()
+    {
+        if (target == null) return;
+
+        Vector2 _direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
+
+        rb.linearVelocity = _direction * MoveSpeed;
+
+        //Rotate(_direction);
+    }
+
+
     public void Setup(EnemyData data)
     {
         enemyData = data;
@@ -199,26 +211,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         PlayerController player = FindFirstObjectByType<PlayerController>();
         if (player != null) target = player.transform;
-    }
-
-
-    public void MoveTowardsTarget()
-    {
-        if (target == null) return;
-
-        Vector3 _direction = (target.position - transform.position).normalized;
-        _direction.y = 0f;
-
-        transform.position += _direction * MoveSpeed * Time.deltaTime;
-
-        if (_direction != Vector3.zero)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation(_direction);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation, 
-                lookRotation, 
-                Time.deltaTime * 5f);
-        }
     }
 
 
