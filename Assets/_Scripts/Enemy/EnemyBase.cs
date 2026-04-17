@@ -130,7 +130,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         Vector2 _direction = (_patrolTarget - (Vector2)transform.position).normalized;
         rb.linearVelocity = _direction * MoveSpeed;
 
-        //Rotate(_direction);
+        Rotate(_direction);
 
         if (Vector2.Distance(transform.position, _patrolTarget) < 0.2f)
         {
@@ -156,17 +156,37 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         rb.linearVelocity = _direction * MoveSpeed;
 
-        //Rotate(_direction);
+        Rotate(_direction);
     }
 
 
-    public void Setup(EnemyData data)
+    private void Rotate(Vector2 direction)
     {
-        enemyData = data;
-        currentHealth = enemyData.MaxHealth;
-        _isDead = false;
-        _nextAttackTime = 0f;
-        _currentState = EnemyState.Chasing;
+        if (direction == Vector2.zero) return;
+
+        float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, _angle);
+    }
+
+
+    public virtual void Attack()
+    {
+        if (target == null) return;
+
+        if (_damageable != null && !_damageable.IsDead)
+            _damageable.TakeDamage(Damage);
+
+        Debug.Log($"{name} attack {target.name} with {Damage} damage");
+    }
+
+
+    private void TryAttack()
+    {
+        if (Time.time < _nextAttackTime) return;
+
+        _nextAttackTime = Time.time + attackCooldown;
+
+        Attack();
     }
 
 
@@ -201,6 +221,16 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
 
 
+    public void Setup(EnemyData data)
+    {
+        enemyData = data;
+        currentHealth = enemyData.MaxHealth;
+        _isDead = false;
+        _nextAttackTime = 0f;
+        _currentState = EnemyState.Chasing;
+    }
+
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
@@ -211,27 +241,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         PlayerController player = FindFirstObjectByType<PlayerController>();
         if (player != null) target = player.transform;
-    }
-
-
-    public virtual void Attack()
-    {
-        if (target == null) return;
-
-        if (_damageable != null && !_damageable.IsDead)
-            _damageable.TakeDamage(Damage);
-
-        Debug.Log($"{name} attack {target.name} with {Damage} damage");
-    }
-
-
-    private void TryAttack()
-    {
-        if (Time.time < _nextAttackTime) return;
-
-        _nextAttackTime = Time.time + attackCooldown;
-        
-        Attack();
     }
 
 
