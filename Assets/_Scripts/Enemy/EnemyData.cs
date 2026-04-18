@@ -21,7 +21,8 @@ public class EnemyData : ScriptableObject
 
     [Header("========== Attack ==========")]
     [Min(0f)] public float AttackRange = 2f;
-    [Min(0f)] public float DetectionRange = 10f;
+    [Min(0f)] public float DetectionWidth = 10f;
+    [Min(0f)] public float DetectionHeight = 4f;
 
     [Header("========== Reward ==========")]
     [Min(0f)] public float ExperienceReward = 10f;

@@ -11,7 +11,8 @@ public class EnemyStats : MonoBehaviour
     public float MoveSpeed => enemyBase != null ? enemyBase.MoveSpeed : 0f;
     public float Damage => enemyBase != null ? enemyBase.Damage : 0f;
     public float AttackRange => enemyBase != null ? enemyBase.AttackRange : 0f;
-    public float DetectionRange => enemyBase != null ? enemyBase.DetectionRange : 0f;
+    public float DetectionWidth => enemyBase != null ? enemyBase.DetectionWidth : 0f;
+    public float DetectionHeight => enemyBase != null ? enemyBase.DetectionHeight : 0f;
     public float ExperienceReward => EnemyData != null ? EnemyData.ExperienceReward : 0f;
 
     // Death event in EnemyStats format for backward compatibility.

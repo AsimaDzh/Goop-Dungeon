@@ -18,6 +18,7 @@ MonoBehaviour:
   MoveSpeed: 6
   Damage: 10
   AttackRange: 2
-  DetectionRange: 5
+  DetectionWidth: 10
+  DetectionHeight: 3
   ExperienceReward: 10
   Prefab: {fileID: 0}

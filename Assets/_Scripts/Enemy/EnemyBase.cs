@@ -49,7 +49,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public float MoveSpeed => enemyData != null ? enemyData.MoveSpeed : 0f;
     public float Damage => enemyData != null ? enemyData.Damage : 0f;
     public float AttackRange => enemyData != null ? enemyData.AttackRange : 0f;
-    public float DetectionRange => enemyData != null ? enemyData.DetectionRange : 0f;
+    public float DetectionWidth => enemyData != null ? enemyData.DetectionWidth : 0f;
+    public float DetectionHeight => enemyData != null ? enemyData.DetectionHeight : 0f;
     public bool IsDead => _isDead;
     protected Transform CurrentTarget => target;
 
@@ -77,10 +78,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (enemyData == null || _isDead || target == null)
             return;
 
-
         float _distance = Vector2.Distance(transform.position, target.position);
 
-        if (_distance <= DetectionRange)
+        bool _isTargetInDetectionRange =
+            Mathf.Abs(target.position.x - transform.position.x) <= DetectionWidth / 2 &&
+            Math.Abs(target.position.y - transform.position.y) <= DetectionHeight / 2; 
+
+        if (_isTargetInDetectionRange)
         {
             if (_distance <= AttackRange)
                 _currentState = EnemyState.Attacking;
@@ -248,7 +252,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (enemyData == null) return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, DetectionRange);
+        Vector3 _detectionSize = new Vector3(DetectionWidth, DetectionHeight, 0);
+        Gizmos.DrawWireCube(transform.position, _detectionSize);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, AttackRange);
