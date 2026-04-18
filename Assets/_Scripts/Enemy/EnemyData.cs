@@ -28,5 +28,5 @@ public class EnemyData : ScriptableObject
     [Min(0f)] public float ExperienceReward = 10f;
 
     [Header("========== Prefab ==========")]
-    public GameObject Prefab;
+    public GameObject ProjectilePrefab;
 }
