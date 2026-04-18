@@ -129,6 +129,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         Vector2 _targetPosition = new Vector2(_patrolTarget.x, transform.position.y);
         float _directionX = Mathf.Sign(_patrolTarget.x - transform.position.x);
+        
         rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
         
         Rotate(new Vector2(_directionX, 0f));
@@ -155,11 +156,11 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (target == null) return;
 
-        Vector2 _direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
+        float _directionX = Mathf.Sign(target.position.x - transform.position.x);
+        
+        rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
-        rb.linearVelocity = _direction * MoveSpeed;
-
-        Rotate(_direction);
+        Rotate(new Vector2(_directionX, 0f));
     }
 
 
