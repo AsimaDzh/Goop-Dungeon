@@ -13,8 +13,7 @@ public class FireGoop : EnemyBase
 
     public override void Attack()
     {
-        if (CurrentTarget == null)
-            return;
+        if (CurrentTarget == null) return;
 
         if (projectilePrefab == null)
         {
