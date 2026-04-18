@@ -29,7 +29,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     private float _nextAttackTime;
 
     [Header("========== Patrol ==========")]
-    [SerializeField] private float patrolRadius = 3f;
+    [SerializeField] private float patrolRadius = 5f;
     [SerializeField] private float waitTime = 2f;
     private Vector2 _patrolTarget;
     private float _waitCounter;
@@ -127,12 +127,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void HandlePatrol()
     {
-        Vector2 _direction = (_patrolTarget - (Vector2)transform.position).normalized;
-        rb.linearVelocity = _direction * MoveSpeed;
+        Vector2 _targetPosition = new Vector2(_patrolTarget.x, transform.position.y);
+        float _directionX = Mathf.Sign(_patrolTarget.x - transform.position.x);
+        rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+        
+        Rotate(new Vector2(_directionX, 0f));
 
-        Rotate(_direction);
-
-        if (Vector2.Distance(transform.position, _patrolTarget) < 0.2f)
+        if (Mathf.Abs(_patrolTarget.x - transform.position.x) < 0.2f)
         {
             rb.linearVelocity = Vector2.zero;
             _waitCounter = waitTime;
@@ -143,8 +144,10 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void PickNewPatrolPoint()
     {
-        Vector2 _randomDirection = Random.insideUnitCircle * patrolRadius;
-        _patrolTarget = (Vector2)transform.position + _randomDirection;
+        float _randomOffsetX = Random.Range(-patrolRadius, patrolRadius);
+        _patrolTarget = new Vector2(
+            transform.position.x + _randomOffsetX, 
+            transform.position.y);
     }
 
 
@@ -164,8 +167,10 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (direction == Vector2.zero) return;
 
-        float _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, _angle);
+        if (direction.x > 0.01f)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (direction.x < -0.01f)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
 
