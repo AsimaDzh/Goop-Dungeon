@@ -6,9 +6,16 @@ public class FireGoop : EnemyBase
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform shootOrigin;
     [SerializeField] private LayerMask projectileHitLayers;
-    [SerializeField] private float projectileSpeed = 12f;
-    [SerializeField] private float projectileDistance = 12f;
+
+    [SerializeField] private float projectileDamage = 10f;
+    [SerializeField] private float flightTime = 1.5f;
     [SerializeField] private float aimOffsetY = 1f;
+
+    [Header("========== Attack Timing ========== ")]
+    [SerializeField] private float attackDelay = 1.5f;
+    [SerializeField] private float recoveryTime = 0.5f;
+
+    private bool _isAttacking;
 
 
     public override void Attack()

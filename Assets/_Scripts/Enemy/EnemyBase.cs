@@ -39,7 +39,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] private float destroyDelayAfterDeath = 0.15f;
     private bool _isDead;
     private IDamageable _damageable;
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     private EnemyState _currentState = EnemyState.Idle;
 
@@ -60,7 +60,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     private void Awake()
     {
         currentHealth = enemyData != null ? enemyData.MaxHealth : 0f;
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -118,7 +118,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void HandleIdle()
     {
-        rb.linearVelocity = Vector2.zero;
+        _rb.linearVelocity = Vector2.zero;
 
         _waitCounter -= Time.deltaTime;
         if (_waitCounter <= 0f)
@@ -134,13 +134,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
         Vector2 _targetPosition = new Vector2(_patrolTarget.x, transform.position.y);
         float _directionX = Mathf.Sign(_patrolTarget.x - transform.position.x);
         
-        rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
         
         Rotate(new Vector2(_directionX, 0f));
 
         if (Mathf.Abs(_patrolTarget.x - transform.position.x) < 0.2f)
         {
-            rb.linearVelocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
             _waitCounter = waitTime;
             _currentState = EnemyState.Idle;
         }
@@ -162,7 +162,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         float _directionX = Mathf.Sign(target.position.x - transform.position.x);
         
-        rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
         Rotate(new Vector2(_directionX, 0f));
     }
