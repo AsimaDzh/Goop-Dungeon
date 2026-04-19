@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class FireGoop : EnemyBase
 {
@@ -31,6 +33,19 @@ public class FireGoop : EnemyBase
         if (projectileHitLayers.value == 0)
             Debug.LogWarning($"{name}: projectileHitLayers is empty.", this);
 
-        // Projectile shoot logic
+        StartCoroutine(AttackRoutine());
+    }
+
+
+    private IEnumerator AttackRoutine()
+    {
+        _isAttacking = true;
+        // Wait for attack delay before shooting
+        yield return new WaitForSeconds(attackDelay);
+        // Shoot the projectile towards the target
+        //ShootProjectile();
+        // Wait for recovery time after shooting before allowing next attack
+        yield return new WaitForSeconds(recoveryTime);
+        _isAttacking = false;
     }
 }
