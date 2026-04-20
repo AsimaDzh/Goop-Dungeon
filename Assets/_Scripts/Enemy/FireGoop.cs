@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static UnityEngine.UI.Image;
 
 
 public class FireGoop : EnemyBase
@@ -55,5 +56,30 @@ public class FireGoop : EnemyBase
     private void ShootProjectile()
     {
         if (projectilePrefab == null || CurrentTarget == null) return;
+
+        Vector2 _targetPos = (Vector2)CurrentTarget.position + Vector2.up * aimOffsetY;
+
+        GameObject _gameObject = Instantiate(
+            projectilePrefab,
+            shootOrigin.position,
+            Quaternion.identity);
+
+        FireBall _fireball = _gameObject.GetComponent<FireBall>();
+        if (_fireball == null)
+        {
+            Debug.LogWarning($"{name}: No fireball");
+            Destroy(_gameObject);
+            return;
+        }
+
+        _fireball.Setup(projectileDamage, projectileHitLayers);
+
+        // Вычисление начальной скорости для попадания в цель за flightTime с учётом гравитации:
+        // s = v*t + 0.5*g*t^2  =>  v = (s - 0.5*g*t^2)/t
+        //Vector2 gravity = Physics2D.gravity * projRb.gravityScale;
+        //Vector2 displacement = targetPos - origin;
+        //Vector2 initialVelocity = (displacement - 0.5f * gravity * flightTime * flightTime) / flightTime;
+
+        //fb.Launch(initialVelocity);
     }
 }
