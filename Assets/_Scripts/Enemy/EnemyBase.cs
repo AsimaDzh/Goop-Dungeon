@@ -194,6 +194,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         if (Time.time < _nextAttackTime) return;
 
+        _rb.linearVelocity = Vector2.zero;
+
         _nextAttackTime = Time.time + attackCooldown;
 
         Attack();

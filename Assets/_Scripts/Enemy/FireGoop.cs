@@ -24,6 +24,8 @@ public class FireGoop : EnemyBase
     {
         if (CurrentTarget == null) return;
 
+        if (_isAttacking) return;
+
         if (projectilePrefab == null)
         {
             Debug.LogWarning($"{name}: projectilePrefab is not assigned.", this);
@@ -40,12 +42,18 @@ public class FireGoop : EnemyBase
     private IEnumerator AttackRoutine()
     {
         _isAttacking = true;
-        // Wait for attack delay before shooting
+
         yield return new WaitForSeconds(attackDelay);
-        // Shoot the projectile towards the target
-        //ShootProjectile();
-        // Wait for recovery time after shooting before allowing next attack
+
+        ShootProjectile();
+
         yield return new WaitForSeconds(recoveryTime);
         _isAttacking = false;
+    }
+
+
+    private void ShootProjectile()
+    {
+        if (projectilePrefab == null || CurrentTarget == null) return;
     }
 }
