@@ -38,8 +38,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float destroyDelayAfterDeath = 0.15f;
     private bool _isDead;
-    private IDamageable _damageable;
-    private Rigidbody2D _rb;
+    private IDamageable _damageable; 
 
     private EnemyState _currentState = EnemyState.Idle;
 
@@ -53,6 +52,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public float DetectionHeight => enemyData != null ? enemyData.DetectionHeight : 0f;
     public bool IsDead => _isDead;
     protected Transform CurrentTarget => target;
+    protected Rigidbody2D _rb;
 
     public event Action OnDied;
 

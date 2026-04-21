@@ -74,12 +74,11 @@ public class FireGoop : EnemyBase
 
         _fireball.Setup(projectileDamage, projectileHitLayers);
 
-        // Вычисление начальной скорости для попадания в цель за flightTime с учётом гравитации:
         // s = v*t + 0.5*g*t^2  =>  v = (s - 0.5*g*t^2)/t
-        //Vector2 gravity = Physics2D.gravity * projRb.gravityScale;
-        //Vector2 displacement = targetPos - origin;
-        //Vector2 initialVelocity = (displacement - 0.5f * gravity * flightTime * flightTime) / flightTime;
+        Vector2 _gravity = Physics2D.gravity * _rb.gravityScale;
+        Vector2 _displacement = _targetPos - (Vector2)shootOrigin.position;
+        Vector2 _initialVelocity = (_displacement - 0.5f * _gravity * flightTime * flightTime) / flightTime;
 
-        //fb.Launch(initialVelocity);
+        _fireball.Launch(_initialVelocity);
     }
 }
