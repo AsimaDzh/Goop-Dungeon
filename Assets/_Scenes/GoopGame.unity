@@ -2432,6 +2432,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550935935061847720, guid: 84377deff816c2943a93060c553ce93e, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1662384276}
     - target: {fileID: 2508280846285138994, guid: 84377deff816c2943a93060c553ce93e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -2472,10 +2476,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3595022422124050548, guid: 84377deff816c2943a93060c553ce93e, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1662384276}
     - target: {fileID: 4623253049715218299, guid: 84377deff816c2943a93060c553ce93e, type: 3}
       propertyPath: m_Name
       value: Enemy Goop

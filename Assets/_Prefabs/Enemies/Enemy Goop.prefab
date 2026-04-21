@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4147491689881289527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7980971353817335620}
+  m_Layer: 6
+  m_Name: Shoot Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7980971353817335620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147491689881289527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2508280846285138994}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4623253049715218299
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2508280846285138994}
   - component: {fileID: 8060661314375583181}
-  - component: {fileID: 3595022422124050548}
+  - component: {fileID: 550935935061847720}
   - component: {fileID: 6210215413557115719}
   - component: {fileID: 4693389079460900074}
   - component: {fileID: 5722903315125148531}
@@ -34,7 +65,8 @@ Transform:
   m_LocalPosition: {x: 7.5, y: -2.88, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 7980971353817335620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8060661314375583181
@@ -92,7 +124,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3595022422124050548
+--- !u!114 &550935935061847720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,18 +133,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4623253049715218299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4b6217488a5eae40b3c63a14d3a2cc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d9cdffd82a2e1941b703ad185491612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 952ade299e126984aba9a2d5ace1e2f3, type: 2}
-  currentHealth: 50
+  currentHealth: 0
   target: {fileID: 0}
   autoResolveTargetOnStart: 1
   attackCooldown: 1
-  patrolRadius: 3
+  patrolRadius: 5
   waitTime: 2
   destroyOnDeath: 1
   destroyDelayAfterDeath: 0.15
+  projectilePrefab: {fileID: 2373585136382196398, guid: d0ceb507b390efa4da0db41cfb73a450, type: 3}
+  shootOrigin: {fileID: 7980971353817335620}
+  projectileHitLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  projectileDamage: 10
+  flightTime: 1.5
+  aimOffsetY: 1
+  attackDelay: 1.5
+  recoveryTime: 0.5
 --- !u!114 &6210215413557115719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cbb8d6b7b338c46bcd220755de6d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBase: {fileID: 3595022422124050548}
+  enemyBase: {fileID: 550935935061847720}
 --- !u!61 &4693389079460900074
 BoxCollider2D:
   m_ObjectHideFlags: 0
