@@ -72,5 +72,23 @@ public class GameManager : MonoBehaviour
         EventBus.Instance.RaiseGameResumed();
         Debug.Log("Game resumed");
     }
+
+
+    public void EnterLoseState()
+    {
+
+    }
+
+
+    public void EnterWinState()
+    {
+
+    }
+
+
+    private void RestartGameScene()
+    {
+
+    }
 }
 
