@@ -69,6 +69,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (target == null && autoResolveTargetOnStart)
             ResolveTargetOnce();
 
+        if (target != null)
+            _damageable = target.GetComponent<IDamageable>();
+
         _waitCounter = waitTime;
     }
 

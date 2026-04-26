@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GoopStats : MonoBehaviour
+public class GoopStats : MonoBehaviour, IDamageable
 {
     [Header("========== Player Data ===========")]
     public GoopData playerData;
@@ -10,6 +10,7 @@ public class GoopStats : MonoBehaviour
     [SerializeField] private float currentHealth;
 
     public float CurrentHealth => currentHealth;
+    public bool IsDead => currentHealth <= 0f;
 
     public event Action<float, float> OnHealthChanged;
     public event Action OnDeath;
@@ -34,14 +35,16 @@ public class GoopStats : MonoBehaviour
     }
 
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damage)
     {
-        if (amount <= 0f || currentHealth <= 0f) return;
+        if (damage <= 0f || currentHealth <= 0f) return;
 
-        currentHealth -= amount;
+        currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, playerData.MaxHealth);
 
         OnHealthChanged?.Invoke(currentHealth, playerData.MaxHealth);
+        
+        Debug.Log($"Player took {damage} damage. Health: {currentHealth}/{playerData.MaxHealth}");
 
         if (currentHealth <= 0f) OnDeath?.Invoke();
     }
