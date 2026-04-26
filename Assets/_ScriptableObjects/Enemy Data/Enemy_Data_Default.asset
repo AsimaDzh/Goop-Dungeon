@@ -17,8 +17,8 @@ MonoBehaviour:
   MaxHealth: 50
   MoveSpeed: 6
   Damage: 10
-  AttackRange: 2
-  DetectionWidth: 10
+  AttackRange: 4
+  DetectionWidth: 12
   DetectionHeight: 3
   ExperienceReward: 10
-  Prefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 2373585136382196398, guid: d0ceb507b390efa4da0db41cfb73a450, type: 3}

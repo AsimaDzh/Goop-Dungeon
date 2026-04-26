@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 952ade299e126984aba9a2d5ace1e2f3, type: 2}
-  currentHealth: 0
+  currentHealth: 50
   target: {fileID: 0}
   autoResolveTargetOnStart: 1
   attackCooldown: 1
@@ -151,9 +151,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   projectileDamage: 10
-  flightTime: 1.5
+  flightTime: 0.8
   aimOffsetY: 1
-  attackDelay: 1.5
+  attackDelay: 1
   recoveryTime: 0.5
 --- !u!114 &6210215413557115719
 MonoBehaviour:
