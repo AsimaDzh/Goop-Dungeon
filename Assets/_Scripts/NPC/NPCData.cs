@@ -10,7 +10,7 @@ public class NPCData : ScriptableObject
     }
 
     [Header("========== General ==========")]
-    public string EnemyName = "New Enemy";
+    public string EnemyName = "Unknown Goop";
     public NPCType Type = NPCType.Melee;
 
     [Header("========== Characteristics ==========")]
