@@ -1,5 +1,16 @@
 using UnityEngine;
 
+enum NPCState
+{
+    Idle = 0,
+    Moving = 1, 
+    Interacting = 2,
+    Inspecting = 3,
+    Accepting = 4,
+    Rejecting = 5
+}
+
+
 public class NPCBase : MonoBehaviour
 {
     // Variables
