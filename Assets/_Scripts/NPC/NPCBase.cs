@@ -36,15 +36,47 @@ public class NPCBase : MonoBehaviour
     protected Rigidbody2D _rb;
 
 
+    private void Awake()
+    {
+        currentHealth = npcData != null ? npcData.MaxHealth : 0f;
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+
+    private void Start()
+    {
+        _waitCounter = waitTime;
+    }
+
+
     private void Update()
     {
-        // switch case
-        // state idle
-        // state moving
-        // state interacting
-        // state Inspecting
-        // state Accepting
-        // state Rejecting
+        switch(_currentState)
+        {
+            case NPCState.Idle:
+                HandleIdle(); 
+                break;
+
+            case NPCState.Moving:
+                HandleMoving(); 
+                break;
+
+            case NPCState.Interacting:
+                GrabObject();
+                break;
+
+            case NPCState.Inspecting:
+                InspectiongObject();
+                break;
+
+            case NPCState.Accepting:
+                AcceptingObject();
+                break;
+
+            case NPCState.Rejecting:
+                RejectingObject();
+                break;
+        }
     }
 
 
