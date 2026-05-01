@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using Random = UnityEngine.Random;
 
 enum NPCState
 {
@@ -102,14 +104,24 @@ public class NPCBase : MonoBehaviour
     }
 
 
+    private void Rotate(Vector2 direction)
+    {
+        if (direction == Vector2.zero) return;
+
+        if (direction.x > 0.01f)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (direction.x < -0.01f)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
+
     private void HandleMoving()
     {
-        Vector2 _targetPosition = new Vector2(_movingTarget.x, transform.position.y);
         float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
 
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
-        //Rotate(new Vector2(_directionX, 0f));
+        Rotate(new Vector2(_directionX, 0f));
 
         if (Mathf.Abs(_movingTarget.x - transform.position.x) < 0.2f)
         {

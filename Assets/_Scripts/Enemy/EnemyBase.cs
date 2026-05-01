@@ -133,7 +133,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     private void HandlePatrol()
     {
-        Vector2 _targetPosition = new Vector2(_patrolTarget.x, transform.position.y);
         float _directionX = Mathf.Sign(_patrolTarget.x - transform.position.x);
         
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
@@ -239,8 +238,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
         enemyData = data;
         currentHealth = enemyData.MaxHealth;
         _isDead = false;
-        _nextAttackTime = 0f;
-        _currentState = EnemyState.Chasing;
+        _nextAttackTime = 0f;  
+        _currentState = EnemyState.Idle;
     }
 
 
