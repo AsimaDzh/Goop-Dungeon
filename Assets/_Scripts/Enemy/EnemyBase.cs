@@ -19,6 +19,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
+    private EnemyState _currentState = EnemyState.Idle;
 
     [Header("========== Target ==========")]
     [SerializeField] private Transform target;
@@ -39,8 +40,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] private float destroyDelayAfterDeath = 0.15f;
     private bool _isDead;
     private IDamageable _damageable; 
-
-    private EnemyState _currentState = EnemyState.Idle;
 
     public EnemyData Data => enemyData;
     public float CurrentHealth => currentHealth;
