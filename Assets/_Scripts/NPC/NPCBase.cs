@@ -82,6 +82,14 @@ public class NPCBase : MonoBehaviour
 
     private void HandleIdle()
     {
+        _rb.linearVelocity = Vector2.zero;
+
+        _waitCounter -= Time.deltaTime;
+        if (_waitCounter <= 0f)
+        {
+            //PickNewWalkingPoint();
+            _currentState = NPCState.Moving;
+        }
     }
 
 
