@@ -87,14 +87,36 @@ public class NPCBase : MonoBehaviour
         _waitCounter -= Time.deltaTime;
         if (_waitCounter <= 0f)
         {
-            //PickNewWalkingPoint();
+            PickNewWalkingPoint();
             _currentState = NPCState.Moving;
         }
     }
 
 
+    private void PickNewWalkingPoint()
+    {
+        float _randomOffsetX = Random.Range(-movingRadius, movingRadius);
+        _movingTarget = new Vector2(
+            transform.position.x + _randomOffsetX,
+            transform.position.y);
+    }
+
+
     private void HandleMoving()
     {
+        Vector2 _targetPosition = new Vector2(_movingTarget.x, transform.position.y);
+        float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
+
+        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+
+        //Rotate(new Vector2(_directionX, 0f));
+
+        if (Mathf.Abs(_movingTarget.x - transform.position.x) < 0.2f)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _waitCounter = waitTime;
+            _currentState = NPCState.Idle;
+        }
     }
 
 
