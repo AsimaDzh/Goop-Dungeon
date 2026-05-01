@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "GoopData", menuName = "Data/Goop Data")]
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Data/Player Data")]
 public class GoopData : ScriptableObject
 {
     public LayerMask PlayerLayer;
