@@ -70,16 +70,7 @@ public class CharacterBase : MonoBehaviour
     }
 
 
-    private void PickNewWalkingPoint()
-    {
-        float _randomOffsetX = Random.Range(-movingRadius, movingRadius);
-        _movingTarget = new Vector2(
-            transform.position.x + _randomOffsetX,
-            transform.position.y);
-    }
-
-
-    private void Rotate(Vector2 direction)
+    protected void Rotate(Vector2 direction)
     {
         if (direction == Vector2.zero) return;
 
@@ -87,5 +78,14 @@ public class CharacterBase : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (direction.x < -0.01f)
             transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
+
+    private void PickNewWalkingPoint()
+    {
+        float _randomOffsetX = Random.Range(-movingRadius, movingRadius);
+        _movingTarget = new Vector2(
+            transform.position.x + _randomOffsetX,
+            transform.position.y);
     }
 }

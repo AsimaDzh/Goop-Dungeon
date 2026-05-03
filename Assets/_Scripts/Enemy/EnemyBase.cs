@@ -1,25 +1,14 @@
 using UnityEngine;
 using System;
-using Random = UnityEngine.Random;
-
-enum EnemyState
-{
-    Idle = 0,
-    Patrolling = 1,
-    Chasing = 2,
-    Attacking = 3,
-    Dead = 4
-}
 
 
-public class EnemyBase : MonoBehaviour, IDamageable
+public class EnemyBase : CharacterBase, IDamageable
 {
     [Header("========== Enemy Data ==========")]
     [SerializeField] private EnemyData enemyData;
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
-    private EnemyState _currentState = EnemyState.Idle;
 
     [Header("========== Target ==========")]
     [SerializeField] private Transform target;
@@ -28,12 +17,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [Header("========== Attack ==========")]
     [SerializeField] private float attackCooldown = 1f;
     private float _nextAttackTime;
-
-    [Header("========== Patrol ==========")]
-    [SerializeField] private float patrolRadius = 5f;
-    [SerializeField] private float waitTime = 2f;
-    private Vector2 _patrolTarget;
-    private float _waitCounter;
 
     [Header("========== Death ==========")]
     [SerializeField] private bool destroyOnDeath = true;
@@ -44,14 +27,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public EnemyData Data => enemyData;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => enemyData != null ? enemyData.MaxHealth : 0f;
-    public float MoveSpeed => enemyData != null ? enemyData.MoveSpeed : 0f;
+    override public float MoveSpeed => enemyData != null ? enemyData.MoveSpeed : 0f;
     public float Damage => enemyData != null ? enemyData.Damage : 0f;
     public float AttackRange => enemyData != null ? enemyData.AttackRange : 0f;
     public float DetectionWidth => enemyData != null ? enemyData.DetectionWidth : 0f;
     public float DetectionHeight => enemyData != null ? enemyData.DetectionHeight : 0f;
     public bool IsDead => _isDead;
     protected Transform CurrentTarget => target;
-    protected Rigidbody2D _rb;
 
     public event Action OnDied;
 
@@ -70,8 +52,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
         if (target != null)
             _damageable = target.GetComponent<IDamageable>();
-
-        _waitCounter = waitTime;
     }
 
 
@@ -89,71 +69,32 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (_isTargetInDetectionRange)
         {
             if (_distance <= AttackRange)
-                _currentState = EnemyState.Attacking;
+                _currentState = CharacterState.Attacking;
             else 
-                _currentState = EnemyState.Chasing;
+                _currentState = CharacterState.Chasing;
         }
-        else if (_currentState == EnemyState.Chasing || _currentState == EnemyState.Attacking)
-            _currentState = EnemyState.Idle;
+        else if (_currentState == CharacterState.Chasing || _currentState == CharacterState.Attacking)
+            _currentState = CharacterState.Idle;
 
 
         switch (_currentState)
         {
-            case EnemyState.Idle:
+            case CharacterState.Idle:
                 HandleIdle();
                 break;
 
-            case EnemyState.Patrolling:
-                HandlePatrol();
+            case CharacterState.Moving:
+                HandleMoving();
                 break;
 
-            case EnemyState.Chasing:
+            case CharacterState.Chasing:
                 MoveTowardsTarget();
                 break;
 
-            case EnemyState.Attacking:
+            case CharacterState.Attacking:
                 TryAttack();
                 break;
         }
-    }
-
-
-    private void HandleIdle()
-    {
-        _rb.linearVelocity = Vector2.zero;
-
-        _waitCounter -= Time.deltaTime;
-        if (_waitCounter <= 0f)
-        {
-            PickNewPatrolPoint();
-            _currentState = EnemyState.Patrolling;
-        }
-    }
-
-
-    private void HandlePatrol()
-    {
-        float _directionX = Mathf.Sign(_patrolTarget.x - transform.position.x);
-        
-        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
-        
-        Rotate(new Vector2(_directionX, 0f));
-
-        if (Mathf.Abs(_patrolTarget.x - transform.position.x) < 0.2f)
-        {
-            _rb.linearVelocity = Vector2.zero;
-            _waitCounter = waitTime;
-            _currentState = EnemyState.Idle;
-        }
-    }
-
-
-    private void PickNewPatrolPoint()
-    {
-        float _randomOffsetX = Random.Range(-patrolRadius, patrolRadius);
-        _patrolTarget = new Vector2(
-            transform.position.x + _randomOffsetX, 
-            transform.position.y);
     }
 
 
@@ -166,17 +107,6 @@ public class EnemyBase : MonoBehaviour, IDamageable
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
         Rotate(new Vector2(_directionX, 0f));
-    }
-
-
-    private void Rotate(Vector2 direction)
-    {
-        if (direction == Vector2.zero) return;
-
-        if (direction.x > 0.01f)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        else if (direction.x < -0.01f)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
 
@@ -220,7 +150,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (_isDead) return;
 
         _isDead = true;
-        _currentState = EnemyState.Dead;
+        _currentState = CharacterState.Dead;
         Debug.Log($"{name} died :)");
         OnDied?.Invoke();
 
@@ -239,7 +169,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         currentHealth = enemyData.MaxHealth;
         _isDead = false;
         _nextAttackTime = 0f;  
-        _currentState = EnemyState.Idle;
+        _currentState = CharacterState.Idle;
     }
 
 
