@@ -4,12 +4,13 @@ using Random = UnityEngine.Random;
 
 public class CharacterBase : MonoBehaviour
 {
-    protected enum CharacterState
+    enum CharacterState
     {
         Idle = 0,
         Moving = 1, 
     }
 
+    private CharacterState _currentState = CharacterState.Idle;
 
     [Header("========== Moving ==========")]
     [SerializeField] private float movingRadius = 5f;
@@ -36,6 +37,7 @@ public class CharacterBase : MonoBehaviour
         if (_waitCounter <= 0f)
         {
             PickNewWalkingPoint();
+            _currentState = CharacterState.Moving;
         }
     }
 
@@ -52,6 +54,7 @@ public class CharacterBase : MonoBehaviour
         {
             _rb.linearVelocity = Vector2.zero;
             _waitCounter = waitTime;
+            _currentState = CharacterState.Idle;
         }
     }
 
