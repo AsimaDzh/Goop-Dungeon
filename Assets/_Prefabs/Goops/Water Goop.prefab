@@ -113,10 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dfcddbc219218041a80a2cadd9ff6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcData: {fileID: 11400000, guid: 630d31c6fdea45645a744fedbf2b2162, type: 2}
-  currentHealth: 100
   movingRadius: 5
   waitTime: 2
+  npcData: {fileID: 11400000, guid: 630d31c6fdea45645a744fedbf2b2162, type: 2}
+  currentHealth: 100
 --- !u!212 &3809209910993879843
 SpriteRenderer:
   m_ObjectHideFlags: 0
