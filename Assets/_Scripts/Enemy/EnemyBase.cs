@@ -12,7 +12,7 @@ enum EnemyState
 }
 
 
-public class EnemyBase : MonoBehaviour, IDamageable
+public class EnemyBase : CharacterBase, IDamageable
 {
     [Header("========== Enemy Data ==========")]
     [SerializeField] private EnemyData enemyData;

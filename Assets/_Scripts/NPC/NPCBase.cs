@@ -3,22 +3,11 @@ using UnityEngine;
 
 public class NPCBase : CharacterBase
 {
-    enum NPCState
-    {
-        Idle = 0,
-        Moving = 1,
-        Interacting = 2,
-        Inspecting = 3,
-        Accepting = 4,
-        Rejecting = 5
-    }
-
     [Header("========== NPC Data ==========")]
     [SerializeField] private NPCData npcData;
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
-    private NPCState _currentState = NPCState.Idle;
 
     public NPCData Data => npcData;
     public float CurrentHealth => currentHealth;
@@ -39,27 +28,27 @@ public class NPCBase : CharacterBase
     {
         switch(_currentState)
         {
-            case NPCState.Idle:
+            case CharacterState.Idle:
                 HandleIdle(); 
                 break;
 
-            case NPCState.Moving:
+            case CharacterState.Moving:
                 HandleMoving(); 
                 break;
 
-            case NPCState.Interacting:
+            case CharacterState.Interacting:
                 GrabObject();
                 break;
 
-            case NPCState.Inspecting:
+            case CharacterState.Inspecting:
                 InspectiongObject();
                 break;
 
-            case NPCState.Accepting:
+            case CharacterState.Accepting:
                 AcceptingObject();
                 break;
 
-            case NPCState.Rejecting:
+            case CharacterState.Rejecting:
                 RejectingObject();
                 break;
         }

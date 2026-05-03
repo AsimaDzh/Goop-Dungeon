@@ -4,13 +4,24 @@ using Random = UnityEngine.Random;
 
 public class CharacterBase : MonoBehaviour
 {
-    enum CharacterState
+    protected enum CharacterState
     {
         Idle = 0,
-        Moving = 1, 
+        Moving = 1,
+
+        // NPC
+        Interacting = 2,
+        Inspecting = 3,
+        Accepting = 4,
+        Rejecting = 5,
+
+        // Enemy
+        Chasing = 6,
+        Attacking = 7,
+        Dead = 8
     }
 
-    private CharacterState _currentState = CharacterState.Idle;
+    protected CharacterState _currentState = CharacterState.Idle;
 
     [Header("========== Moving ==========")]
     [SerializeField] private float movingRadius = 5f;
