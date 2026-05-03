@@ -1,7 +1,16 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class CharacterBase : MonoBehaviour
 {
+    protected enum CharacterState
+    {
+        Idle = 0,
+        Moving = 1, 
+    }
+
+
     [Header("========== Moving ==========")]
     [SerializeField] private float movingRadius = 5f;
     [SerializeField] private float waitTime = 2f;
@@ -19,7 +28,7 @@ public class CharacterBase : MonoBehaviour
     }
 
 
-    private void HandleIdle()
+    protected void HandleIdle()
     {
         _rb.linearVelocity = Vector2.zero;
 
@@ -27,6 +36,22 @@ public class CharacterBase : MonoBehaviour
         if (_waitCounter <= 0f)
         {
             PickNewWalkingPoint();
+        }
+    }
+
+
+    protected void HandleMoving()
+    {
+        float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
+
+        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+
+        Rotate(new Vector2(_directionX, 0f));
+
+        if (Mathf.Abs(_movingTarget.x - transform.position.x) < 0.2f)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _waitCounter = waitTime;
         }
     }
 
@@ -48,21 +73,5 @@ public class CharacterBase : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (direction.x < -0.01f)
             transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
-
-
-    private void HandleMoving()
-    {
-        float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
-
-        _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
-
-        Rotate(new Vector2(_directionX, 0f));
-
-        if (Mathf.Abs(_movingTarget.x - transform.position.x) < 0.2f)
-        {
-            _rb.linearVelocity = Vector2.zero;
-            _waitCounter = waitTime;
-        }
     }
 }
