@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyName: Red Goop
   Type: 1
   MaxHealth: 50
-  MoveSpeed: 6
+  MoveSpeed: 4
   Damage: 10
   AttackRange: 4
   DetectionWidth: 12
