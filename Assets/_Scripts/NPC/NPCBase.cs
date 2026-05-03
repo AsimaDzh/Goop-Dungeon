@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using Random = UnityEngine.Random;
 
 enum NPCState
@@ -13,7 +12,7 @@ enum NPCState
 }
 
 
-public class NPCBase : MonoBehaviour
+public class NPCBase : CharacterBase
 {
     [Header("========== NPC Data ==========")]
     [SerializeField] private NPCData npcData;
@@ -31,7 +30,7 @@ public class NPCBase : MonoBehaviour
     public NPCData Data => npcData;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
-    public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
+    override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
     public float AttackRange => npcData != null ? npcData.AttackRange : 0f;
 
