@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 
 public class GrabObjects : MonoBehaviour
@@ -15,6 +16,9 @@ public class GrabObjects : MonoBehaviour
     private GameObject _grabbedObject;
     private Rigidbody2D _grabbedRb;
     private BoxCollider2D _grabbedCollider;
+
+    public event Action OnObjectGrabbed;
+    public event Action OnObjectThrown;
 
 
     private void FixedUpdate()
@@ -44,6 +48,8 @@ public class GrabObjects : MonoBehaviour
 
         _grabbedObject.transform.position = grabPoint.position;
         _grabbedObject.transform.SetParent(transform);
+
+        OnObjectGrabbed?.Invoke();
     }
 
 
@@ -62,5 +68,7 @@ public class GrabObjects : MonoBehaviour
         _grabbedObject = null;
         _grabbedRb = null;
         _grabbedCollider = null;
+
+        OnObjectThrown?.Invoke();
     }
 }

@@ -23,6 +23,8 @@ public class NPCBase : CharacterBase
         currentHealth = npcData != null ? npcData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
+
+        _grabSystem.OnObjectGrabbed += HandleObjectGrabbed;
     }
 
 
@@ -53,9 +55,15 @@ public class NPCBase : CharacterBase
     }
 
 
+    private void HandleObjectGrabbed()
+    {
+        _currentState = CharacterState.Inspecting;
+    }
+
+
     private void InspectiongObject()
     {
-
+        Debug.Log("Inspecting object...");
     }
 
 
@@ -66,5 +74,6 @@ public class NPCBase : CharacterBase
 
     private void RejectingObject()
     {
+
     }
 }
