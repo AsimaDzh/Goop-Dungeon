@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class GrabObjects : MonoBehaviour
@@ -26,7 +25,7 @@ public class GrabObjects : MonoBehaviour
     }
 
 
-    private void GrabObject()
+    public void GrabObject()
     {
         RaycastHit2D _hitInfo = Physics2D.Raycast(
             rayPoint.position,
@@ -48,23 +47,20 @@ public class GrabObjects : MonoBehaviour
     }
 
 
-    public void ThrowObject(InputAction.CallbackContext context)
+    public void ThrowObject()
     {
-        if (context.started && _grabbedObject != null)
-        {
-            _grabbedObject.transform.SetParent(null);
+        _grabbedObject.transform.SetParent(null);
 
-            _grabbedCollider.enabled = true;
-            _grabbedRb.bodyType = RigidbodyType2D.Dynamic;
+        _grabbedCollider.enabled = true;
+        _grabbedRb.bodyType = RigidbodyType2D.Dynamic;
 
-            _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
-            Vector2 _direction = (Quaternion.Euler(0, 0, throwAngle) * transform.right).normalized;
+        _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
+        Vector2 _direction = (Quaternion.Euler(0, 0, throwAngle) * transform.right).normalized;
 
-            _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
+        _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
 
-            _grabbedObject = null;
-            _grabbedRb = null;
-            _grabbedCollider = null;
-        }
+        _grabbedObject = null;
+        _grabbedRb = null;
+        _grabbedCollider = null;
     }
 }

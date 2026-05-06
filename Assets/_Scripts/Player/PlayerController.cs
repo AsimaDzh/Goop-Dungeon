@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IPlayerController
 {
+    [Header("========== References ==========")]
     [SerializeField] private GoopData goopData;
+    private GrabObjects _grabSystem;
 
     private Rigidbody2D _rb2D;
     private BoxCollider2D _boxCollider;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void Awake()
     {
+        _grabSystem = GetComponent<GrabObjects>();
         _rb2D = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _cachedQueryStartInCol = Physics2D.queriesStartInColliders;
@@ -63,6 +66,16 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
 
     #region PLAYER_CONTROLS
+
+    public void ОnThrow(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _grabSystem.ThrowObject();
+        }
+    }
+
+
     public void OnMove(InputAction.CallbackContext context)
     {
         _frameInput.Move = context.ReadValue<Vector2>();
