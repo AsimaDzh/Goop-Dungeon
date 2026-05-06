@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class NPCBase : CharacterBase
 {
-    [Header("========== NPC Data ==========")]
+    [Header("========== NPC References ==========")]
     [SerializeField] private NPCData npcData;
+    private GrabObjects _grabSystem;
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
@@ -21,6 +22,7 @@ public class NPCBase : CharacterBase
     {
         currentHealth = npcData != null ? npcData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
+        _grabSystem = GetComponent<GrabObjects>();
     }
 
 
@@ -36,10 +38,6 @@ public class NPCBase : CharacterBase
                 HandleMoving(); 
                 break;
 
-            case CharacterState.Interacting:
-                GrabObject();
-                break;
-
             case CharacterState.Inspecting:
                 InspectiongObject();
                 break;
@@ -52,11 +50,6 @@ public class NPCBase : CharacterBase
                 RejectingObject();
                 break;
         }
-    }
-
-
-    private void GrabObject()
-    {
     }
 
 

@@ -5,11 +5,11 @@ public class GrabObjects : MonoBehaviour
 {
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
-    [SerializeField] private float rayDistance;
+    [SerializeField] private float rayDistance = 0.2f;
 
-    [SerializeField] private float throwForce;
-    [SerializeField] private float throwAngle = 20f;
-    [SerializeField] private float throwOffset = 0.5f;
+    [SerializeField] private float throwForce = 7f;
+    [SerializeField] private float throwAngle = 25f;
+    [SerializeField] private float throwOffset = 1.8f;
     [SerializeField] private LayerMask objectLayer;
 
     private GameObject _grabbedObject;

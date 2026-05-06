@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8022793835305622284}
   - component: {fileID: 7054441171361398578}
+  - component: {fileID: 4731263018250188649}
   - component: {fileID: 3809209910993879843}
   - component: {fileID: 9145746384962653030}
   - component: {fileID: 2346876449081163036}
@@ -117,6 +118,27 @@ MonoBehaviour:
   waitTime: 2
   npcData: {fileID: 11400000, guid: 630d31c6fdea45645a744fedbf2b2162, type: 2}
   currentHealth: 100
+--- !u!114 &4731263018250188649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978599115202725668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a79f7f438801524d988c6e765b4caaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 9055094023158777987}
+  rayPoint: {fileID: 7158677959636043505}
+  rayDistance: 0.2
+  throwForce: 7
+  throwAngle: 25
+  throwOffset: 1.8
+  objectLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &3809209910993879843
 SpriteRenderer:
   m_ObjectHideFlags: 0
