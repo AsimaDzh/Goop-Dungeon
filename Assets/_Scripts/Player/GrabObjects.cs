@@ -4,8 +4,6 @@ using System;
 
 public class GrabObjects : MonoBehaviour
 {
-    public bool _isObjectGrabbed => _grabbedObject != null;
-
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance = 0.2f;
@@ -19,8 +17,7 @@ public class GrabObjects : MonoBehaviour
     private Rigidbody2D _grabbedRb;
     private BoxCollider2D _grabbedCollider;
 
-    public event Action OnObjectGrabbed;
-    public event Action OnObjectThrown;
+    public bool IsObjectGrabbed => _grabbedObject != null;
 
 
     private void FixedUpdate()
@@ -50,8 +47,6 @@ public class GrabObjects : MonoBehaviour
 
         _grabbedObject.transform.position = grabPoint.position;
         _grabbedObject.transform.SetParent(transform);
-
-        OnObjectGrabbed?.Invoke();
     }
 
 
@@ -70,7 +65,5 @@ public class GrabObjects : MonoBehaviour
         _grabbedObject = null;
         _grabbedRb = null;
         _grabbedCollider = null;
-
-        OnObjectThrown?.Invoke();
     }
 }

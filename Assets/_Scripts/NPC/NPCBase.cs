@@ -24,7 +24,6 @@ public class NPCBase : CharacterBase
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
 
-        //_grabSystem.OnObjectGrabbed += HandleObjectGrabbed;
     }
 
 
@@ -54,11 +53,6 @@ public class NPCBase : CharacterBase
         }
     }
 
-
-    private void HandleObjectGrabbed()
-    {
-        _currentState = CharacterState.Inspecting;
-    }
 
 
     private void InspectiongObject()
