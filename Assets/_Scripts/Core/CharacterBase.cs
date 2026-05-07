@@ -10,18 +10,17 @@ public class CharacterBase : MonoBehaviour
         Moving = 1,
 
         // NPC
-        Interacting = 2,
-        Inspecting = 3,
-        Accepting = 4,
-        Rejecting = 5,
+        Inspecting = 2,
+        Accepting = 3,
+        Rejecting = 4,
 
         // Enemy
-        Chasing = 6,
-        Attacking = 7,
-        Dead = 8
+        Chasing = 5,
+        Attacking = 6,
+        Dead = 7
     }
 
-    protected CharacterState _currentState = CharacterState.Idle;
+    [SerializeField] protected CharacterState _currentState = CharacterState.Idle;
 
     [Header("========== Moving ==========")]
     [SerializeField] private float movingRadius = 5f;

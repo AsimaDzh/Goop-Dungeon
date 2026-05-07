@@ -12,6 +12,7 @@ public class NPCData : ScriptableObject
     [Header("========== General ==========")]
     public string EnemyName = "Unknown Goop";
     public NPCType Type = NPCType.Melee;
+    public string Likes = ItemsNames.Rock;
 
     [Header("========== Characteristics ==========")]
     [Min(1f)] public float MaxHealth = 100f;

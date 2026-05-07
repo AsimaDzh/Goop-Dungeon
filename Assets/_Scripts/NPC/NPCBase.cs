@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,6 +10,8 @@ public class NPCBase : CharacterBase
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
+
+    private float _inspectingTime = 1f;
 
     public NPCData Data => npcData;
     public float CurrentHealth => currentHealth;
@@ -60,20 +63,35 @@ public class NPCBase : CharacterBase
     }
 
 
-
     private void InspectiongObject()
     {
         Debug.Log("Inspecting object...");
+        StartCoroutine(WaitAndDecide());
+    }
+
+
+    virtual protected IEnumerator WaitAndDecide()
+    {
+        yield return new WaitForSeconds(_inspectingTime);
+
+        if (npcData.Likes == _grabSystem.gameObject.name)
+            _currentState = CharacterState.Accepting;
+        else _currentState = CharacterState.Rejecting;
     }
 
 
     private void AcceptingObject()
     {
+        Debug.Log("Accepted!");
+        _currentState = CharacterState.Idle;
+        Destroy(_grabSystem.gameObject);
     }
 
 
     private void RejectingObject()
     {
-
+        Debug.Log("Rejected!");
+        _grabSystem.ThrowObject();
+        _currentState = CharacterState.Idle;
     }
 }
