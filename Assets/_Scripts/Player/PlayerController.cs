@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     public void ОnThrow(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && _grabSystem._isObjectGrabbed)
         {
             _grabSystem.ThrowObject();
         }

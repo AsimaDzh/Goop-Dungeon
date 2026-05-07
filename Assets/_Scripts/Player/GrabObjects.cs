@@ -4,6 +4,8 @@ using System;
 
 public class GrabObjects : MonoBehaviour
 {
+    public bool _isObjectGrabbed => _grabbedObject != null;
+
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance = 0.2f;

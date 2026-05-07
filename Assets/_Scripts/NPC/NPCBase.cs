@@ -24,7 +24,7 @@ public class NPCBase : CharacterBase
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
 
-        _grabSystem.OnObjectGrabbed += HandleObjectGrabbed;
+        //_grabSystem.OnObjectGrabbed += HandleObjectGrabbed;
     }
 
 
