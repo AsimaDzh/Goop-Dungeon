@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 
 public class FireGoop : EnemyBase

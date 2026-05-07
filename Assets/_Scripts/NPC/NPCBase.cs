@@ -29,7 +29,13 @@ public class NPCBase : CharacterBase
 
     private void Update()
     {
-        switch(_currentState)
+        if (npcData == null) return;
+
+        if (_grabSystem.IsObjectGrabbed)
+            _currentState = CharacterState.Inspecting;
+
+
+        switch (_currentState)
         {
             case CharacterState.Idle:
                 HandleIdle(); 
