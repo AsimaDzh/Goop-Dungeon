@@ -10,8 +10,8 @@ public class NPCBase : CharacterBase
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
-
-    private float _inspectingTime = 1f;
+    private float _inspectingTime = 3f;
+    private bool _isInspecting;
 
     public NPCData Data => npcData;
     public float CurrentHealth => currentHealth;
@@ -34,7 +34,7 @@ public class NPCBase : CharacterBase
     {
         if (npcData == null) return;
 
-        if (_grabSystem.IsObjectGrabbed)
+        if (_grabSystem.IsObjectGrabbed && _currentState == CharacterState.Idle)
             _currentState = CharacterState.Inspecting;
 
 
@@ -49,7 +49,7 @@ public class NPCBase : CharacterBase
                 break;
 
             case CharacterState.Inspecting:
-                InspectiongObject();
+                InspectingObject();
                 break;
 
             case CharacterState.Accepting:
@@ -63,8 +63,12 @@ public class NPCBase : CharacterBase
     }
 
 
-    private void InspectiongObject()
+    private void InspectingObject()
     {
+        if (_isInspecting) return;
+
+        _isInspecting = true;
+
         Debug.Log("Inspecting object...");
         StartCoroutine(WaitAndDecide());
     }
@@ -77,6 +81,8 @@ public class NPCBase : CharacterBase
         if (npcData.Likes == _grabSystem.gameObject.name)
             _currentState = CharacterState.Accepting;
         else _currentState = CharacterState.Rejecting;
+
+        _isInspecting = false;
     }
 
 
