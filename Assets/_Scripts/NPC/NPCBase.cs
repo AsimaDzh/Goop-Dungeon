@@ -66,15 +66,16 @@ public class NPCBase : CharacterBase
     private void InspectingObject()
     {
         if (_isInspecting) return;
-
         _isInspecting = true;
 
         Debug.Log("Inspecting object...");
+
+        _rb.linearVelocity = Vector2.zero;
         StartCoroutine(WaitAndDecide());
     }
 
 
-    virtual protected IEnumerator WaitAndDecide()
+    private IEnumerator WaitAndDecide()
     {
         yield return new WaitForSeconds(_inspectingTime);
 
