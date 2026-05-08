@@ -42,11 +42,14 @@ public class GrabObjects : MonoBehaviour
         _grabbedRb = _grabbedObject.GetComponent<Rigidbody2D>();
         _grabbedCollider = _grabbedObject.GetComponent<BoxCollider2D>();
 
-        _grabbedCollider.enabled = false;
+        _grabbedRb.linearVelocity = Vector2.zero;
+        _grabbedRb.angularVelocity = 0f;
+ 
         _grabbedRb.bodyType = RigidbodyType2D.Kinematic;
+        _grabbedCollider.enabled = false;
 
-        _grabbedObject.transform.position = grabPoint.position;
         _grabbedObject.transform.SetParent(transform);
+        _grabbedObject.transform.localPosition = grabPoint.position;
     }
 
 
