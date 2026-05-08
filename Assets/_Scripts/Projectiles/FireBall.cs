@@ -3,7 +3,7 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float lifeTime = 5f;
+    [SerializeField] private float lifeTime = 3f;
     [SerializeField] private LayerMask hitLayers;
 
     private Rigidbody2D _rb2D;
