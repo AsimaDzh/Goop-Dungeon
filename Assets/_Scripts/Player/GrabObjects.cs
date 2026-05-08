@@ -17,6 +17,7 @@ public class GrabObjects : MonoBehaviour
     private BoxCollider2D _grabbedCollider;
 
     public bool IsObjectGrabbed => _grabbedObject != null;
+    public GameObject GrabbedObject => _grabbedObject;
 
 
     private void FixedUpdate()
@@ -64,5 +65,15 @@ public class GrabObjects : MonoBehaviour
         _grabbedObject = null;
         _grabbedRb = null;
         _grabbedCollider = null;
+    }
+
+    
+    public void RemoveObject()
+    {
+        Destroy(_grabbedObject);
+
+        _grabbedObject = null;
+        _grabbedCollider = null;
+        _grabbedRb = null;
     }
 }

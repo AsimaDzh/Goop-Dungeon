@@ -78,7 +78,7 @@ public class NPCBase : CharacterBase
     {
         yield return new WaitForSeconds(_inspectingTime);
 
-        if (npcData.Likes == _grabSystem.gameObject.name)
+        if (npcData.Likes == _grabSystem.GrabbedObject.name)
             _currentState = CharacterState.Accepting;
         else _currentState = CharacterState.Rejecting;
 
@@ -89,8 +89,8 @@ public class NPCBase : CharacterBase
     private void AcceptingObject()
     {
         Debug.Log("Accepted!");
+        _grabSystem.RemoveObject();
         _currentState = CharacterState.Idle;
-        Destroy(_grabSystem.gameObject);
     }
 
 
