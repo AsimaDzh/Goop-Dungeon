@@ -3243,7 +3243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5627271609406880980, guid: 8499233ac6caa514eb498e143f03fc7e, type: 3}
       propertyPath: m_Name
-      value: Rock
+      value: Default Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

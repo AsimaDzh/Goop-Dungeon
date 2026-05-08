@@ -95,7 +95,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7893607048668160499}
   - component: {fileID: 4265784626139267256}
   m_Layer: 7
-  m_Name: Square
+  m_Name: ObjectSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

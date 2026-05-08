@@ -48,8 +48,8 @@ public class GrabObjects : MonoBehaviour
         _grabbedRb.bodyType = RigidbodyType2D.Kinematic;
         _grabbedCollider.enabled = false;
 
-        _grabbedObject.transform.SetParent(transform);
-        _grabbedObject.transform.localPosition = grabPoint.position;
+        _grabbedObject.transform.SetParent(grabPoint);
+        _grabbedObject.transform.localPosition = Vector3.zero;
     }
 
 
