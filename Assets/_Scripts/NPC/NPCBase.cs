@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class NPCBase : CharacterBase
 {
-    [Header("========== NPC References ==========")]
+    [Header("========== References ==========")]
     [SerializeField] private NPCData npcData;
+    [SerializeField] private GoopData goopData;
     private GrabObjects _grabSystem;
 
     [Header("========== Current state (Runtime) ==========")]
@@ -16,11 +17,12 @@ public class NPCBase : CharacterBase
 
     [Header("========== Following ==========")]
     [SerializeField] private GameObject player;
-    [SerializeField] private int stepsToFollow = 1;
+    [SerializeField] private int stepsToFollow = 5;
     private Queue<Vector3> _record = new Queue<Vector3>();
     private Vector3 _lastRecordedPosition;
 
     public NPCData Data => npcData;
+    public GoopData GoopData => goopData;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
@@ -33,7 +35,12 @@ public class NPCBase : CharacterBase
         currentHealth = npcData != null ? npcData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
+    }
 
+    private void Start()
+    {
+        if (player == null)
+            player = FindFirstObjectByType<PlayerController>()?.gameObject;
     }
 
 
@@ -122,7 +129,7 @@ public class NPCBase : CharacterBase
         {
             Vector3 _playerPosition = _record.Dequeue();
             float _directionX = Mathf.Sign(_playerPosition.x - transform.position.x);
-            _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+            _rb.linearVelocity = new Vector2(_directionX * goopData.MaxSpeed, 0f);
             Rotate(new Vector2(_directionX, 0f));
         }
         else _rb.linearVelocity = Vector2.zero;

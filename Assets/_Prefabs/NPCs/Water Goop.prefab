@@ -226,7 +226,10 @@ MonoBehaviour:
   movingRadius: 5
   waitTime: 2
   npcData: {fileID: 11400000, guid: 630d31c6fdea45645a744fedbf2b2162, type: 2}
+  goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
   currentHealth: 100
+  player: {fileID: 0}
+  stepsToFollow: 5
 --- !u!114 &4731263018250188649
 MonoBehaviour:
   m_ObjectHideFlags: 0
