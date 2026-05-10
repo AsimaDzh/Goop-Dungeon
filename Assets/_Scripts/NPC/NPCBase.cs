@@ -102,7 +102,7 @@ public class NPCBase : CharacterBase
     {
         Debug.Log("Accepted!");
         _grabSystem.RemoveObject();
-        _currentState = CharacterState.Idle;
+        _currentState = CharacterState.Following;
     }
 
 
@@ -116,6 +116,15 @@ public class NPCBase : CharacterBase
 
     private void FollowThePlayer()
     {
+        _record.Enqueue(player.transform.position);
 
+        if (_record.Count > stepsToFollow)
+        {
+            Vector3 _playerPosition = _record.Dequeue();
+            float _directionX = Mathf.Sign(_playerPosition.x - transform.position.x);
+            _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
+            Rotate(new Vector2(_directionX, 0f));
+        }
+        else _rb.linearVelocity = Vector2.zero;
     }
 }

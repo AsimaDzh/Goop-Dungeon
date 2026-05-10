@@ -255,6 +255,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36032718}
   m_CullTransparentMesh: 1
+--- !u!1 &78530973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2672111496230827254, guid: 84f262263d575174cbe608bc14337379, type: 3}
+  m_PrefabInstance: {fileID: 7611990509496468216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &115530496
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5627271609406880980, guid: 8499233ac6caa514eb498e143f03fc7e, type: 3}
       propertyPath: m_Name
-      value: Default Object
+      value: Rock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3319,6 +3324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water Goop
       objectReference: {fileID: 0}
+    - target: {fileID: 7054441171361398578, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 78530973}
     - target: {fileID: 8022793835305622284, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.6
