@@ -59,6 +59,10 @@ public class NPCBase : CharacterBase
             case CharacterState.Rejecting:
                 RejectingObject();
                 break;
+
+            case CharacterState.Following:
+                HandleFollowing();
+                break;
         }
     }
 
