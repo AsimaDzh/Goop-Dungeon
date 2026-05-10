@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,6 +13,12 @@ public class NPCBase : CharacterBase
     [SerializeField] private float currentHealth;
     private float _inspectingTime = 3f;
     private bool _isInspecting;
+
+    [Header("========== Following ==========")]
+    [SerializeField] private GameObject player;
+    [SerializeField] private int stepsToFollow = 1;
+    private Queue<Vector3> _record = new Queue<Vector3>();
+    private Vector3 _lastRecordedPosition;
 
     public NPCData Data => npcData;
     public float CurrentHealth => currentHealth;
@@ -61,7 +68,7 @@ public class NPCBase : CharacterBase
                 break;
 
             case CharacterState.Following:
-                HandleFollowing();
+                FollowThePlayer();
                 break;
         }
     }
@@ -104,5 +111,11 @@ public class NPCBase : CharacterBase
         Debug.Log("Rejected!");
         _grabSystem.ThrowObject();
         _currentState = CharacterState.Idle;
+    }
+
+
+    private void FollowThePlayer()
+    {
+
     }
 }
