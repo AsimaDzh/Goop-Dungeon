@@ -23,7 +23,7 @@ public class NPCBase : CharacterBase
     public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
-    public float AttackRange => npcData != null ? npcData.AttackRange : 0f;
+    public float AttackRange => npcData != null ? npcData.UseSkillRange : 0f;
     override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
 
 

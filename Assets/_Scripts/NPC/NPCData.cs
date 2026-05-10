@@ -18,7 +18,7 @@ public class NPCData : ScriptableObject
     [Min(1f)] public float MaxHealth = 100f;
     [Min(0f)] public float MoveSpeed = 3f;
 
-    [Header("========== Attack ==========")]
+    [Header("========== Skill ==========")]
     [Min(0f)] public float Damage = 10f;
-    [Min(0f)] public float AttackRange = 2f;
+    [Min(0f)] public float UseSkillRange = 2f;
 }
