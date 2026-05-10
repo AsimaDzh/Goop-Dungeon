@@ -133,4 +133,9 @@ public class NPCBase : CharacterBase
         }
         else _rb.linearVelocity = Vector2.zero;
     }
+
+
+    virtual protected void UseSkill()
+    {
+    }
 }
