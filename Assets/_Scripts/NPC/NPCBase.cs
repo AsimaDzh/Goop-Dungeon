@@ -135,7 +135,5 @@ public class NPCBase : CharacterBase
     }
 
 
-    virtual protected void UseSkill()
-    {
-    }
+    virtual protected void UseSkill() { }
 }
