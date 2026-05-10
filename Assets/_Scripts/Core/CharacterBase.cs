@@ -13,11 +13,12 @@ public class CharacterBase : MonoBehaviour
         Inspecting = 2,
         Accepting = 3,
         Rejecting = 4,
+        Following = 5,
 
         // Enemy
-        Chasing = 5,
-        Attacking = 6,
-        Dead = 7
+        Chasing = 6,
+        Attacking = 7,
+        Dead = 8
     }
 
     [SerializeField] protected CharacterState _currentState = CharacterState.Idle;
