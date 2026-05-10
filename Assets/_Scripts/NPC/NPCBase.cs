@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -17,9 +16,7 @@ public class NPCBase : CharacterBase
 
     [Header("========== Following ==========")]
     [SerializeField] private GameObject player;
-    [SerializeField] private int stepsToFollow = 5;
-    private Queue<Vector3> _record = new Queue<Vector3>();
-    private Vector3 _lastRecordedPosition;
+    [SerializeField] private float stepsToFollow;
 
     public NPCData Data => npcData;
     public GoopData GoopData => goopData;
@@ -123,12 +120,14 @@ public class NPCBase : CharacterBase
 
     private void FollowThePlayer()
     {
-        _record.Enqueue(player.transform.position);
+        Vector3 _playerPosition = player.transform.position;
+        Vector3 _npcPosition = transform.position;
 
-        if (_record.Count > stepsToFollow)
+        float _distance = Vector3.Distance(_playerPosition, _npcPosition);
+
+        if (_distance > stepsToFollow)
         {
-            Vector3 _playerPosition = _record.Dequeue();
-            float _directionX = Mathf.Sign(_playerPosition.x - transform.position.x);
+            float _directionX = Mathf.Sign(_playerPosition.x - _npcPosition.x);
             _rb.linearVelocity = new Vector2(_directionX * goopData.MaxSpeed, 0f);
             Rotate(new Vector2(_directionX, 0f));
         }
