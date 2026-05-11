@@ -48,6 +48,8 @@ public class NPCBase : CharacterBase
         if (_grabSystem.IsObjectGrabbed && _currentState == CharacterState.Idle)
             _currentState = CharacterState.Inspecting;
 
+        if (_currentState == CharacterState.Following)
+            FindClosestEnemy();
 
         switch (_currentState)
         {
@@ -134,6 +136,10 @@ public class NPCBase : CharacterBase
         else _rb.linearVelocity = Vector2.zero;
     }
 
+    private void FindClosestEnemy()
+    {
+
+    }
 
     virtual protected void UseSkill() { }
 }
