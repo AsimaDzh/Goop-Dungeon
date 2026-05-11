@@ -18,17 +18,17 @@ public class NPCBase : CharacterBase
     [SerializeField] private GameObject player;
     [SerializeField] private float stepsToFollow;
 
-    [Header("========== Enemy ==========")]
-    [SerializeField] private EnemyBase _closestEnemy;
-    private float _distanceToClosestEnemy = Mathf.Infinity;
+    [Header("========== Detection ==========")]
+    [SerializeField] private CircleCollider2D detectionTrigger;
     private EnemyBase[] _allEnemiesInScene;
+    private EnemyBase _closestEnemy;
 
     public NPCData Data => npcData;
     public GoopData GoopData => goopData;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
-    public float AttackRange => npcData != null ? npcData.UseSkillRange : 0f;
+    public float UseSkillRange => npcData != null ? npcData.UseSkillRange : 0f;
     override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
 
 
@@ -56,7 +56,11 @@ public class NPCBase : CharacterBase
             _currentState = CharacterState.Inspecting;
 
         if (_currentState == CharacterState.Following)
+        {
             FindClosestEnemy();
+            if (_closestEnemy != null)
+                UseSkill();
+        }
 
 
         switch (_currentState)
@@ -147,8 +151,12 @@ public class NPCBase : CharacterBase
 
     private void FindClosestEnemy()
     {
+        float _distanceToClosestEnemy = Mathf.Infinity;
+
         foreach (EnemyBase _currentEnemy in _allEnemiesInScene)
         {
+            if (_currentEnemy == null) continue;
+
             float _distanceToEnemy = (_currentEnemy.transform.position - this.transform.position).sqrMagnitude;
             if (_distanceToEnemy < _distanceToClosestEnemy)
             {
@@ -159,5 +167,8 @@ public class NPCBase : CharacterBase
     }
 
 
-    virtual protected void UseSkill() { }
+    virtual protected void UseSkill() 
+    { 
+        Debug.Log("Using skill on " + _closestEnemy.name);
+    }
 }
