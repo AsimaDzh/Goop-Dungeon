@@ -156,7 +156,6 @@ public class NPCBase : CharacterBase
                 _closestEnemy = _currentEnemy;
             }
         }
-
     }
 
 
