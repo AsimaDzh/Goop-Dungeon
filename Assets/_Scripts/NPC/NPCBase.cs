@@ -58,6 +58,7 @@ public class NPCBase : CharacterBase
         if (_currentState == CharacterState.Following)
             FindClosestEnemy();
 
+
         switch (_currentState)
         {
             case CharacterState.Idle:
@@ -146,7 +147,15 @@ public class NPCBase : CharacterBase
 
     private void FindClosestEnemy()
     {
-        
+        foreach (EnemyBase _currentEnemy in _allEnemiesInScene)
+        {
+            float _distanceToEnemy = (_currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+            if (_distanceToEnemy < _distanceToClosestEnemy)
+            {
+                _distanceToClosestEnemy = _distanceToEnemy;
+                _closestEnemy = _currentEnemy;
+            }
+        }
 
     }
 
