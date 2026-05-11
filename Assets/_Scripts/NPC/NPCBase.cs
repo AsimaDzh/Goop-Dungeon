@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -20,15 +21,15 @@ public class NPCBase : CharacterBase
 
     [Header("========== Detection ==========")]
     [SerializeField] private CircleCollider2D detectionTrigger;
-    private EnemyBase[] _allEnemiesInScene;
-    private EnemyBase _closestEnemy;
+    private readonly List<EnemyBase> _allEnemiesInScene = new();
+    [SerializeField] private EnemyBase _closestEnemy;
 
     public NPCData Data => npcData;
     public GoopData GoopData => goopData;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
-    public float UseSkillRange => npcData != null ? npcData.UseSkillRange : 0f;
+    public float DetectionRange => npcData != null ? npcData.DetectionRange : 0f;
     override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
 
 
@@ -37,14 +38,16 @@ public class NPCBase : CharacterBase
         currentHealth = npcData != null ? npcData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
+        detectionTrigger = GetComponent<CircleCollider2D>();
     }
+
 
     private void Start()
     {
         if (player == null)
             player = FindFirstObjectByType<PlayerController>()?.gameObject;
 
-        _allEnemiesInScene = FindObjectsOfType<EnemyBase>();
+        detectionTrigger.radius = npcData != null ? npcData.DetectionRange : 0f;
     }
 
 
@@ -163,6 +166,28 @@ public class NPCBase : CharacterBase
                 _distanceToClosestEnemy = _distanceToEnemy;
                 _closestEnemy = _currentEnemy;
             }
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out EnemyBase _enemy))
+        {
+            if (!_allEnemiesInScene.Contains(_enemy))
+                _allEnemiesInScene.Add(_enemy);
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out EnemyBase _enemy))
+        {
+            if (_allEnemiesInScene.Contains(_enemy))
+                _allEnemiesInScene.Remove(_enemy);
+            if (_closestEnemy == _enemy)
+                _closestEnemy = null;
         }
     }
 

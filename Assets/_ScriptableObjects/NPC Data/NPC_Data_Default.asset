@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Unknown Goop
   Type: 0
+  Likes: Rock
   MaxHealth: 100
   MoveSpeed: 3
   Damage: 10
-  AttackRange: 2
+  UseSkillRange: 5

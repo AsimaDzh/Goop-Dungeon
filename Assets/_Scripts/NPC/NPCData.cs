@@ -20,5 +20,5 @@ public class NPCData : ScriptableObject
 
     [Header("========== Skill ==========")]
     [Min(0f)] public float Damage = 10f;
-    [Min(0f)] public float UseSkillRange = 2f;
+    [Min(0f)] public float DetectionRange = 2f;
 }
