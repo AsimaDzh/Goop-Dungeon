@@ -18,6 +18,11 @@ public class NPCBase : CharacterBase
     [SerializeField] private GameObject player;
     [SerializeField] private float stepsToFollow;
 
+    [Header("========== Enemy ==========")]
+    [SerializeField] private EnemyBase _closestEnemy;
+    private float _distanceToClosestEnemy = Mathf.Infinity;
+    private EnemyBase[] _allEnemiesInScene;
+
     public NPCData Data => npcData;
     public GoopData GoopData => goopData;
     public float CurrentHealth => currentHealth;
@@ -38,6 +43,8 @@ public class NPCBase : CharacterBase
     {
         if (player == null)
             player = FindFirstObjectByType<PlayerController>()?.gameObject;
+
+        _allEnemiesInScene = FindObjectsOfType<EnemyBase>();
     }
 
 
@@ -136,10 +143,13 @@ public class NPCBase : CharacterBase
         else _rb.linearVelocity = Vector2.zero;
     }
 
+
     private void FindClosestEnemy()
     {
+        
 
     }
+
 
     virtual protected void UseSkill() { }
 }
