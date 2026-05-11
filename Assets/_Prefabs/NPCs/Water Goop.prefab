@@ -231,7 +231,7 @@ MonoBehaviour:
   currentHealth: 100
   player: {fileID: 0}
   stepsToFollow: 5
-  detectionTrigger: {fileID: 0}
+  detectionTrigger: {fileID: 4039855767584865963}
   _closestEnemy: {fileID: 0}
 --- !u!114 &4731263018250188649
 MonoBehaviour:

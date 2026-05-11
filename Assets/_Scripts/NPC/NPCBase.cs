@@ -62,7 +62,7 @@ public class NPCBase : CharacterBase
         {
             FindClosestEnemy();
             if (_closestEnemy != null)
-                UseSkill();
+                TryUseSkill();
         }
 
 
@@ -184,11 +184,16 @@ public class NPCBase : CharacterBase
     {
         if (other.TryGetComponent(out EnemyBase _enemy))
         {
-            if (_allEnemiesInScene.Contains(_enemy))
-                _allEnemiesInScene.Remove(_enemy);
+            _allEnemiesInScene.Remove(_enemy);
             if (_closestEnemy == _enemy)
                 _closestEnemy = null;
         }
+    }
+
+
+    private void TryUseSkill()
+    {
+        UseSkill();
     }
 
 
