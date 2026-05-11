@@ -231,6 +231,7 @@ MonoBehaviour:
   currentHealth: 100
   player: {fileID: 0}
   stepsToFollow: 5
+  detectionTrigger: {fileID: 0}
   _closestEnemy: {fileID: 0}
 --- !u!114 &4731263018250188649
 MonoBehaviour:
@@ -269,7 +270,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

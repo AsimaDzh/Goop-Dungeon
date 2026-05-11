@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5907299368812340144}
   - component: {fileID: 744082962932840493}
   - component: {fileID: 3006867822334800944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8044708596638483176}
   - component: {fileID: 4031235555785696202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FireBall_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
