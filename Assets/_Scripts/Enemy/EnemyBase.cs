@@ -12,7 +12,6 @@ public class EnemyBase : CharacterBase, IDamageable
 
     [Header("========== Target ==========")]
     [SerializeField] private Transform target;
-    [SerializeField] private bool autoResolveTargetOnStart = true; // if true, will try to find the player by tag on Start()
 
     [Header("========== Attack ==========")]
     [SerializeField] private float attackCooldown = 1f;
@@ -25,7 +24,6 @@ public class EnemyBase : CharacterBase, IDamageable
     private IDamageable _damageable; 
 
     public EnemyData Data => enemyData;
-    public float CurrentHealth => currentHealth;
     public float MaxHealth => enemyData != null ? enemyData.MaxHealth : 0f;
     override public float MoveSpeed => enemyData != null ? enemyData.MoveSpeed : 0f;
     public float Damage => enemyData != null ? enemyData.Damage : 0f;
@@ -47,7 +45,7 @@ public class EnemyBase : CharacterBase, IDamageable
 
     private void Start()
     {
-        if (target == null && autoResolveTargetOnStart)
+        if (target == null)
             ResolveTargetOnce();
 
         if (target != null)
