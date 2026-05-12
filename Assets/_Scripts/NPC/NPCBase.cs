@@ -22,7 +22,11 @@ public class NPCBase : CharacterBase
     [Header("========== Detection ==========")]
     [SerializeField] private CircleCollider2D detectionTrigger;
     private readonly List<EnemyBase> _allEnemiesInScene = new();
-    [SerializeField] private EnemyBase _closestEnemy;
+    private EnemyBase _closestEnemy;
+
+    [Header("========== Skill ==========")]
+    [SerializeField] private float skillCooldown = 1f;
+    private float _nextSkillTime;
 
     public NPCData Data => npcData;
     public GoopData GoopData => goopData;
@@ -35,10 +39,12 @@ public class NPCBase : CharacterBase
 
     private void Awake()
     {
-        currentHealth = npcData != null ? npcData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
         detectionTrigger = GetComponent<CircleCollider2D>();
+
+        detectionTrigger.radius = npcData != null ? npcData.DetectionRange : 0f;
+        currentHealth = npcData != null ? npcData.MaxHealth : 0f;
     }
 
 
@@ -46,8 +52,6 @@ public class NPCBase : CharacterBase
     {
         if (player == null)
             player = FindFirstObjectByType<PlayerController>()?.gameObject;
-
-        detectionTrigger.radius = npcData != null ? npcData.DetectionRange : 0f;
     }
 
 
