@@ -38,8 +38,9 @@ public class EnemyBase : CharacterBase, IDamageable
 
     private void Awake()
     {
-        currentHealth = enemyData != null ? enemyData.MaxHealth : 0f;
         _rb = GetComponent<Rigidbody2D>();
+
+        currentHealth = MaxHealth;
     }
 
 
@@ -151,9 +152,8 @@ public class EnemyBase : CharacterBase, IDamageable
         Debug.Log($"{name} died :)");
         OnDied?.Invoke();
 
-        bool _isPooledEnemy = GetComponent("PooledEnemy") != null;
+        if (!destroyOnDeath) return;
 
-        if (!destroyOnDeath || _isPooledEnemy) return;
         if (destroyDelayAfterDeath > 0f)
             Destroy(gameObject, destroyDelayAfterDeath);
         else Destroy(gameObject);
@@ -163,7 +163,7 @@ public class EnemyBase : CharacterBase, IDamageable
     public void Setup(EnemyData data)
     {
         enemyData = data;
-        currentHealth = enemyData.MaxHealth;
+        currentHealth = MaxHealth;
         _isDead = false;
         _nextAttackTime = 0f;  
         _currentState = CharacterState.Idle;

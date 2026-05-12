@@ -28,9 +28,6 @@ public class NPCBase : CharacterBase
     [SerializeField] private float skillCooldown = 1f;
     private float _nextSkillTime;
 
-    public NPCData Data => npcData;
-    public GoopData GoopData => goopData;
-    public float CurrentHealth => currentHealth;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
     public float DetectionRange => npcData != null ? npcData.DetectionRange : 0f;
@@ -43,8 +40,8 @@ public class NPCBase : CharacterBase
         _grabSystem = GetComponent<GrabObjects>();
         detectionTrigger = GetComponent<CircleCollider2D>();
 
-        detectionTrigger.radius = npcData != null ? npcData.DetectionRange : 0f;
-        currentHealth = npcData != null ? npcData.MaxHealth : 0f;
+        detectionTrigger.radius = DetectionRange;
+        currentHealth = MaxHealth;
     }
 
 
