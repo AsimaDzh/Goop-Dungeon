@@ -124,10 +124,9 @@ public class EnemyBase : CharacterBase, IDamageable
     private void TryAttack()
     {
         if (Time.time < _nextAttackTime) return;
-
-        _rb.linearVelocity = Vector2.zero;
-
         _nextAttackTime = Time.time + attackCooldown;
+
+        _rb.linearVelocity = Vector2.zero; 
 
         Attack();
     }

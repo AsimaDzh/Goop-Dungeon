@@ -197,6 +197,9 @@ public class NPCBase : CharacterBase
 
     private void TryUseSkill()
     {
+        if (Time.time < _nextSkillTime) return;
+        _nextSkillTime = Time.time + skillCooldown;
+
         UseSkill();
     }
 

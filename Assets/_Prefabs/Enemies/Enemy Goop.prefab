@@ -87,7 +87,7 @@ MonoBehaviour:
   currentHealth: 50
   target: {fileID: 0}
   autoResolveTargetOnStart: 1
-  attackCooldown: 1
+  attackCooldown: 5
   destroyOnDeath: 1
   destroyDelayAfterDeath: 0.15
   projectilePrefab: {fileID: 2373585136382196398, guid: d0ceb507b390efa4da0db41cfb73a450, type: 3}
