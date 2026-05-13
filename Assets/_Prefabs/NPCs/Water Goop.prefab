@@ -233,7 +233,7 @@ MonoBehaviour:
   stepsToFollow: 5
   detectionTrigger: {fileID: 4039855767584865963}
   skillCooldown: 1
-  protection: {fileID: 0}
+  protection: {fileID: 8869962805444807705, guid: 0ecefa59f06c06b4295f12f0b64a60c9, type: 3}
 --- !u!114 &4731263018250188649
 MonoBehaviour:
   m_ObjectHideFlags: 0
