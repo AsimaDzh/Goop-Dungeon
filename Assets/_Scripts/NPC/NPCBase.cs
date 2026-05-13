@@ -201,7 +201,7 @@ public class NPCBase : CharacterBase
     }
 
 
-    virtual protected void UseSkill() 
+    public virtual void UseSkill() 
     { 
         Debug.Log("Using skill on " + _closestEnemy.name);
     }
