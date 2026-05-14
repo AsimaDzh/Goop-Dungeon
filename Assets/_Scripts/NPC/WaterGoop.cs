@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WaterGoop : NPCBase
 {
+    [Header("========== Skill ==========")]
     [SerializeField] private Transform shieldPoint;
 
     public override void UseSkill()

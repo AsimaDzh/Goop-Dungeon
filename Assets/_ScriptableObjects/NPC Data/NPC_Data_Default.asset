@@ -19,4 +19,5 @@ MonoBehaviour:
   MoveSpeed: 3
   Damage: 10
   DetectionRange: 2
+  SkillCooldown: 10
   SkillPrefab: {fileID: 8869962805444807705, guid: 0ecefa59f06c06b4295f12f0b64a60c9, type: 3}

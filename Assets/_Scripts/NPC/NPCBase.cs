@@ -24,14 +24,13 @@ public class NPCBase : CharacterBase
     private readonly List<EnemyBase> _allEnemiesInScene = new();
     private EnemyBase _closestEnemy;
 
-    [Header("========== Skill ==========")]
-    [SerializeField] private float skillCooldown = 1f;
     private float _nextSkillTime;
 
     public NPCData NPCData => npcData;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
     public float DetectionRange => npcData != null ? npcData.DetectionRange : 0f;
+    public float SkillCooldown => npcData != null ? npcData.SkillCooldown : 0f;
     override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
 
 
@@ -196,7 +195,7 @@ public class NPCBase : CharacterBase
     private void TryUseSkill()
     {
         if (Time.time < _nextSkillTime) return;
-        _nextSkillTime = Time.time + skillCooldown;
+        _nextSkillTime = Time.time + SkillCooldown;
 
         UseSkill();
     }
