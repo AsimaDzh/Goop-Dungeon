@@ -232,7 +232,8 @@ MonoBehaviour:
   player: {fileID: 0}
   stepsToFollow: 5
   detectionTrigger: {fileID: 4039855767584865963}
-  skillCooldown: 5
+  skillCooldown: 10
+  shieldPoint: {fileID: 0}
 --- !u!114 &4731263018250188649
 MonoBehaviour:
   m_ObjectHideFlags: 0
