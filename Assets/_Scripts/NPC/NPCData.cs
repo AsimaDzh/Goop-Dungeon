@@ -21,4 +21,5 @@ public class NPCData : ScriptableObject
     [Header("========== Skill ==========")]
     [Min(0f)] public float Damage = 10f;
     [Min(0f)] public float DetectionRange = 2f;
+    public GameObject SkillPrefab;
 }
