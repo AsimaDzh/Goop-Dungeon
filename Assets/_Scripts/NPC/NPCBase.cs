@@ -16,7 +16,7 @@ public class NPCBase : CharacterBase
     private bool _isInspecting;
 
     [Header("========== Following ==========")]
-    [SerializeField] private GameObject player;
+    [SerializeField] protected GameObject player;
     [SerializeField] private float stepsToFollow;
 
     [Header("========== Detection ==========")]
@@ -28,6 +28,7 @@ public class NPCBase : CharacterBase
     [SerializeField] private float skillCooldown = 1f;
     private float _nextSkillTime;
 
+    public NPCData NPCData => npcData;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
     public float Damage => npcData != null ? npcData.Damage : 0f;
     public float DetectionRange => npcData != null ? npcData.DetectionRange : 0f;
