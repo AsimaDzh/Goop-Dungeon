@@ -14,5 +14,6 @@ public class WaterGoop : NPCBase
             Quaternion.identity
         );
         _bubbleShield.transform.SetParent(shieldPoint);
+        _bubbleShield.transform.localPosition = Vector3.zero;
     }
 }
