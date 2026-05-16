@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class GoopStats : MonoBehaviour, IDamageable
 {
-    [Header("========== Player Data ===========")]
-    public GoopData playerData;
+    [Header("========== References ===========")]
+    [SerializeField] private GoopData playerData;
+    [SerializeField] private HealthBar healthBar;
 
     [Header("========== Current Stats (Runtime) ==========")]
     [SerializeField] private float currentHealth;
 
-    public float CurrentHealth => currentHealth;
-    public bool IsDead => currentHealth <= 0f;
-
     public event Action<float, float> OnHealthChanged;
     public event Action OnDeath;
+
+    public float CurrentHealth => currentHealth;
+    public bool IsDead => currentHealth <= 0f;
 
 
     private void Awake()
@@ -22,7 +23,7 @@ public class GoopStats : MonoBehaviour, IDamageable
     }
 
 
-    public void InitializeFromData()
+    private void InitializeFromData()
     {
         if (playerData == null)
         {
@@ -35,6 +36,12 @@ public class GoopStats : MonoBehaviour, IDamageable
     }
 
 
+    private void Start()
+    {
+        healthBar.SetMaxHealth(playerData.MaxHealth);
+    }
+
+
     public void TakeDamage(float damage)
     {
         if (damage <= 0f || currentHealth <= 0f) return;
@@ -43,6 +50,7 @@ public class GoopStats : MonoBehaviour, IDamageable
         currentHealth = Mathf.Clamp(currentHealth, 0f, playerData.MaxHealth);
 
         OnHealthChanged?.Invoke(currentHealth, playerData.MaxHealth);
+        healthBar.SetHealth(currentHealth);
         
         Debug.Log($"Player took {damage} damage. Health: {currentHealth}/{playerData.MaxHealth}");
 

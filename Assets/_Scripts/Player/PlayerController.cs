@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IPlayerController
 {
-    [Header("========== References ==========")]
     [SerializeField] private GoopData goopData;
     private GrabObjects _grabSystem;
 

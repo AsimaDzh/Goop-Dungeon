@@ -5,6 +5,7 @@ public class WaterGoop : NPCBase
 {
     [Header("========== Skill ==========")]
     [SerializeField] private Transform shieldPoint;
+    [SerializeField] private GameObject bubbleShieldTimer;
     private GameObject _bubbleShield;
 
 
@@ -21,6 +22,8 @@ public class WaterGoop : NPCBase
 
         _bubbleShield.transform.SetParent(shieldPoint);
         _bubbleShield.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        bubbleShieldTimer.SetActive(true);
     }
 
 
