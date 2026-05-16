@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Slider _slider;
+
+
+    private void Start()
     {
-        
+        _slider = GetComponent<Slider>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SetHealth(int _health)
     {
-        
+        _slider.value = _health;
     }
 }
