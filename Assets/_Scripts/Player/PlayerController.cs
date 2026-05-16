@@ -213,54 +213,6 @@ public class PlayerController : MonoBehaviour, IPlayerController
                 _gravity * Time.fixedDeltaTime);
         }
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (goopData == null) return;
-        if (_boxCollider == null) return;
-
-        // Center and size of the box collider
-        Vector3 center = _boxCollider.bounds.center;
-        Vector3 size3 = new Vector3(
-            _boxCollider.size.x, 
-            _boxCollider.size.y, 
-            0.1f);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(center, size3);
-
-        // Bottom point of the box collider
-        Vector3 bottom = center - new Vector3(
-            0f, _boxCollider.size.y * 0.5f, 0f);
-
-        // Draw the line representing the ground check distance
-        Gizmos.color = Color.gray;
-        Gizmos.DrawLine(bottom, bottom + Vector3.down * goopData.GrounderDistance);
-
-        // Draw a thin box at the end of the ground check line to visualize the area being checked for ground
-        Gizmos.DrawWireCube(
-            bottom + Vector3.down * goopData.GrounderDistance, 
-            new Vector3(_boxCollider.size.x, 0.02f, 0.02f));
-
-        // Do a box cast to check for ground and change color based on whether it hits something or not
-        RaycastHit2D hit = Physics2D.BoxCast(
-            (Vector2)center, 
-            _boxCollider.size, 0f, 
-            Vector2.down, 
-            goopData.GrounderDistance, 
-            ~goopData.PlayerLayer);
-        Gizmos.color = hit.collider != null ? Color.green : Color.red;
-
-        // If it hits something, draw a wire cube at the hit point and a line from the bottom of the box collider to the hit point
-        if (hit.collider != null)
-        {
-            Vector3 hitPoint = (Vector3)hit.centroid;
-            Gizmos.DrawWireCube(hitPoint, size3);
-            Gizmos.DrawLine(bottom, hitPoint);
-        }
-    }
-#endif
 }
 
 
