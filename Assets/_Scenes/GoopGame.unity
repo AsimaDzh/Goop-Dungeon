@@ -1397,6 +1397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485702368}
+  - component: {fileID: 485702371}
   - component: {fileID: 485702370}
   - component: {fileID: 485702369}
   m_Layer: 5
@@ -1463,6 +1464,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485702367}
   m_CullTransparentMesh: 1
+--- !u!114 &485702371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485702367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d47dd7f29880a9439d8f7f5dc517148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterGoop: {fileID: 1737086565}
+  cooldownTime: 30
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,6 +3198,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713927851}
   m_CullTransparentMesh: 1
+--- !u!114 &1737086565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
+  m_PrefabInstance: {fileID: 8307706962908365251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5301650274ab9cc45a8d495066f37e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799513626
 GameObject:
   m_ObjectHideFlags: 0
