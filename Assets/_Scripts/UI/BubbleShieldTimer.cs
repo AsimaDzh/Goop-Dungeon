@@ -30,4 +30,16 @@ public class BubbleShieldTimer : MonoBehaviour
             }
         }
     }
+
+
+    public void ResetTimer()
+    {
+        _bubbleImage.fillAmount = 1;
+    }
+
+
+    public void ReduceTime(float _damage)
+    {
+        _bubbleImage.fillAmount += _damage / 5f;
+    }
 }
