@@ -6,6 +6,8 @@ public class GoopStats : MonoBehaviour, IDamageable
     [Header("========== References ===========")]
     [SerializeField] private GoopData playerData;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private WaterGoop waterGoop;
+    [SerializeField] private BubbleShieldTimer bubbleShieldTimer;
 
     [Header("========== Current Stats (Runtime) ==========")]
     [SerializeField] private float currentHealth;
@@ -46,6 +48,12 @@ public class GoopStats : MonoBehaviour, IDamageable
     {
         if (damage <= 0f || currentHealth <= 0f) return;
 
+        if (waterGoop.BubbleTimerUI.activeInHierarchy)
+        {
+            bubbleShieldTimer.ReduceTime(damage);
+            return;
+        }
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, playerData.MaxHealth);
 
@@ -55,5 +63,6 @@ public class GoopStats : MonoBehaviour, IDamageable
         Debug.Log($"Player took {damage} damage. Health: {currentHealth}/{playerData.MaxHealth}");
 
         if (currentHealth <= 0f) OnDeath?.Invoke();
+
     }
 }

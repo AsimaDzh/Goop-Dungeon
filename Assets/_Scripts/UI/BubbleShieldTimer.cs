@@ -31,7 +31,7 @@ public class BubbleShieldTimer : MonoBehaviour
             {
                 _bubbleImage.fillAmount = 1;
                 _isCooldown = false;
-                waterGoop.IsShieldActive.SetActive(false);
+                waterGoop.BubbleTimerUI.SetActive(false);
             }
         }
     }
@@ -45,6 +45,6 @@ public class BubbleShieldTimer : MonoBehaviour
 
     public void ReduceTime(float _damage)
     {
-        _bubbleImage.fillAmount += _damage / 5f;
+        _bubbleImage.fillAmount -= _damage / 100f;
     }
 }
