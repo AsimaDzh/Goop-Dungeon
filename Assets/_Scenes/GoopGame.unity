@@ -3857,7 +3857,7 @@ PrefabInstance:
     - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: bubbleShieldTimer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1894929452}
     - target: {fileID: 7316234126323157799, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
