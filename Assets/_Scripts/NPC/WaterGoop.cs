@@ -5,11 +5,11 @@ public class WaterGoop : NPCBase
 {
     [Header("========== Skill ==========")]
     [SerializeField] private Transform shieldPoint;
-    [SerializeField] private GameObject bubbleTimer;
+    [SerializeField] private GameObject bubbleTimerUI;
     [SerializeField] private BubbleShieldTimer bubbleShieldTimer;
     private GameObject _bubbleShield;
 
-    public GameObject Timer => bubbleTimer;
+    public GameObject IsShieldActive => bubbleTimerUI;
 
 
     public override void UseSkill()
@@ -29,7 +29,7 @@ public class WaterGoop : NPCBase
         _bubbleShield.transform.SetParent(shieldPoint);
         _bubbleShield.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-        bubbleTimer.SetActive(true);
+        bubbleTimerUI.SetActive(true);
     }
 
 

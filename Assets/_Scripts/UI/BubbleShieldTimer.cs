@@ -1,6 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class BubbleShieldTimer : MonoBehaviour
 {
@@ -10,9 +10,14 @@ public class BubbleShieldTimer : MonoBehaviour
     private bool _isCooldown;
 
 
-    private void Start()
+    private void Awake()
     {
         _bubbleImage = GetComponent<Image>();
+    }
+
+
+    private void Start()
+    {
         _isCooldown = true;
     }
 
@@ -26,7 +31,7 @@ public class BubbleShieldTimer : MonoBehaviour
             {
                 _bubbleImage.fillAmount = 1;
                 _isCooldown = false;
-                waterGoop.Timer.SetActive(false);
+                waterGoop.IsShieldActive.SetActive(false);
             }
         }
     }

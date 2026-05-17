@@ -1822,7 +1822,6 @@ GameObject:
   - component: {fileID: 678900506}
   - component: {fileID: 678900508}
   - component: {fileID: 678900507}
-  - component: {fileID: 678900509}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1887,28 +1886,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678900505}
   m_CullTransparentMesh: 1
---- !u!95 &678900509
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678900505}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f67df575a41a9b4fa125c150fb45c19, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &746709883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3987,6 +3964,10 @@ PrefabInstance:
       propertyPath: shieldPoint
       value: 
       objectReference: {fileID: 7611990509496468217}
+    - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
+      propertyPath: bubbleTimerUI
+      value: 
+      objectReference: {fileID: 1894929450}
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: bubbleShieldUI
       value: 
