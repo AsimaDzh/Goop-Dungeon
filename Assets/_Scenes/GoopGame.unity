@@ -1397,7 +1397,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485702368}
-  - component: {fileID: 485702371}
   - component: {fileID: 485702370}
   - component: {fileID: 485702369}
   m_Layer: 5
@@ -1418,7 +1417,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 2092344820}
   m_Father: {fileID: 1894929451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1464,20 +1464,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485702367}
   m_CullTransparentMesh: 1
---- !u!114 &485702371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485702367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d47dd7f29880a9439d8f7f5dc517148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterGoop: {fileID: 1737086565}
-  cooldownTime: 30
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,6 +3343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1894929451}
+  - component: {fileID: 1894929452}
   m_Layer: 5
   m_Name: Bubble Shield Timer
   m_TagString: Untagged
@@ -3376,7 +3363,6 @@ RectTransform:
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2092344820}
   - {fileID: 485702368}
   m_Father: {fileID: 1433313485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3385,6 +3371,20 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: -14.999999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1894929452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894929450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d47dd7f29880a9439d8f7f5dc517148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterGoop: {fileID: 1737086565}
+  cooldownTime: 30
 --- !u!1 &1946505895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,11 +3732,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1894929451}
+  m_Father: {fileID: 485702368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.7, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092344821
@@ -3850,6 +3850,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1433313487}
+    - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
+      propertyPath: waterGoop
+      value: 
+      objectReference: {fileID: 1737086565}
+    - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
+      propertyPath: bubbleShieldTimer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7316234126323157799, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3975,7 +3983,7 @@ PrefabInstance:
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: bubbleShieldTimer
       value: 
-      objectReference: {fileID: 485702371}
+      objectReference: {fileID: 1894929452}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

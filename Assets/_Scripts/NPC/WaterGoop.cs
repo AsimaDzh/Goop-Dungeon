@@ -10,7 +10,8 @@ public class WaterGoop : NPCBase
     private GameObject _bubbleShield;
 
     public GameObject BubbleTimerUI => bubbleTimerUI;
-
+    public GameObject BubbleShield => _bubbleShield;
+    
 
     public override void UseSkill()
     {

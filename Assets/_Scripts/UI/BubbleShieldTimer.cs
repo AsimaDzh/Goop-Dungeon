@@ -12,7 +12,7 @@ public class BubbleShieldTimer : MonoBehaviour
 
     private void Awake()
     {
-        _bubbleImage = GetComponent<Image>();
+        _bubbleImage = GetComponentInChildren<Image>();
     }
 
 
@@ -31,7 +31,8 @@ public class BubbleShieldTimer : MonoBehaviour
             {
                 _bubbleImage.fillAmount = 1;
                 _isCooldown = false;
-                waterGoop.BubbleTimerUI.SetActive(false);
+                gameObject.SetActive(false);
+                waterGoop.BubbleShield.SetActive(false);
             }
         }
     }
