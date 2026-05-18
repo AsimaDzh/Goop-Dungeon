@@ -9,9 +9,6 @@ public class WaterGoop : NPCBase
     [SerializeField] private BubbleShieldTimer bubbleShieldTimer;
     private GameObject _bubbleShield;
 
-    public GameObject BubbleTimerUI => bubbleTimerUI;
-    public GameObject BubbleShield => _bubbleShield;
-    
 
     public override void UseSkill()
     {
@@ -31,6 +28,19 @@ public class WaterGoop : NPCBase
         _bubbleShield.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
         bubbleTimerUI.SetActive(true);
+
+        bubbleShieldTimer.OnTimerEnded += OnShieldTimerEnded;
+    }
+
+
+    private void OnShieldTimerEnded()
+    {
+        if (_bubbleShield != null)
+        {
+            Destroy(_bubbleShield);
+            _bubbleShield = null;
+        }
+        bubbleTimerUI.SetActive(false);
     }
 
 
@@ -38,5 +48,12 @@ public class WaterGoop : NPCBase
     {
         if (_bubbleShield != null)
             _bubbleShield.transform.rotation = Quaternion.identity;
+    }
+
+
+    private void OnDestroy()
+    {
+        if (bubbleShieldTimer != null)
+            bubbleShieldTimer.OnTimerEnded -= OnShieldTimerEnded;
     }
 }
