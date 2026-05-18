@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class BubbleShieldTimer : MonoBehaviour
+public class BubbleShieldTimer : MonoBehaviour, IBubbleShield
 {
-    [SerializeField] private WaterGoop waterGoop;
     [SerializeField] private float cooldownTime; 
     private Image _bubbleImage;
+
+    public event Action OnTimerEnded;
+    public bool IsActive => gameObject.activeSelf;
 
 
     private void Awake()
@@ -17,24 +20,28 @@ public class BubbleShieldTimer : MonoBehaviour
 
     private void Update()
     {
+        if(!_bubbleImage) return;
+
         _bubbleImage.fillAmount -= 1 / cooldownTime * Time.deltaTime;
         if (_bubbleImage.fillAmount <= 0)
         {
             _bubbleImage.fillAmount = 1;
             gameObject.SetActive(false);
-            waterGoop.BubbleShield.SetActive(false);
+            OnTimerEnded?.Invoke();
         }
     }
 
 
     public void ResetTimer()
     {
-        _bubbleImage.fillAmount = 1;
+        if (_bubbleImage) 
+            _bubbleImage.fillAmount = 1;
     }
 
 
     public void ReduceTime(float _damage)
     {
-        _bubbleImage.fillAmount -= _damage / 100f;
+        if (_bubbleImage) 
+            _bubbleImage.fillAmount -= _damage / 100f;
     }
 }

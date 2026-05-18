@@ -7,5 +7,5 @@ public interface IBubbleShield
     event Action OnTimerEnded;
 
     void ResetTimer();
-    void ReduceTimer(float damage);
+    void ReduceTime(float damage);
 }
