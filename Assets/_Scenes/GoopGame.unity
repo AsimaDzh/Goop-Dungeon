@@ -3383,7 +3383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d47dd7f29880a9439d8f7f5dc517148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterGoop: {fileID: 1737086565}
   cooldownTime: 30
 --- !u!1 &1946505895
 GameObject:
@@ -3856,6 +3855,10 @@ PrefabInstance:
       objectReference: {fileID: 1737086565}
     - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: bubbleShieldTimer
+      value: 
+      objectReference: {fileID: 1894929452}
+    - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
+      propertyPath: bubbleShieldBehavior
       value: 
       objectReference: {fileID: 1894929452}
     - target: {fileID: 7316234126323157799, guid: 84f262263d575174cbe608bc14337379, type: 3}

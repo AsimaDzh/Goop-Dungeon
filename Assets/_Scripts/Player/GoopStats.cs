@@ -6,8 +6,8 @@ public class GoopStats : MonoBehaviour, IDamageable
     [Header("========== References ===========")]
     [SerializeField] private GoopData playerData;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private WaterGoop waterGoop;
-    [SerializeField] private BubbleShieldTimer bubbleShieldTimer;
+    [SerializeField] private MonoBehaviour bubbleShieldBehavior;
+    private IBubbleShield _bubbleShield;
 
     [Header("========== Current Stats (Runtime) ==========")]
     [SerializeField] private float currentHealth;
@@ -22,6 +22,9 @@ public class GoopStats : MonoBehaviour, IDamageable
     private void Awake()
     {
         InitializeFromData();
+
+        if (bubbleShieldBehavior != null )
+            _bubbleShield = bubbleShieldBehavior as IBubbleShield;
     }
 
 
@@ -48,9 +51,9 @@ public class GoopStats : MonoBehaviour, IDamageable
     {
         if (damage <= 0f || currentHealth <= 0f) return;
 
-        if (waterGoop.BubbleTimerUI.activeInHierarchy)
+        if (_bubbleShield != null && _bubbleShield.IsActive)
         {
-            bubbleShieldTimer.ReduceTime(damage);
+            _bubbleShield.ReduceTime(damage);
             return;
         }
 
