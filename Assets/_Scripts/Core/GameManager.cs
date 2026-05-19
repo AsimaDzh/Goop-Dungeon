@@ -96,7 +96,15 @@ public class GameManager : MonoBehaviour
 
     public void EnterWinState()
     {
+        if (CurrentState != GameState.Playing) return;
 
+        CurrentState = GameState.Won;
+        Time.timeScale = 0f;
+
+        if (InputManager.Instance != null)
+            InputManager.Instance.EnableUIInput();
+
+        Debug.Log("Game won");
     }
 }
 
