@@ -82,7 +82,15 @@ public class GameManager : MonoBehaviour
 
     public void EnterLoseState()
     {
+        if (CurrentState != GameState.Playing) return;
 
+        CurrentState = GameState.Lost;
+        Time.timeScale = 0f;
+
+        if (InputManager.Instance != null)
+            InputManager.Instance.EnableUIInput();
+
+        Debug.Log("Game lost");
     }
 
 
