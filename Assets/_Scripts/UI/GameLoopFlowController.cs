@@ -11,7 +11,6 @@ public class GameLoopFlowController : MonoBehaviour
 
     [Header("========== Win Panel ==========")]
     [SerializeField] private GameObject winPanel;
-    [SerializeField] private Button continueButton;
 
     [Header("========== Shared UI ==========")]
     [SerializeField] private GameObject pausePanel;
