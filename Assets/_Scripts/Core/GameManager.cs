@@ -4,7 +4,9 @@ public enum GameState
 {
     Menu = 0,
     Playing = 1,
-    Paused = 2
+    Paused = 2,
+    Lost = 3,
+    Won = 4
 }
 
 public class GameManager : MonoBehaviour
