@@ -29,14 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        CurrentState = GameState.Playing;
-        Time.timeScale = 1f;
-        SceneLoader.Instance.Load(SceneNames.GameScene);
-
-        if (InputManager.Instance != null)
-            InputManager.Instance.EnablePlayerInput();
-
-        Debug.Log("Game Started");
+        RestartGameScene();
     }
 
 
@@ -66,13 +59,24 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-        if (CurrentState != GameState.Paused)
-            return;
+        if (CurrentState != GameState.Paused) return;
 
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
         EventBus.Instance.RaiseGameResumed();
         Debug.Log("Game resumed");
+    }
+
+
+    public void RestartGameScene()
+    {
+        CurrentState = GameState.Playing;
+        Time.timeScale = 1f;
+        SceneLoader.Instance.Load(SceneNames.GameScene);
+        Debug.Log("Game scene restart requested");
+
+        if (InputManager.Instance != null)
+            InputManager.Instance.EnablePlayerInput();
     }
 
 
@@ -83,12 +87,6 @@ public class GameManager : MonoBehaviour
 
 
     public void EnterWinState()
-    {
-
-    }
-
-
-    private void RestartGameScene()
     {
 
     }
