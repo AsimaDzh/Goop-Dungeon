@@ -22,8 +22,6 @@ public class GameLoopFlowController : MonoBehaviour
     private GoopStats _playerStats;
     private bool _flowFinished;
 
-    public event Action OnNextWaveRequested;
-
 
     private void Awake()
     {
