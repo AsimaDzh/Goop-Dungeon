@@ -1646,7 +1646,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2099999, z: -10}
+  m_LocalPosition: {x: 0, y: -1.0499998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3315,7 +3315,7 @@ Transform:
   m_GameObject: {fileID: 1598815012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2099999, z: -10}
+  m_LocalPosition: {x: 0, y: -1.0499998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3483,17 +3483,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713927851}
   m_CullTransparentMesh: 1
---- !u!114 &1737086565 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
-  m_PrefabInstance: {fileID: 8307706962908365251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5301650274ab9cc45a8d495066f37e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1799513626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,14 +4138,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1433313487}
     - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
-      propertyPath: waterGoop
-      value: 
-      objectReference: {fileID: 1737086565}
-    - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
-      propertyPath: bubbleShieldTimer
-      value: 
-      objectReference: {fileID: 1894929452}
-    - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: bubbleShieldBehavior
       value: 
       objectReference: {fileID: 1894929452}
@@ -4166,7 +4147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316234126323157799, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.01
+      value: -2.85
       objectReference: {fileID: 0}
     - target: {fileID: 7316234126323157799, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4267,19 +4248,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 78530973}
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
-      propertyPath: bubbleTimer
-      value: 
-      objectReference: {fileID: 1894929450}
-    - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: shieldPoint
       value: 
       objectReference: {fileID: 7611990509496468217}
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: bubbleTimerUI
-      value: 
-      objectReference: {fileID: 1894929450}
-    - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
-      propertyPath: bubbleShieldUI
       value: 
       objectReference: {fileID: 1894929450}
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}

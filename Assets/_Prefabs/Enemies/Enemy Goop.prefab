@@ -86,7 +86,6 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 952ade299e126984aba9a2d5ace1e2f3, type: 2}
   currentHealth: 50
   target: {fileID: 0}
-  autoResolveTargetOnStart: 1
   attackCooldown: 5
   destroyOnDeath: 1
   destroyDelayAfterDeath: 0.15
@@ -262,7 +261,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -8717237816375110472, guid: 4f784030057e0434b879d5aede3c899d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7639681597762982896, guid: a7ec76d479663f54d86ab7d9a6f88e57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -232,8 +232,9 @@ MonoBehaviour:
   player: {fileID: 0}
   stepsToFollow: 5
   detectionTrigger: {fileID: 4039855767584865963}
-  skillCooldown: 10
   shieldPoint: {fileID: 0}
+  bubbleTimerUI: {fileID: 0}
+  bubbleShieldTimer: {fileID: 0}
 --- !u!114 &4731263018250188649
 MonoBehaviour:
   m_ObjectHideFlags: 0
