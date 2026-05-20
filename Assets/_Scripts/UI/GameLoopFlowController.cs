@@ -15,10 +15,10 @@ public class GameLoopFlowController : MonoBehaviour
     [Header("========== Shared UI ==========")]
     [SerializeField] private GameObject pausePanel;
 
-    [Header("========== Win Condition ==========")]
-    [SerializeField] private GameObject exitActivationObjectOverride;
+    //[Header("========== Win Condition ==========")]
+    //[SerializeField] private GameObject exitActivationObjectOverride;
 
-    private GoopStats _playerStats;
+    [SerializeField] private GoopStats _playerStats;
     private bool _flowFinished;
 
 
