@@ -1,9 +1,10 @@
 using UnityEngine;
 
+
 public class ExitWinTrigger : MonoBehaviour
 {
     [SerializeField] private GameLoopFlowController flowController;
-    private string playerTag = "Player";
+    private string _playerTag = "Player";
 
 
     private void Reset()
@@ -34,14 +35,14 @@ public class ExitWinTrigger : MonoBehaviour
     {
         if (other == null) return false;
 
-        if (string.IsNullOrWhiteSpace(playerTag)) return true;
+        if (string.IsNullOrWhiteSpace(_playerTag)) return true;
 
-        if (other.CompareTag(playerTag)) return true;
+        if (other.CompareTag(_playerTag)) return true;
 
-        if (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag(playerTag))
+        if (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag(_playerTag))
             return true;
 
         Transform root = other.transform.root;
-        return root != null && root.CompareTag(playerTag);
+        return root != null && root.CompareTag(_playerTag);
     }
 }
