@@ -3,6 +3,7 @@ using UnityEngine;
 public class ExitWinTrigger : MonoBehaviour
 {
     [SerializeField] private GameLoopFlowController flowController;
+    private string playerTag = "Player";
 
 
     private void Reset()
@@ -26,5 +27,21 @@ public class ExitWinTrigger : MonoBehaviour
 
         flowController.RequestWinFromExit();
         Debug.Log($"{name}: player entered exit trigger, win requested.", this);
+    }
+
+
+    private bool IsPlayerCollider(Collider other)
+    {
+        if (other == null) return false;
+
+        if (string.IsNullOrWhiteSpace(playerTag)) return true;
+
+        if (other.CompareTag(playerTag)) return true;
+
+        if (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag(playerTag))
+            return true;
+
+        Transform root = other.transform.root;
+        return root != null && root.CompareTag(playerTag);
     }
 }
