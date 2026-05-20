@@ -52,8 +52,8 @@ public class GameLoopFlowController : MonoBehaviour
     {
         if (!CanTriggerWin()) return;
 
-        if (exitActivationObjectOverride != null && !exitActivationObjectOverride.activeInHierarchy)
-            return;
+        //if (exitActivationObjectOverride != null && !exitActivationObjectOverride.activeInHierarchy)
+        //    return;
 
         TriggerWin();
     }
@@ -76,8 +76,8 @@ public class GameLoopFlowController : MonoBehaviour
         if (pausePanel == null)
             Debug.LogError($"{name}: pausePanel is not assigned.", this);
 
-        if (exitActivationObjectOverride == null)
-            Debug.LogWarning($"{name}: exitActivationObjectOverride is not assigned. Win can still be requested by trigger.", this);
+        //if (exitActivationObjectOverride == null)
+        //    Debug.LogWarning($"{name}: exitActivationObjectOverride is not assigned. Win can still be requested by trigger.", this);
     }
 
 
