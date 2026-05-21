@@ -56,12 +56,15 @@ public class GrabObjects : MonoBehaviour
     public void ThrowObject()
     {
         _grabbedObject.transform.SetParent(null);
-
         _grabbedCollider.enabled = true;
         _grabbedRb.bodyType = RigidbodyType2D.Dynamic;
 
         _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
-        Vector2 _direction = (Quaternion.Euler(0, 0, throwAngle) * transform.right).normalized;
+
+        bool _isFacingRight = transform.localRotation.y >= 0;
+        float _angle = _isFacingRight ? throwAngle : -throwAngle;
+        
+        Vector2 _direction = (Quaternion.Euler(0, 0, _angle) * transform.right).normalized;
 
         _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
 

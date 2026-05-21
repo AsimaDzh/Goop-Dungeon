@@ -5818,14 +5818,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Goop
       objectReference: {fileID: 0}
-    - target: {fileID: 3822354826716797812, guid: 84f262263d575174cbe608bc14337379, type: 3}
-      propertyPath: throwAngle
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3822354826716797812, guid: 84f262263d575174cbe608bc14337379, type: 3}
-      propertyPath: throwForce
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7313911937558204300, guid: 84f262263d575174cbe608bc14337379, type: 3}
       propertyPath: healthBar
       value: 
