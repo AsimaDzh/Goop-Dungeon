@@ -22,9 +22,8 @@ public class GrabObjects : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_grabbedObject == null) GrabObject();
-
-        Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+        if (_grabbedObject == null) 
+            GrabObject();
     }
 
 
@@ -67,17 +66,20 @@ public class GrabObjects : MonoBehaviour
         Vector2 _direction = (Quaternion.Euler(0, 0, _angle) * transform.right).normalized;
 
         _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
-
-        _grabbedObject = null;
-        _grabbedRb = null;
-        _grabbedCollider = null;
+        
+        ClearLinks();
     }
 
     
     public void RemoveObject()
     {
         Destroy(_grabbedObject);
+        ClearLinks();
+    }
 
+
+    private void ClearLinks()
+    {
         _grabbedObject = null;
         _grabbedCollider = null;
         _grabbedRb = null;
