@@ -14,7 +14,7 @@ public class ExitWinTrigger : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
 
@@ -31,7 +31,7 @@ public class ExitWinTrigger : MonoBehaviour
     }
 
 
-    private bool IsPlayerCollider(Collider other)
+    private bool IsPlayerCollider(Collider2D other)
     {
         if (other == null) return false;
 
