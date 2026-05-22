@@ -20,7 +20,7 @@ public class GameLoopFlowController : MonoBehaviour
     //[SerializeField] private GameObject exitActivationObjectOverride;
 
     [SerializeField] private GoopStats _playerStats;
-    private bool _flowFinished;
+    //private bool _flowFinished;
 
 
     private void Awake()
@@ -117,8 +117,6 @@ public class GameLoopFlowController : MonoBehaviour
 
     private bool CanTriggerWin()
     {
-        if (_flowFinished) return false;
-
         if (GameManager.Instance == null) 
             return false;
 
@@ -128,9 +126,6 @@ public class GameLoopFlowController : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
-        if (_flowFinished) return;
-        _flowFinished = true;
-
         pausePanel.SetActive(false);
 
         if (GameManager.Instance != null)
@@ -144,9 +139,6 @@ public class GameLoopFlowController : MonoBehaviour
 
     private void TriggerWin()
     {
-        if (_flowFinished) return;
-        _flowFinished = true;
-
         pausePanel.SetActive(false);
 
         if (GameManager.Instance != null)
