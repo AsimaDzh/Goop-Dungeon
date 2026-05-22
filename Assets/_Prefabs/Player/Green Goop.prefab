@@ -186,6 +186,7 @@ MonoBehaviour:
   objectLayer:
     serializedVersion: 2
     m_Bits: 128
+  _grabbedObject: {fileID: 0}
 --- !u!114 &7068223398125308254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +511,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5215486796406550636, guid: fd87ebece8e586b419726bc2926b4002, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
