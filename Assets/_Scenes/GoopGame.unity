@@ -5898,6 +5898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 4983875889261316482, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
+      propertyPath: m_TagString
+      value: Gate
+      objectReference: {fileID: 0}
     - target: {fileID: 9143724068950909137, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.07
@@ -5951,18 +5955,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 262678311843129484, guid: fd970b7da359cde44a09b94bb26ef052, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 262678311843129484, guid: fd970b7da359cde44a09b94bb26ef052, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 262678311843129484, guid: fd970b7da359cde44a09b94bb26ef052, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4343657464576297863, guid: fd970b7da359cde44a09b94bb26ef052, type: 3}
       propertyPath: m_Name
       value: GateButton
