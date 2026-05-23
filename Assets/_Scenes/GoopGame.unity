@@ -450,7 +450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432209066768289188, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_Name
-      value: Water (4)
+      value: Lava (4)
       objectReference: {fileID: 0}
     - target: {fileID: 7200740741296300870, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_LocalScale.x
@@ -2289,7 +2289,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432209066768289188, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_Name
-      value: Water (2)
+      value: Lava (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7200740741296300870, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_LocalScale.x
@@ -3812,7 +3812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432209066768289188, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_Name
-      value: Water (3)
+      value: Lava (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7200740741296300870, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_LocalScale.x
@@ -4619,7 +4619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 432209066768289188, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_Name
-      value: Water
+      value: Lava
       objectReference: {fileID: 0}
     - target: {fileID: 7200740741296300870, guid: 6ddf497705db5b94a8d22649f2f94196, type: 3}
       propertyPath: m_LocalScale.x

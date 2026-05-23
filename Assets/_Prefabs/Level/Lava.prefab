@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7200740741296300870}
   - component: {fileID: 8312942413604203154}
   m_Layer: 3
-  m_Name: Water
+  m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 2028264706562615458}
   - component: {fileID: 696972536512736685}
   m_Layer: 3
-  m_Name: Water Sprite
+  m_Name: Lava Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.9032259, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.3108236, b: 0.26226407, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
