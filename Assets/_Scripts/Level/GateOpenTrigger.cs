@@ -4,8 +4,7 @@ using UnityEngine;
 public class GateOpenTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject gateToOpen;
-
-    private LayerMask ObjectMask => LayerMask.GetMask("Objects");
+    private LayerMask _objectMask = 7;
 
 
     private void Awake()
@@ -17,10 +16,11 @@ public class GateOpenTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == ObjectMask)
+        if (other.gameObject.layer == _objectMask)
         {
             gateToOpen.SetActive(false);
             Destroy(gameObject);
+            Debug.Log("Gate opened!");
         }
     }
 }
