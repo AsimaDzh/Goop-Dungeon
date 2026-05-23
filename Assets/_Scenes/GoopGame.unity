@@ -5829,6 +5829,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92a54b38dd3534c4bb3e9e3d2a26bed0, type: 3}
+--- !u!1 &2128955183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4983875889261316482, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
+  m_PrefabInstance: {fileID: 5616106078174726261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4072868793866246900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5896,10 +5901,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4983875889261316482, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
       propertyPath: m_Name
-      value: Gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983875889261316482, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
-      propertyPath: m_TagString
       value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 9143724068950909137, guid: 4c4befd1caedd224abf30a8af58e474c, type: 3}
@@ -5999,6 +6000,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7130554643839060517, guid: fd970b7da359cde44a09b94bb26ef052, type: 3}
+      propertyPath: gateToOpen
+      value: 
+      objectReference: {fileID: 2128955183}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
