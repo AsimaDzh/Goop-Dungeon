@@ -12,15 +12,11 @@ public class GameLoopFlowController : MonoBehaviour
 
     [Header("========== Win Panel ==========")]
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private Button winMenuButton;
 
     [Header("========== Shared UI ==========")]
     [SerializeField] private GameObject pausePanel;
-
-    //[Header("========== Win Condition ==========")]
-    //[SerializeField] private GameObject exitActivationObjectOverride;
-
     [SerializeField] private GoopStats _playerStats;
-    //private bool _flowFinished;
 
 
     private void Awake()
@@ -53,9 +49,6 @@ public class GameLoopFlowController : MonoBehaviour
     {
         if (!CanTriggerWin()) return;
 
-        //if (exitActivationObjectOverride != null && !exitActivationObjectOverride.activeInHierarchy)
-        //    return;
-
         TriggerWin();
     }
 
@@ -74,11 +67,11 @@ public class GameLoopFlowController : MonoBehaviour
         if (winPanel == null)
             Debug.LogError($"{name}: winPanel is not assigned.", this);
 
+        if (winMenuButton == null)
+            Debug.LogError($"{name}: winMenuButton is not assigned.", this);
+
         if (pausePanel == null)
             Debug.LogError($"{name}: pausePanel is not assigned.", this);
-
-        //if (exitActivationObjectOverride == null)
-        //    Debug.LogWarning($"{name}: exitActivationObjectOverride is not assigned. Win can still be requested by trigger.", this);
     }
 
 
@@ -86,6 +79,7 @@ public class GameLoopFlowController : MonoBehaviour
     {
         tryAgainButton.onClick.AddListener(HandleLoseRestartClicked);
         menuButton.onClick.AddListener(HandleMenuClicked);
+        winMenuButton.onClick.AddListener(HandleMenuClicked);
     }
 
 
@@ -93,6 +87,7 @@ public class GameLoopFlowController : MonoBehaviour
     {
         tryAgainButton.onClick.RemoveListener(HandleLoseRestartClicked);
         menuButton.onClick.RemoveListener(HandleMenuClicked);
+        winMenuButton.onClick.RemoveListener(HandleMenuClicked);
     }
 
 
