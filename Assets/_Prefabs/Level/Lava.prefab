@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  damageInterval: 2
+  damageInterval: 1
 --- !u!1 &7871882385986550588
 GameObject:
   m_ObjectHideFlags: 0
