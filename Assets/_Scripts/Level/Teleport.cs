@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 
@@ -7,17 +6,18 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField] private Transform destination;
 
-    private readonly HashSet<GameObject> _telepotObjects = new HashSet<GameObject>();
+    private readonly HashSet<GameObject> _teleportedObjects = new HashSet<GameObject>();
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
         if (!collision.CompareTag("Player")) return;
-        if (_telepotObjects.Contains(collision.gameObject)) return;
+        if (_teleportedObjects.Contains(collision.gameObject)) return;
+
+        _teleportedObjects.Add(collision.gameObject);
 
         if (destination.TryGetComponent(out Teleport destinationTeleport))
-            destinationTeleport._telepotObjects.Add(collision.gameObject);
+            destinationTeleport._teleportedObjects.Add(collision.gameObject);
 
         collision.transform.position = destination.position;
     }
@@ -27,14 +27,9 @@ public class Teleport : MonoBehaviour
     {
         if (!collision.CompareTag("Player")) return;
 
-        StartCoroutine(WaitAndRemove(collision.gameObject));
-    }
+        _teleportedObjects.Remove(collision.gameObject);
 
-
-    // Wait for the next frame to ensure teleportation is complete
-    private IEnumerator WaitAndRemove(GameObject obj)
-    {
-        yield return null; 
-        _telepotObjects.Remove(obj);
+        if (destination.TryGetComponent(out Teleport destinationTeleport))
+            destinationTeleport._teleportedObjects.Remove(collision.gameObject);
     }
 }
