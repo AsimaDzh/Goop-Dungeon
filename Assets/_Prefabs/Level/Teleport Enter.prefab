@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8593522575171320219}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Teleport Enter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095552968445289793}
   - component: {fileID: 1062342029361453705}
+  - component: {fileID: 4093963532423674500}
   m_Layer: 0
   m_Name: Teleport
   m_TagString: Untagged
@@ -199,6 +200,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 2.4}
   m_EdgeRadius: 0
+--- !u!114 &4093963532423674500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6046761648344300879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cc70aecc6873f4892d2efec8464731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6380704167234869685
 GameObject:
   m_ObjectHideFlags: 0
