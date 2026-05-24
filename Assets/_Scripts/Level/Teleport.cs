@@ -7,6 +7,7 @@ public class Teleport : MonoBehaviour
 
     private HashSet<GameObject> _telepotObjects = new HashSet<GameObject>();
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
@@ -16,5 +17,11 @@ public class Teleport : MonoBehaviour
             destinationTeleport._telepotObjects.Add(collision.gameObject);
 
         collision.transform.position = destination.position;
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _telepotObjects.Remove(collision.gameObject);
     }
 }
