@@ -11956,10 +11956,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water Goop
       objectReference: {fileID: 0}
-    - target: {fileID: 6978599115202725668, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8022793835305622284, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.29

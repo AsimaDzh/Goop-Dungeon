@@ -226,7 +226,7 @@ MonoBehaviour:
   _currentState: 0
   movingRadius: 5
   waitTime: 2
-  npcData: {fileID: 11400000, guid: 630d31c6fdea45645a744fedbf2b2162, type: 2}
+  npcData: {fileID: 11400000, guid: 202b8a9096185da43bb7c09c0c5d2f1d, type: 2}
   goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
   currentHealth: 100
   player: {fileID: 0}
