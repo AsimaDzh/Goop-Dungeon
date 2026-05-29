@@ -56,7 +56,7 @@ public class NPCBase : CharacterBase
     {
         if (npcData == null) return;
 
-        if (_grabSystem.IsObjectGrabbed)
+        if (_grabSystem.IsObjectGrabbed && (_currentState == CharacterState.Idle || _currentState == CharacterState.Moving))
             _currentState = CharacterState.Inspecting;
 
         if (_currentState == CharacterState.Following)
