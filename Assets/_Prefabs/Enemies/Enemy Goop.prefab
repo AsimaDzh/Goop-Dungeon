@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7980971353817335620}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Shoot Origin
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6210215413557115719}
   - component: {fileID: 4693389079460900074}
   - component: {fileID: 5722903315125148531}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Enemy Goop
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 3419259718032194541}
   - component: {fileID: 7061758419564831023}
   - component: {fileID: 7714917215355346330}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Goop Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
