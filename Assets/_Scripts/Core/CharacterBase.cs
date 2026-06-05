@@ -118,9 +118,23 @@ public class CharacterBase : MonoBehaviour
 
     private void PickNewWalkingPoint()
     {
-        float _randomOffsetX = Random.Range(-movingRadius, movingRadius);
+        if (_lastBlockedDir != 0)
+        {
+            int _oppositeDir = -_lastBlockedDir;
+            float _randomOffsetX = Random.Range(0.5f, movingRadius) * _oppositeDir;
+
+            _movingTarget = new Vector2(
+                transform.position.x + _randomOffsetX,
+                transform.position.y);
+
+            _lastBlockedDir = 0;
+            return;
+        }
+
+        float _randOffsetX = Random.Range(-movingRadius, movingRadius);
+       
         _movingTarget = new Vector2(
-            transform.position.x + _randomOffsetX,
+            transform.position.x + _randOffsetX,
             transform.position.y);
     }
 }
