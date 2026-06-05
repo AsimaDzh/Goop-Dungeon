@@ -33,6 +33,14 @@ public class CharacterBase : MonoBehaviour
 
     protected Rigidbody2D _rb;
 
+    [Header("========== Obstacle / Cliff Detection ==========")]
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform obstacleCheckPoint;
+    [SerializeField] private Transform cliffCheckPoint;
+    [SerializeField] private float checkDistance = 1f;
+    private int _lastBlockedDir = 0;
+
 
     private void Awake()
     {
