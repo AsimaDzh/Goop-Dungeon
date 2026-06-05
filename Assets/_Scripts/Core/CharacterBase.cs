@@ -83,6 +83,15 @@ public class CharacterBase : MonoBehaviour
             checkDistance,
             groundLayer);
 
+        if (!_obstacleHit.collider || _cliffHit.collider)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _waitCounter = waitTime;
+            _currentState = CharacterState.Idle;
+            _lastBlockedDir = (int)Mathf.Sign(_directionX);
+            return;
+        }
+
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
         Rotate(new Vector2(_directionX, 0f));
