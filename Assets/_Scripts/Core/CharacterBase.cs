@@ -36,8 +36,8 @@ public class CharacterBase : MonoBehaviour
     [Header("========== Obstacle / Cliff Detection ==========")]
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform obstacleCheckPoint;
-    [SerializeField] private Transform cliffCheckPoint;
+    [SerializeField] private Transform obstaclePoint;
+    [SerializeField] private Transform cliffPoint;
     [SerializeField] private float checkDistance = 1f;
     private int _lastBlockedDir = 0;
 
@@ -70,6 +70,18 @@ public class CharacterBase : MonoBehaviour
     protected void HandleMoving()
     {
         float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
+
+        RaycastHit2D _obstacleHit = Physics2D.Raycast(
+            obstaclePoint.position,
+            transform.right,
+            checkDistance,
+            obstacleLayer);
+
+        RaycastHit2D _cliffHit = Physics2D.Raycast(
+            cliffPoint.position,
+            Vector2.down,
+            checkDistance,
+            groundLayer);
 
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
