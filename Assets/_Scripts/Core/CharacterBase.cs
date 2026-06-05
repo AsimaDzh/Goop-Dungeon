@@ -34,6 +34,12 @@ public class CharacterBase : MonoBehaviour
     protected Rigidbody2D _rb;
 
 
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+
     private void Start()
     {
         _waitCounter = waitTime;

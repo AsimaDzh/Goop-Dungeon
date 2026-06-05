@@ -38,7 +38,6 @@ public class EnemyBase : CharacterBase, IDamageable
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
 
         currentHealth = MaxHealth;
     }

@@ -36,7 +36,6 @@ public class NPCBase : CharacterBase
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _grabSystem = GetComponent<GrabObjects>();
         detectionTrigger = GetComponent<CircleCollider2D>();
 
