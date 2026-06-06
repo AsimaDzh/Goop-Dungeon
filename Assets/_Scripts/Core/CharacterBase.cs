@@ -119,11 +119,8 @@ public class CharacterBase : MonoBehaviour
     }
 
 
-    private void CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit)
+    protected void CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit)
     {
-        Debug.DrawRay(wallPoint.position, transform.right * _checkDistance, Color.red);
-        Debug.DrawRay(cliffPoint.position, Vector2.down * _checkDistance, Color.green);
-
         RaycastHit2D _wallHit = Physics2D.Raycast(
             wallPoint.position,
             transform.right,

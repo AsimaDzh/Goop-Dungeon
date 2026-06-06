@@ -105,6 +105,13 @@ public class EnemyBase : CharacterBase, IDamageable
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
         Rotate(new Vector2(_directionX, 0f));
+
+        CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit);
+        if (_isWallHit || !_isGroundHit)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _currentState = CharacterState.Idle;
+        }
     }
 
 
