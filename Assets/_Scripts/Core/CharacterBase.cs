@@ -27,7 +27,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float movingRadius = 5f;
     [SerializeField] private float waitTime = 2f;
     private Vector2 _movingTarget;
-    [SerializeField] private float _waitCounter;
+    private float _waitCounter;
 
     virtual public float MoveSpeed { get; protected set; }
 
@@ -37,8 +37,8 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private LayerMask groundDetection;
     [SerializeField] private Transform wallPoint;
     [SerializeField] private Transform cliffPoint;
-    [SerializeField] private float checkDistance = 0.2f;
-    [SerializeField] private int _lastBlockedDir = 0;
+    private float _checkDistance = 0.2f;
+    private int _lastBlockedDir = 0;
 
 
     private void Start()
@@ -122,19 +122,25 @@ public class CharacterBase : MonoBehaviour
 
     private void CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit)
     {
+        Debug.DrawRay(wallPoint.position, transform.right * _checkDistance, Color.red);
+        Debug.DrawRay(cliffPoint.position, Vector2.down * _checkDistance, Color.green);
+
         RaycastHit2D _wallHit = Physics2D.Raycast(
             wallPoint.position,
             transform.right,
-            checkDistance,
+            _checkDistance,
             groundDetection);
 
         RaycastHit2D _groundHit = Physics2D.Raycast(
             cliffPoint.position,
             Vector2.down,
-            checkDistance,
+            _checkDistance,
             groundDetection);
 
-        _isWallHit = _wallHit;
-        _isGroundHit = _groundHit;
+        bool wallColliderHit = _wallHit.collider != null && _wallHit.collider.gameObject != gameObject;
+        bool groundColliderHit = _groundHit.collider != null && _groundHit.collider.gameObject != gameObject;
+
+        _isWallHit = wallColliderHit;
+        _isGroundHit = groundColliderHit;
     }
 }
