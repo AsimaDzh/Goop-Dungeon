@@ -81,7 +81,6 @@ public class CharacterBase : MonoBehaviour
             _waitCounter = waitTime;
             _currentState = CharacterState.Idle;
             _lastBlockedDir = (int)Mathf.Sign(_directionX);
-            return;
         }
     }
 
