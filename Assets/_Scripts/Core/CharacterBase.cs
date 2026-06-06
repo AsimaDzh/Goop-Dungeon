@@ -27,25 +27,18 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float movingRadius = 5f;
     [SerializeField] private float waitTime = 2f;
     private Vector2 _movingTarget;
-    private float _waitCounter;
+    [SerializeField] private float _waitCounter;
 
     virtual public float MoveSpeed { get; protected set; }
 
     protected Rigidbody2D _rb;
 
     [Header("========== Obstacle / Cliff Detection ==========")]
-    [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask groundDetetction;
     [SerializeField] private Transform obstaclePoint;
     [SerializeField] private Transform cliffPoint;
     [SerializeField] private float checkDistance = 1f;
-    private int _lastBlockedDir = 0;
-
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] private int _lastBlockedDir = 0;
 
 
     private void Start()
@@ -75,15 +68,15 @@ public class CharacterBase : MonoBehaviour
             obstaclePoint.position,
             transform.right,
             checkDistance,
-            obstacleLayer);
+            groundDetetction);
 
         RaycastHit2D _cliffHit = Physics2D.Raycast(
             cliffPoint.position,
             Vector2.down,
             checkDistance,
-            groundLayer);
+            groundDetetction);
 
-        if (!_obstacleHit.collider || _cliffHit.collider)
+        if (_obstacleHit.collider != null || _cliffHit.collider == null)
         {
             _rb.linearVelocity = Vector2.zero;
             _waitCounter = waitTime;
