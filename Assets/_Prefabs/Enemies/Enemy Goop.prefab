@@ -86,10 +86,10 @@ MonoBehaviour:
   movingRadius: 5
   waitTime: 2
   _waitCounter: 0
-  groundDetetction:
+  groundDetection:
     serializedVersion: 2
     m_Bits: 8
-  obstaclePoint: {fileID: 6257794195232007335}
+  wallPoint: {fileID: 6257794195232007335}
   cliffPoint: {fileID: 2205107151466939254}
   checkDistance: 0.2
   _lastBlockedDir: 0
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6257794195232007335}
   m_Layer: 3
-  m_Name: Obstacle Point
+  m_Name: Wall Point
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 4964254013413595878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -0.06, z: 0}
+  m_LocalPosition: {x: 0.25, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 7669714843995333301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -0.16, z: 0}
+  m_LocalPosition: {x: 0.25, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

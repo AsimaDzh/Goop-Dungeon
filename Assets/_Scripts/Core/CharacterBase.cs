@@ -34,10 +34,10 @@ public class CharacterBase : MonoBehaviour
     protected Rigidbody2D _rb;
 
     [Header("========== Obstacle / Cliff Detection ==========")]
-    [SerializeField] private LayerMask groundDetetction;
-    [SerializeField] private Transform obstaclePoint;
+    [SerializeField] private LayerMask groundDetection;
+    [SerializeField] private Transform wallPoint;
     [SerializeField] private Transform cliffPoint;
-    [SerializeField] private float checkDistance = 1f;
+    [SerializeField] private float checkDistance = 0.2f;
     [SerializeField] private int _lastBlockedDir = 0;
 
 
@@ -63,28 +63,6 @@ public class CharacterBase : MonoBehaviour
     protected void HandleMoving()
     {
         float _directionX = Mathf.Sign(_movingTarget.x - transform.position.x);
-
-        RaycastHit2D _obstacleHit = Physics2D.Raycast(
-            obstaclePoint.position,
-            transform.right,
-            checkDistance,
-            groundDetetction);
-
-        RaycastHit2D _cliffHit = Physics2D.Raycast(
-            cliffPoint.position,
-            Vector2.down,
-            checkDistance,
-            groundDetetction);
-
-        if (_obstacleHit.collider != null || _cliffHit.collider == null)
-        {
-            _rb.linearVelocity = Vector2.zero;
-            _waitCounter = waitTime;
-            _currentState = CharacterState.Idle;
-            _lastBlockedDir = (int)Mathf.Sign(_directionX);
-            return;
-        }
-
         _rb.linearVelocity = new Vector2(_directionX * MoveSpeed, 0f);
 
         Rotate(new Vector2(_directionX, 0f));
@@ -94,6 +72,16 @@ public class CharacterBase : MonoBehaviour
             _rb.linearVelocity = Vector2.zero;
             _waitCounter = waitTime;
             _currentState = CharacterState.Idle;
+        }
+
+        CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit);
+        if (_isWallHit || !_isGroundHit)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _waitCounter = waitTime;
+            _currentState = CharacterState.Idle;
+            _lastBlockedDir = (int)Mathf.Sign(_directionX);
+            return;
         }
     }
 
@@ -129,5 +117,24 @@ public class CharacterBase : MonoBehaviour
         _movingTarget = new Vector2(
             transform.position.x + _randOffsetX,
             transform.position.y);
+    }
+
+
+    private void CheckObstacleHit(out bool _isWallHit, out bool _isGroundHit)
+    {
+        RaycastHit2D _wallHit = Physics2D.Raycast(
+            wallPoint.position,
+            transform.right,
+            checkDistance,
+            groundDetection);
+
+        RaycastHit2D _groundHit = Physics2D.Raycast(
+            cliffPoint.position,
+            Vector2.down,
+            checkDistance,
+            groundDetection);
+
+        _isWallHit = _wallHit;
+        _isGroundHit = _groundHit;
     }
 }
