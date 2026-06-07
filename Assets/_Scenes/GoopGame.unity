@@ -11577,7 +11577,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4621269242947016046, guid: 8499233ac6caa514eb498e143f03fc7e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.8
+      value: 10.62
       objectReference: {fileID: 0}
     - target: {fileID: 4621269242947016046, guid: 8499233ac6caa514eb498e143f03fc7e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11963,7 +11963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8022793835305622284, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.1
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 8022793835305622284, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12001,10 +12001,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 78530973}
-    - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9151839918905568167, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
       propertyPath: shieldPoint
       value: 
