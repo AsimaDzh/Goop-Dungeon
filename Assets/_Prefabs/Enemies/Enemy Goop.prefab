@@ -85,14 +85,11 @@ MonoBehaviour:
   _currentState: 0
   movingRadius: 5
   waitTime: 2
-  _waitCounter: 0
   groundDetection:
     serializedVersion: 2
     m_Bits: 8
   wallPoint: {fileID: 6257794195232007335}
   cliffPoint: {fileID: 2205107151466939254}
-  checkDistance: 0.2
-  _lastBlockedDir: 0
   enemyData: {fileID: 11400000, guid: 952ade299e126984aba9a2d5ace1e2f3, type: 2}
   currentHealth: 50
   target: {fileID: 0}
@@ -269,8 +266,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -408114413
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -8717237816375110472, guid: 4f784030057e0434b879d5aede3c899d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
