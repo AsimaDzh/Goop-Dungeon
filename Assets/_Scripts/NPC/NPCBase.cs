@@ -8,7 +8,7 @@ public class NPCBase : CharacterBase
     [Header("========== References ==========")]
     [SerializeField] private NPCData npcData;
     [SerializeField] private GoopData goopData;
-    private GrabObjects _grabSystem;
+    private GrabItems _grabSystem;
 
     [Header("========== Current state (Runtime) ==========")]
     [SerializeField] private float currentHealth;
@@ -37,7 +37,7 @@ public class NPCBase : CharacterBase
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _grabSystem = GetComponent<GrabObjects>();
+        _grabSystem = GetComponent<GrabItems>();
         detectionTrigger = GetComponent<CircleCollider2D>();
 
         detectionTrigger.radius = DetectionRange;
@@ -56,7 +56,7 @@ public class NPCBase : CharacterBase
     {
         if (npcData == null) return;
 
-        if (_grabSystem.IsObjectGrabbed && (_currentState == CharacterState.Idle || _currentState == CharacterState.Moving))
+        if (_grabSystem.IsItemGrabbed && (_currentState == CharacterState.Idle || _currentState == CharacterState.Moving))
             _currentState = CharacterState.Inspecting;
 
         if (_currentState == CharacterState.Following)

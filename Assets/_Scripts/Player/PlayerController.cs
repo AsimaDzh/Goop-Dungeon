@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IPlayerController
 {
     [SerializeField] private GoopData goopData;
-    private GrabObjects _grabSystem;
+    private GrabItems _grabSystem;
 
     private Rigidbody2D _rb2D;
     private BoxCollider2D _boxCollider;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void Awake()
     {
-        _grabSystem = GetComponent<GrabObjects>();
+        _grabSystem = GetComponent<GrabItems>();
         _rb2D = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _cachedQueryStartInCol = Physics2D.queriesStartInColliders;
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     public void ОnThrow(InputAction.CallbackContext context)
     {
-        if (context.started && _grabSystem.IsObjectGrabbed)
+        if (context.started && _grabSystem.IsItemGrabbed)
         {
             _grabSystem.ThrowObject();
         }

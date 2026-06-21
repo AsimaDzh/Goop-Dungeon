@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class GrabObjects : MonoBehaviour
+public class GrabItems : MonoBehaviour
 {
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
@@ -10,19 +10,19 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private float throwForce = 7f;
     [SerializeField] private float throwAngle = 25f;
     [SerializeField] private float throwOffset = 1.8f;
-    [SerializeField] private LayerMask objectLayer;
+    [SerializeField] private LayerMask itemLayer;
 
-    private GameObject _grabbedObject;
+    private GameObject _grabbedItem;
     private Rigidbody2D _grabbedRb;
     private BoxCollider2D _grabbedCollider;
 
-    public bool IsObjectGrabbed => _grabbedObject != null;
-    public GameObject GrabbedObject => _grabbedObject;
+    public bool IsItemGrabbed => _grabbedItem != null;
+    public GameObject GrabbedItem => _grabbedItem;
 
 
     private void FixedUpdate()
     {
-        if (_grabbedObject == null) 
+        if (_grabbedItem == null) 
             GrabObject();
     }
 
@@ -33,13 +33,13 @@ public class GrabObjects : MonoBehaviour
             rayPoint.position,
             transform.right,
             rayDistance,
-            objectLayer);
+            itemLayer);
 
         if (!_hitInfo) return;
 
-        _grabbedObject = _hitInfo.collider.gameObject;
-        _grabbedRb = _grabbedObject.GetComponent<Rigidbody2D>();
-        _grabbedCollider = _grabbedObject.GetComponent<BoxCollider2D>();
+        _grabbedItem = _hitInfo.collider.gameObject;
+        _grabbedRb = _grabbedItem.GetComponent<Rigidbody2D>();
+        _grabbedCollider = _grabbedItem.GetComponent<BoxCollider2D>();
 
         _grabbedRb.linearVelocity = Vector2.zero;
         _grabbedRb.angularVelocity = 0f;
@@ -47,18 +47,18 @@ public class GrabObjects : MonoBehaviour
         _grabbedRb.bodyType = RigidbodyType2D.Kinematic;
         _grabbedCollider.enabled = false;
 
-        _grabbedObject.transform.SetParent(grabPoint);
-        _grabbedObject.transform.localPosition = Vector3.zero;
+        _grabbedItem.transform.SetParent(grabPoint);
+        _grabbedItem.transform.localPosition = Vector3.zero;
     }
 
 
     public void ThrowObject()
     {
-        _grabbedObject.transform.SetParent(null);
+        _grabbedItem.transform.SetParent(null);
         _grabbedCollider.enabled = true;
         _grabbedRb.bodyType = RigidbodyType2D.Dynamic;
 
-        _grabbedObject.transform.position = grabPoint.position + transform.right * throwOffset;
+        _grabbedItem.transform.position = grabPoint.position + transform.right * throwOffset;
 
         bool _isFacingRight = transform.localRotation.y >= 0;
         float _angle = _isFacingRight ? throwAngle : -throwAngle;
@@ -73,14 +73,14 @@ public class GrabObjects : MonoBehaviour
     
     public void RemoveObject()
     {
-        Destroy(_grabbedObject);
+        Destroy(_grabbedItem);
         ClearLinks();
     }
 
 
     private void ClearLinks()
     {
-        _grabbedObject = null;
+        _grabbedItem = null;
         _grabbedCollider = null;
         _grabbedRb = null;
     }

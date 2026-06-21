@@ -322,7 +322,7 @@ MonoBehaviour:
   throwForce: 7
   throwAngle: 25
   throwOffset: 1.8
-  objectLayer:
+  itemLayer:
     serializedVersion: 2
     m_Bits: 128
 --- !u!58 &4039855767584865963
