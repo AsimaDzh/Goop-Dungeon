@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3234946875045340301}
   - component: {fileID: 5931160740510198116}
   m_Layer: 7
-  m_Name: Pickup_Object_Default
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
