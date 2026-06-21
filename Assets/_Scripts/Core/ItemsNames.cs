@@ -1,7 +1,6 @@
-public static class ItemsNames
+public enum ItemsNames
 {
-    public const string Key = "Key";
-    public const string Rock = "Rock";
-    public const string Acorn = "Acorn";
-    public const string Flower = "Flower";
+    Rock = 0,
+    Acorn = 1,
+    Flower = 2
 }
