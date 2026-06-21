@@ -1,6 +1,7 @@
 public enum ItemsNames
 {
-    Rock = 0,
-    Acorn = 1,
-    Flower = 2
+    None = 0,
+    Rock = 1,
+    Acorn = 2,
+    Flower = 3
 }

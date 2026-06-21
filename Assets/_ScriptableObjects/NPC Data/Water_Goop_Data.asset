@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Water Goop
   Type: 0
-  Likes: Flower
+  Likes: 3
   MaxHealth: 100
   MoveSpeed: 3
   Damage: 10

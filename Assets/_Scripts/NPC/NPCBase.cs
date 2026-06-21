@@ -112,9 +112,9 @@ public class NPCBase : CharacterBase
     {
         yield return new WaitForSeconds(_inspectingTime);
 
-        if (npcData.Likes == _grabSystem.GrabbedObject.name)
-            _currentState = CharacterState.Accepting;
-        else _currentState = CharacterState.Rejecting;
+        //if (npcData.Likes == _grabSystem.GrabbedObject.name)
+        //    _currentState = CharacterState.Accepting;
+        //else _currentState = CharacterState.Rejecting;
 
         _isInspecting = false;
     }
