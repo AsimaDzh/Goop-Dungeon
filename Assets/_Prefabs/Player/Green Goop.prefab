@@ -181,7 +181,7 @@ MonoBehaviour:
   rayPoint: {fileID: 3730348878909051606}
   rayDistance: 0.2
   throwForce: 7
-  throwAngle: 25
+  throwAngle: 45
   throwOffset: 1.8
   itemLayer:
     serializedVersion: 2

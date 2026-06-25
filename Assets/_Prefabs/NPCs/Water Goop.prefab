@@ -290,6 +290,7 @@ MonoBehaviour:
   _currentState: 0
   movingRadius: 5
   waitTime: 2
+  _waitCounter: 0
   groundDetection:
     serializedVersion: 2
     m_Bits: 8
@@ -297,7 +298,6 @@ MonoBehaviour:
   cliffPoint: {fileID: 7213102645833900893}
   npcData: {fileID: 11400000, guid: 202b8a9096185da43bb7c09c0c5d2f1d, type: 2}
   goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
-  itemData: {fileID: 0}
   currentHealth: 100
   player: {fileID: 0}
   stepsToFollow: 5
@@ -321,7 +321,7 @@ MonoBehaviour:
   rayPoint: {fileID: 7158677959636043505}
   rayDistance: 0.2
   throwForce: 7
-  throwAngle: 25
+  throwAngle: 45
   throwOffset: 1.8
   itemLayer:
     serializedVersion: 2

@@ -14300,8 +14300,7 @@ PrefabInstance:
       propertyPath: bubbleShieldTimer
       value: 
       objectReference: {fileID: 1894929452}
-    m_RemovedComponents:
-    - {fileID: 4731263018250188649, guid: b71c7b2c0f80c834fba3debac6ed2a0f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
