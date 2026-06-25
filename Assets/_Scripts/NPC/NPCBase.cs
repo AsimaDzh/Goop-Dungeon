@@ -8,6 +8,7 @@ public class NPCBase : CharacterBase
     [Header("========== References ==========")]
     [SerializeField] private NPCData npcData;
     [SerializeField] private GoopData goopData;
+    [SerializeField] private ItemData itemData;
     private GrabItems _grabSystem;
 
     [Header("========== Current state (Runtime) ==========")]
@@ -57,7 +58,10 @@ public class NPCBase : CharacterBase
         if (npcData == null) return;
 
         if (_grabSystem.IsItemGrabbed && (_currentState == CharacterState.Idle || _currentState == CharacterState.Moving))
+        {
             _currentState = CharacterState.Inspecting;
+            itemData = _grabSystem.GrabbedItem.GetComponent<ItemData>();
+        }
 
         if (_currentState == CharacterState.Following)
         {
@@ -112,9 +116,9 @@ public class NPCBase : CharacterBase
     {
         yield return new WaitForSeconds(_inspectingTime);
 
-        //if (npcData.Likes == _grabSystem.GrabbedObject.name)
-        //    _currentState = CharacterState.Accepting;
-        //else _currentState = CharacterState.Rejecting;
+        if (npcData.Likes == itemData.itemType)
+            _currentState = CharacterState.Accepting;
+        else _currentState = CharacterState.Rejecting;
 
         _isInspecting = false;
     }

@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7316234126323157799}
   - component: {fileID: 7313911937558204300}
   - component: {fileID: 7562436808937487363}
-  - component: {fileID: 3822354826716797812}
+  - component: {fileID: 2200373816179612490}
   - component: {fileID: 7068223398125308254}
   - component: {fileID: 3343318991035374507}
   - component: {fileID: 5172777214851191590}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
---- !u!114 &3822354826716797812
+--- !u!114 &2200373816179612490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,14 +174,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2672111496230827254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a79f7f438801524d988c6e765b4caaa, type: 3}
+  m_Script: {fileID: 11500000, guid: f08030d8692b6b84fb538fe78200d686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabPoint: {fileID: 6714553605995494332}
   rayPoint: {fileID: 3730348878909051606}
   rayDistance: 0.2
-  throwForce: 10
-  throwAngle: 45
+  throwForce: 7
+  throwAngle: 25
   throwOffset: 1.8
   itemLayer:
     serializedVersion: 2
