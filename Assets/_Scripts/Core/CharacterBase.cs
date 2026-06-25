@@ -27,7 +27,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] private float movingRadius = 5f;
     [SerializeField] private float waitTime = 2f;
     private Vector2 _movingTarget;
-    private float _waitCounter;
+    [SerializeField] private float _waitCounter;
 
     virtual public float MoveSpeed { get; protected set; }
 

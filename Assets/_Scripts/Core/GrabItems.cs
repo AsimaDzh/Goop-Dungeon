@@ -8,7 +8,7 @@ public class GrabItems : MonoBehaviour
     [SerializeField] private float rayDistance = 0.2f;
 
     [SerializeField] private float throwForce = 7f;
-    [SerializeField] private float throwAngle = 25f;
+    [SerializeField] private float throwAngle = 45f;
     [SerializeField] private float throwOffset = 1.8f;
     [SerializeField] private LayerMask itemLayer;
 
