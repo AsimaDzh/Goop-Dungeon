@@ -12,12 +12,13 @@ public class GrabItems : MonoBehaviour
     [SerializeField] private float throwOffset = 1.8f;
     [SerializeField] private LayerMask itemLayer;
 
+    private ItemData _itemData;
     private GameObject _grabbedItem;
     private Rigidbody2D _grabbedRb;
     private BoxCollider2D _grabbedCollider;
 
     public bool IsItemGrabbed => _grabbedItem != null;
-    public GameObject GrabbedItem => _grabbedItem;
+    public ItemsNames GrabbedItem => _itemData.itemType;
 
 
     private void FixedUpdate()
@@ -40,6 +41,7 @@ public class GrabItems : MonoBehaviour
         _grabbedItem = _hitInfo.collider.gameObject;
         _grabbedRb = _grabbedItem.GetComponent<Rigidbody2D>();
         _grabbedCollider = _grabbedItem.GetComponent<BoxCollider2D>();
+        _itemData = _grabbedItem.GetComponent<ItemData>();
 
         _grabbedRb.linearVelocity = Vector2.zero;
         _grabbedRb.angularVelocity = 0f;
@@ -80,6 +82,7 @@ public class GrabItems : MonoBehaviour
 
     private void ClearLinks()
     {
+        _itemData = null;
         _grabbedItem = null;
         _grabbedCollider = null;
         _grabbedRb = null;
