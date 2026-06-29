@@ -22,16 +22,14 @@ public class CharacterBase : MonoBehaviour
     }
 
     [SerializeField] protected CharacterState _currentState = CharacterState.Idle;
+    protected Rigidbody2D _rb;
 
     [Header("========== Moving ==========")]
     [SerializeField] private float movingRadius = 5f;
     [SerializeField] private float waitTime = 2f;
     private Vector2 _movingTarget;
     private float _waitCounter;
-
     virtual public float MoveSpeed { get; protected set; }
-
-    protected Rigidbody2D _rb;
 
     [Header("========== Obstacle / Cliff Detection ==========")]
     [SerializeField] private LayerMask groundDetection;

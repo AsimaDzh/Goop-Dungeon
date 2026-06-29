@@ -28,7 +28,6 @@ public class NPCBase : CharacterBase
 
     public NPCData NPCData => npcData;
     public float MaxHealth => npcData != null ? npcData.MaxHealth : 0f;
-    public float Damage => npcData != null ? npcData.Damage : 0f;
     public float DetectionRange => npcData != null ? npcData.DetectionRange : 0f;
     public float SkillCooldown => npcData != null ? npcData.SkillCooldown : 0f;
     override public float MoveSpeed => npcData != null ? npcData.MoveSpeed : 0f;
