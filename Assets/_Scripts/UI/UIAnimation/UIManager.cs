@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
         extrasButton, 
         leaveButton;
 
-    private float _fadeDurTitle = 2f;
+    private float _fadeDurTitle = 1f;
     private float _fadeDurAllButtons = 1f;
     private float _fadeDurForEachButton = 1f;
     private float _delayBetweenButtons = 0.1f;
@@ -21,4 +21,38 @@ public class UIManager : MonoBehaviour
         _animOptionsButton, 
         _animExtrasButton, 
         _animLeaveButton;
+
+
+    private void Awake()
+    {
+        titleFade.alpha = 0f;
+    }
+
+
+    private void Start()
+    {
+        AnimTitle();
+    }
+
+
+    private void AnimTitle()
+    {
+        _animTitle = titleFade.DOFade(1f, _fadeDurTitle);
+    }
+
+
+    private void OnDestroy()
+    {
+        ClearAnimations();
+    }
+
+
+    public void ClearAnimations()
+    {
+        _animTitle?.Kill();
+        _animPlayButton?.Kill();
+        _animOptionsButton?.Kill();
+        _animExtrasButton?.Kill();
+        _animLeaveButton?.Kill();
+    }
 }
