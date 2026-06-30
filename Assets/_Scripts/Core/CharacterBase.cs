@@ -110,7 +110,7 @@ public class CharacterBase : MonoBehaviour
         }
 
         float _randOffsetX = Random.Range(-movingRadius, movingRadius);
-       
+
         _movingTarget = new Vector2(
             transform.position.x + _randOffsetX,
             transform.position.y);
