@@ -11,16 +11,11 @@ public class UIManager : MonoBehaviour
         leaveButton;
 
     private float _fadeDurTitle = 1f;
-    private float _fadeDurAllButtons = 1f;
-    private float _fadeDurForEachButton = 1f;
+    private float _fadeDurForEachButton = 0.3f;
     private float _delayBetweenButtons = 0.1f;
 
-    private Tween 
-        _animTitle, 
-        _animPlayButton, 
-        _animOptionsButton, 
-        _animExtrasButton, 
-        _animLeaveButton;
+    private Tween _animTitle;
+    private Sequence _buttonSequence;
 
 
     private void Awake()
@@ -32,12 +27,25 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         AnimTitle();
+        AnimButtons();
     }
 
 
     private void AnimTitle()
     {
         _animTitle = titleFade.DOFade(1f, _fadeDurTitle);
+    }
+
+
+    private void AnimButtons()
+    {
+        _buttonSequence = DOTween.Sequence();
+
+        _buttonSequence
+            .Append(playButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
+            .Append(optionsButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
+            .Append(extrasButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
+            .Append(leaveButton.DOFade(1f, _fadeDurForEachButton));
     }
 
 
@@ -50,9 +58,6 @@ public class UIManager : MonoBehaviour
     public void ClearAnimations()
     {
         _animTitle?.Kill();
-        _animPlayButton?.Kill();
-        _animOptionsButton?.Kill();
-        _animExtrasButton?.Kill();
-        _animLeaveButton?.Kill();
+        _buttonSequence?.Kill();
     }
 }
