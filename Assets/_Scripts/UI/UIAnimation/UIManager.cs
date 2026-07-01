@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
 
     private float _fadeDurTitle = 1f;
     private float _fadeDurForEachButton = 0.3f;
-    private float _delayBetweenButtons = 0.1f;
 
     private Tween _animTitle;
     private Sequence _buttonSequence;
@@ -42,9 +41,9 @@ public class UIManager : MonoBehaviour
         _buttonSequence = DOTween.Sequence();
 
         _buttonSequence
-            .Append(playButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
-            .Append(optionsButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
-            .Append(extrasButton.DOFade(1f, _fadeDurForEachButton)).AppendInterval(_delayBetweenButtons)
+            .Append(playButton.DOFade(1f, _fadeDurForEachButton))
+            .Append(optionsButton.DOFade(1f, _fadeDurForEachButton))
+            .Append(extrasButton.DOFade(1f, _fadeDurForEachButton))
             .Append(leaveButton.DOFade(1f, _fadeDurForEachButton));
     }
 
