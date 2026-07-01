@@ -9995,7 +9995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 383983305}
   m_Layer: 3
-  m_Name: Environment
+  m_Name: Lavas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10835,7 +10835,7 @@ GameObject:
   - component: {fileID: 656194177}
   - component: {fileID: 656194176}
   m_Layer: 3
-  m_Name: Grid
+  m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11557,12 +11557,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064911773}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1777387533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1077799101
 GameObject:
@@ -12986,7 +12986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777387533}
   m_Layer: 0
-  m_Name: Cameras and light
+  m_Name: Cameras, GL and GV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13008,6 +13008,7 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 1598815015}
   - {fileID: 619394802}
+  - {fileID: 1064911775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1825550105 stripped
@@ -14351,7 +14352,6 @@ SceneRoots:
   - {fileID: 1482902412}
   - {fileID: 1301125512}
   - {fileID: 656748597}
-  - {fileID: 1064911775}
   - {fileID: 115530498}
   - {fileID: 1331095553}
   - {fileID: 262430736}
