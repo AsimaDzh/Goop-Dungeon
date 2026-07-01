@@ -13,34 +13,31 @@ public class UIManager : MonoBehaviour
     private float _fadeDurTitle = 1f;
     private float _fadeDurForEachButton = 0.3f;
 
-    private Tween _animTitle;
-    private Sequence _buttonSequence;
+    private Sequence _menuSequence;
 
 
     private void Awake()
     {
         titleFade.alpha = 0f;
+        playButton.alpha = 0f;
+        optionsButton.alpha = 0f;
+        extrasButton.alpha = 0f;
+        leaveButton.alpha = 0f;
     }
 
 
     private void Start()
     {
-        AnimTitle();
-        AnimButtons();
+        ShowMenu();
     }
 
 
-    private void AnimTitle()
+    private void ShowMenu()
     {
-        _animTitle = titleFade.DOFade(1f, _fadeDurTitle);
-    }
+        _menuSequence = DOTween.Sequence();
 
-
-    private void AnimButtons()
-    {
-        _buttonSequence = DOTween.Sequence();
-
-        _buttonSequence
+        _menuSequence
+            .Append(titleFade.DOFade(1f, _fadeDurTitle))
             .Append(playButton.DOFade(1f, _fadeDurForEachButton))
             .Append(optionsButton.DOFade(1f, _fadeDurForEachButton))
             .Append(extrasButton.DOFade(1f, _fadeDurForEachButton))
@@ -56,7 +53,6 @@ public class UIManager : MonoBehaviour
 
     public void ClearAnimations()
     {
-        _animTitle?.Kill();
-        _buttonSequence?.Kill();
+        _menuSequence?.Kill();
     }
 }
