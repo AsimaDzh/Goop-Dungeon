@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        titleFade.alpha = 0f;
         playButton.alpha = 0f;
         optionsButton.alpha = 0f;
         extrasButton.alpha = 0f;
@@ -37,7 +36,7 @@ public class UIManager : MonoBehaviour
         _menuSequence = DOTween.Sequence();
 
         _menuSequence
-            .Append(titleFade.DOFade(1f, _fadeDurTitle))
+            .Append(titleFade.transform.DOScale(1, _fadeDurTitle).From(0).SetEase(Ease.OutBounce))//.DOFade(1f, _fadeDurTitle))
             .Append(playButton.DOFade(1f, _fadeDurForEachButton))
             .Append(optionsButton.DOFade(1f, _fadeDurForEachButton))
             .Append(extrasButton.DOFade(1f, _fadeDurForEachButton))
