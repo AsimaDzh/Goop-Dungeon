@@ -1111,11 +1111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e3d1827a2c2234986247302de0cea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
-  titleFade: {fileID: 995218032}
+  title: {fileID: 995218032}
   playButton: {fileID: 975721786}
   optionsButton: {fileID: 459871930}
   extrasButton: {fileID: 1690604375}
   leaveButton: {fileID: 1815635935}
+  allButtons: {fileID: 1417615845}
+  titleDuration: 0.7
+  titleFadeDuration: 1
+  buttonsDuration: 2
+  buttonsFadeDuration: 0.3
 --- !u!1 &1297573663
 GameObject:
   m_ObjectHideFlags: 0
