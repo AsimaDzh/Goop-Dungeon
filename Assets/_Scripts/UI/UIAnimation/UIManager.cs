@@ -6,11 +6,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CanvasGroup title, playButton, optionsButton, extrasButton, leaveButton;
     [SerializeField] private RectTransform allButtons;
     
-    private float _titleDur = 1f;
+    private float _titleDur = 0.7f;
     private float _titleFadeDur = 0.5f;
-    private float _buttonsDur = 2f;
+    private float _buttonsDur = 2.5f;
     private float _buttonsFadeDur = 0.3f;
     private Sequence _menuSequence;
+    private Tween _titleTween, _buttonsTween;
 
 
     private void Awake()
@@ -25,14 +26,22 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        ShowTitle();
         ShowMenuButtons();
+    }
+
+
+    private void ShowTitle()
+    {
+        _titleTween = title.DOFade(1f, _titleFadeDur);
     }
 
 
     private void ShowMenuButtons()
     {
-        title.DOFade(1f, _titleFadeDur);
-        allButtons.DOAnchorPosY(0, _buttonsDur).From(new Vector2(0, 100)).SetEase(Ease.OutBack);
+        _buttonsTween = allButtons
+            .DOAnchorPosY(0, _buttonsDur).From(new Vector2(0, 100))
+            .SetEase(Ease.OutBack);
 
         _menuSequence = DOTween.Sequence();
 
@@ -53,6 +62,8 @@ public class UIManager : MonoBehaviour
 
     public void ClearAnimations()
     {
+        _titleTween?.Kill();
+        _buttonsTween?.Kill();
         _menuSequence?.Kill();
     }
 }
