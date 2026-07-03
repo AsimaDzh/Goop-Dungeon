@@ -10,8 +10,8 @@ public class UIManager : MonoBehaviour
         extrasButton, 
         leaveButton;
 
-    private float _fadeDurTitle = 1f;
-    private float _fadeDurForEachButton = 0.3f;
+    private float _titleDuration = 0.7f;
+    private float _buttonsDuration = 0.3f;
 
     private Sequence _menuSequence;
 
@@ -27,20 +27,20 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        ShowMenu();
+        ShowMenuButtons();
     }
 
 
-    private void ShowMenu()
+    private void ShowMenuButtons()
     {
         _menuSequence = DOTween.Sequence();
 
         _menuSequence
-            .Append(titleFade.transform.DOScale(1, _fadeDurTitle).From(0).SetEase(Ease.OutBounce))//.DOFade(1f, _fadeDurTitle))
-            .Append(playButton.DOFade(1f, _fadeDurForEachButton))
-            .Append(optionsButton.DOFade(1f, _fadeDurForEachButton))
-            .Append(extrasButton.DOFade(1f, _fadeDurForEachButton))
-            .Append(leaveButton.DOFade(1f, _fadeDurForEachButton));
+            .Append(titleFade.transform.DOScale(1, _titleDuration).From(5).SetEase(Ease.OutBack))
+            .Append(playButton.DOFade(1f, _buttonsDuration))
+            .Append(optionsButton.DOFade(1f, _buttonsDuration))
+            .Append(extrasButton.DOFade(1f, _buttonsDuration))
+            .Append(leaveButton.DOFade(1f, _buttonsDuration));
     }
 
 
