@@ -28,6 +28,16 @@ public class FireBall : MonoBehaviour
     }
 
 
+    private void FixedUpdate()
+    {
+        if (_rb2D.linearVelocity.sqrMagnitude > 0.001f)
+        {
+            float _angle = Mathf.Atan2(_rb2D.linearVelocity.y, _rb2D.linearVelocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, _angle + 90f);
+        }
+    }
+
+
     public void Launch(Vector2 velocity)
     {
         _rb2D.linearVelocity = velocity;
