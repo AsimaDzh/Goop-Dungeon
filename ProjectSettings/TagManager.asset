@@ -56,7 +56,10 @@ TagManager:
   - name: Foreground
     uniqueID: 822398519
     locked: 0
-  - name: Objects
+  - name: Interactables
+    uniqueID: 2878397463
+    locked: 0
+  - name: Items
     uniqueID: 3910346877
     locked: 0
   m_RenderingLayers:
