@@ -4802,7 +4802,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -384620419
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 13
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -4888,7 +4888,7 @@ MonoBehaviour:
   m_Intensity: 30
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000005592c91813abace737ce04317d2813e9
+  m_ApplyToSortingLayers: 000000005592c91813abace737ce04317d2813e9e7cdfeb2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -9756,7 +9756,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -384620419
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 12
   m_MaskInteraction: 0
   m_RenderMode: 0
