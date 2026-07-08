@@ -5,6 +5,7 @@ public class FireBall : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 3f;
     [SerializeField] private LayerMask hitLayers;
+    [SerializeField] private GameObject hitEffect;
 
     private Rigidbody2D _rb2D;
 
@@ -56,6 +57,8 @@ public class FireBall : MonoBehaviour
             _damageable = other.GetComponentInParent<IDamageable>();
         if (_damageable != null)
             _damageable.TakeDamage(damage);
+
+        Instantiate(hitEffect, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
