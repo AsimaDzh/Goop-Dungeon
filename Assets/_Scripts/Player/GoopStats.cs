@@ -65,6 +65,9 @@ public class GoopStats : MonoBehaviour, IDamageable
         
         Debug.Log($"Player took {damage} damage. Health: {currentHealth}/{playerData.MaxHealth}");
 
+        if (gameObject.TryGetComponent<FlashDamage>(out var flashDamage))
+            flashDamage.Flash();
+
         if (currentHealth <= 0f) OnDeath?.Invoke();
 
     }

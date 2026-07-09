@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7316234126323157799}
   - component: {fileID: 7313911937558204300}
   - component: {fileID: 7562436808937487363}
+  - component: {fileID: 9215606054640900442}
   - component: {fileID: 2200373816179612490}
   - component: {fileID: 7068223398125308254}
   - component: {fileID: 3343318991035374507}
@@ -165,6 +166,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
+--- !u!114 &9215606054640900442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672111496230827254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0307642012a6183429926ce1b4de8579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashDamage
+  flashDelay: 1
 --- !u!114 &2200373816179612490
 MonoBehaviour:
   m_ObjectHideFlags: 0
