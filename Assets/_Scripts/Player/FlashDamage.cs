@@ -16,6 +16,19 @@ public class FlashDamage : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (_flashFactor <= 0f) return;
+
+        _flashFactor = Mathf.Lerp(_flashFactor, 0f, Time.deltaTime * flashDelay);
+
+        if (_flashFactor < 0.01f) 
+            _flashFactor = 0f;
+
+        ApplyFlashFactor();
+    }
+
+
     public void Flash()
     {
         _flashFactor = 1f;
