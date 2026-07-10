@@ -7,6 +7,7 @@ public class EventBus : MonoBehaviour
     public event Action OnGamePaused;
     public event Action OnGameResumed;
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
