@@ -15362,7 +15362,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7420f6dcfd94d6943920032dc8e6786b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  soundList: []
+  soundList:
+  - {fileID: 8300000, guid: 8560753710c0f9d4eab81e3c05fa80b7, type: 3}
+  - {fileID: 8300000, guid: c9e4c95441eba5b44acfa829ac277bf8, type: 3}
+  - {fileID: 8300000, guid: 5d8f1d6c67daca542aca95890031dc93, type: 3}
+  - {fileID: 8300000, guid: d12056f93f0602842a02863124cbcb54, type: 3}
+  - {fileID: 8300000, guid: e28a4911d6f63e4498884cb8600756c8, type: 3}
+  - {fileID: 8300000, guid: 5aa0d809ca283b14cbe0cf79a8160b40, type: 3}
+  - {fileID: 8300000, guid: 781181dcb89a0c94790b3b861ea8247f, type: 3}
+  - {fileID: 8300000, guid: 2b00b157540afa34e86f4fbe96204b02, type: 3}
+  - {fileID: 8300000, guid: 75e86ae7a833ba54eb604d94a2a4be6b, type: 3}
+  - {fileID: 8300000, guid: 2f9a831875ea9fb469b59636b37cd097, type: 3}
+  - {fileID: 8300000, guid: 137fcbdeb2b25dc43865e645c0122626, type: 3}
 --- !u!82 &1829954115
 AudioSource:
   m_ObjectHideFlags: 0

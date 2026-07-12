@@ -3,10 +3,22 @@ using UnityEngine;
 
 public enum AudioType
 {
-    Music,
-    Skills,
-    UI,
-    Interactables
+    //Interactables
+    DoorLock = 0,
+    GateButton = 1,
+    LavaHit = 2,
+
+    //Skills
+    BubbleShield = 3,
+    FireballLaunch = 4,
+    FireballHit = 5,
+    ThrowItem = 6,
+
+    //UI
+    ButtonSelect = 7,
+    GameOver = 8,
+    GamePause = 9,
+    GameWin = 10
 }
 
 [RequireComponent(typeof(AudioSource))]

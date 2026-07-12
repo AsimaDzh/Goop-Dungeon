@@ -68,6 +68,8 @@ public class GoopStats : MonoBehaviour, IDamageable
         if (gameObject.TryGetComponent<FlashDamage>(out var flashDamage))
             flashDamage.Flash();
 
+        AudioManager.PlaySound(AudioType.LavaHit, 1f);
+
         if (currentHealth <= 0f) OnDeath?.Invoke();
 
     }
