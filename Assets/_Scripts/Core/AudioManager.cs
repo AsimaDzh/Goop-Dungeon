@@ -1,5 +1,14 @@
 using UnityEngine;
 
+
+public enum AudioType
+{
+    Music,
+    Skills,
+    UI,
+    Interactables
+}
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
