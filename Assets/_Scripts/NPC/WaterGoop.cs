@@ -30,6 +30,8 @@ public class WaterGoop : NPCBase
         bubbleTimerUI.SetActive(true);
 
         bubbleShieldTimer.OnTimerEnded += OnShieldTimerEnded;
+
+        AudioManager.PlaySound(AudioType.BubbleShield, 1f);
     }
 
 

@@ -60,6 +60,8 @@ public class FireBall : MonoBehaviour
 
         Instantiate(hitEffect, transform.position, Quaternion.identity);
 
+        AudioManager.PlaySound(AudioType.FireballHit, 1f);
+
         Destroy(gameObject);
     }
 }

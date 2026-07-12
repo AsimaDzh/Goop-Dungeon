@@ -81,5 +81,7 @@ public class FireGoop : EnemyBase
         Vector2 _initialVelocity = (_displacement - 0.5f * flightTime * flightTime * _gravity) / flightTime;
 
         _fireball.Launch(_initialVelocity);
+
+        AudioManager.PlaySound(AudioType.FireballLaunch, 1f);
     }
 }

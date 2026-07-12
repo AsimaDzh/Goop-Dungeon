@@ -3,7 +3,7 @@ using UnityEngine;
 public enum AudioType
 {
     //Interactables
-    DoorLock = 0,
+    DoorOpen = 0,
     GateButton = 1,
     LavaHit = 2,
 
@@ -20,7 +20,7 @@ public enum AudioType
     GameWin = 10,
 }
 
-[RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }

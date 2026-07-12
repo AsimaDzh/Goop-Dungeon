@@ -19,5 +19,7 @@ public class ExitDoorOpen : MonoBehaviour
         Destroy(collision.gameObject);
         exit.SetActive(true);
         gameObject.SetActive(false);
+
+        AudioManager.PlaySound(AudioType.DoorOpen, 1f);
     }
 }

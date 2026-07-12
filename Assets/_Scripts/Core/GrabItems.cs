@@ -6,7 +6,6 @@ public class GrabItems : MonoBehaviour
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance = 0.2f;
-
     [SerializeField] private float throwForce = 7f;
     [SerializeField] private float throwAngle = 45f;
     [SerializeField] private float throwOffset = 1.8f;
@@ -64,11 +63,12 @@ public class GrabItems : MonoBehaviour
 
         bool _isFacingRight = transform.localRotation.y >= 0;
         float _angle = _isFacingRight ? throwAngle : -throwAngle;
-        
         Vector2 _direction = (Quaternion.Euler(0, 0, _angle) * transform.right).normalized;
 
         _grabbedRb.AddForce(_direction * throwForce, ForceMode2D.Impulse);
-        
+
+        AudioManager.PlaySound(AudioType.ThrowItem, 1f);
+
         ClearLinks();
     }
 

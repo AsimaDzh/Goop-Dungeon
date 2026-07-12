@@ -21,6 +21,8 @@ public class GateOpenTrigger : MonoBehaviour
             gateToOpen.SetActive(false);
             Destroy(gameObject);
             Debug.Log("Gate opened!");
+
+            AudioManager.PlaySound(AudioType.GateButton, 1f);
         }
     }
 }
