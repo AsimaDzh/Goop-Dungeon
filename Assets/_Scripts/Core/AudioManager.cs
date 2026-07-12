@@ -9,9 +9,14 @@ public enum AudioType
     Interactables
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+
+    [SerializeField] private AudioClip[] soundList;
+    
+    private AudioSource _audioSource;
 
 
     private void Awake()
@@ -24,4 +29,17 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
+
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+
+    public static void PlaySound(AudioType _audio, float _volume = 1)
+    {
+        Instance._audioSource.PlayOneShot(Instance.soundList[(int)_audio], _volume);
+    }
 }
+
