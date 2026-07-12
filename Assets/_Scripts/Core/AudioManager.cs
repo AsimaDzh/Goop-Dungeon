@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 
 public enum AudioType
 {
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [SerializeField] private AudioClip[] soundList;
+    [SerializeField] private AudioList[] soundList;
     
     private AudioSource _audioSource;
 
@@ -51,7 +51,14 @@ public class AudioManager : MonoBehaviour
 
     public static void PlaySound(AudioType _audio, float _volume = 1)
     {
-        Instance._audioSource.PlayOneShot(Instance.soundList[(int)_audio], _volume);
+        //Instance._audioSource.PlayOneShot(Instance.soundList[(int)_audio], _volume);
     }
+}
+
+
+[Serializable]
+public struct AudioList
+{
+    [SerializeField] private AudioClip[] sounds;
 }
 
