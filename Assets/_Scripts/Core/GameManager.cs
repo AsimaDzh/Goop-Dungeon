@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
             InputManager.Instance.EnableUIInput();
 
         AudioManager.PlayUISound(UIAudioType.GameOver);
+        AudioManager.StopMusic();
         Debug.Log("Game lost");
     }
 
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
             InputManager.Instance.EnableUIInput();
 
         AudioManager.PlayUISound(UIAudioType.GameWin);
+        AudioManager.StopMusic();
         Debug.Log("Game won");
     }
 }

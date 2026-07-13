@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public static void StopSound()
+    public static void StopMusic()
     {
         Instance._audioSource.Stop();
     }
