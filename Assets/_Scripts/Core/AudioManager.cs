@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioClip[] soundList;
-    [SerializeField] private AudioClip[] UIsoundList;
+    [SerializeField] private AudioClip[] UiSoundList;
 
     private AudioSource _audioSource;
 
@@ -62,7 +62,7 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayUISound(UIAudioType _audio, float _volume = 1)
     {
-        Instance._audioSource.PlayOneShot(Instance.UIsoundList[(int)_audio], _volume);
+        Instance._audioSource.PlayOneShot(Instance.UiSoundList[(int)_audio], _volume);
     }
 
 
