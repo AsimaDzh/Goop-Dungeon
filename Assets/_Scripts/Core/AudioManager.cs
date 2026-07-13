@@ -12,13 +12,17 @@ public enum AudioType
     FireballLaunch = 4,
     FireballHit = 5,
     ThrowItem = 6,
-
-    //UI
-    ButtonSelect = 7,
-    GameOver = 8,
-    GamePause = 9,
-    GameWin = 10,
 }
+
+
+public enum UIAudioType
+{
+    ButtonSelect = 0,
+    GameOver = 1,
+    GamePause = 2,
+    GameWin = 3
+}
+
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -26,7 +30,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioClip[] soundList;
-    
+    [SerializeField] private AudioClip[] UIsoundList;
+
     private AudioSource _audioSource;
 
 
@@ -51,6 +56,12 @@ public class AudioManager : MonoBehaviour
     public static void PlaySound(AudioType _audio, float _volume = 1)
     {
         Instance._audioSource.PlayOneShot(Instance.soundList[(int)_audio], _volume);
+    }
+
+
+    public static void PlayUISound(UIAudioType _audio, float _volume = 1)
+    {
+        Instance._audioSource.PlayOneShot(Instance.UIsoundList[(int)_audio], _volume);
     }
 }
 
