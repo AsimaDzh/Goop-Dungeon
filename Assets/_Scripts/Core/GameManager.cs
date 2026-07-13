@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         EventBus.Instance.RaiseGameResumed();
 
-        
+        AudioManager.PlayUISound(UIAudioType.ButtonPress);
         Debug.Log("Game resumed");
     }
 
@@ -78,10 +78,12 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
         SceneLoader.Instance.Load(SceneNames.GameScene);
-        Debug.Log("Game scene restart requested");
-
+        
         if (InputManager.Instance != null)
             InputManager.Instance.EnablePlayerInput();
+
+        AudioManager.PlayUISound(UIAudioType.ButtonPress);
+        Debug.Log("Game scene restart requested");
     }
 
 

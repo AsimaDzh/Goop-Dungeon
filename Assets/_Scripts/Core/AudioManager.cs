@@ -64,6 +64,24 @@ public class AudioManager : MonoBehaviour
     {
         Instance._audioSource.PlayOneShot(Instance.UIsoundList[(int)_audio], _volume);
     }
+
+
+    public static void SelectButton()
+    {
+        PlayUISound(UIAudioType.ButtonSelect, 1f);
+    }
+
+
+    public static void PressButton()
+    {
+        PlayUISound(UIAudioType.ButtonPress, 1f);
+    }
+
+
+    public static void StopSound()
+    {
+        Instance._audioSource.Stop();
+    }
 }
 
 
