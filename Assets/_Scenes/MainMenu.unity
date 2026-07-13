@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   soundList: []
-  UIsoundList:
+  uiSoundList:
   - {fileID: 8300000, guid: 2b00b157540afa34e86f4fbe96204b02, type: 3}
   - {fileID: 8300000, guid: 533d8914d8f78ae4b980f2172a2b5518, type: 3}
 --- !u!82 &979686877
@@ -1043,7 +1043,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
