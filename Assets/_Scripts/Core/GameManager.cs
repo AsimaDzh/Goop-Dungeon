@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Paused;
         Time.timeScale = 0f;
         EventBus.Instance.RaiseGamePaused();
+
+        AudioManager.PlayUISound(UIAudioType.GamePause);
         Debug.Log("Game Paused");
     }
 
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
         EventBus.Instance.RaiseGameResumed();
+
+        
         Debug.Log("Game resumed");
     }
 
@@ -91,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
+        AudioManager.PlayUISound(UIAudioType.GameOver);
         Debug.Log("Game lost");
     }
 
@@ -105,6 +110,7 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
+        AudioManager.PlayUISound(UIAudioType.GameWin);
         Debug.Log("Game won");
     }
 }

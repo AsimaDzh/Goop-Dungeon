@@ -18,9 +18,10 @@ public enum AudioType
 public enum UIAudioType
 {
     ButtonSelect = 0,
-    GameOver = 1,
-    GamePause = 2,
-    GameWin = 3
+    ButtonPress = 1,
+    GameOver = 2,
+    GamePause = 3,
+    GameWin = 4
 }
 
 
