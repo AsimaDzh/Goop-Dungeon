@@ -33,7 +33,7 @@ public class SoundData
 }
 
 
-[RequireComponent(typeof(AudioSource), typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
