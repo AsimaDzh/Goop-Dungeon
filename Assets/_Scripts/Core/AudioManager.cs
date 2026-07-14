@@ -58,11 +58,16 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        _audioSource = GetComponent<AudioSource>();
+
+        foreach (var _sound in sounds)
+        { 
+            if (!_soundDictionary.ContainsKey(_sound.type))
+                _soundDictionary.Add(_sound.type, _sound.clip);
+        }
     }
 
 
-    public static void PlaySound(AudioType _audio, float _volume = 1)
+    public static void PlaySound(AudioType _type, float _volume = 1)
     {
         if (Instance == null)
         {
@@ -70,51 +75,28 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (Instance._audioSource == null)
-        {
-            Debug.LogWarning("AudioManager: AudioSource is null. Call ignored.");
-            return;
-        }
-
-        Instance._audioSource.PlayOneShot(Instance.soundList[(int)_audio], _volume);
-    }
-
-
-    public static void PlayUISound(UIAudioType _audio, float _volume = 1)
-    {
-        if (Instance == null)
-        {
-            Debug.LogWarning("AudioManager: Instance is null. Call ignored.");
-            return;
-        }
-
-        if (Instance._audioSource == null)
-        {
-            Debug.LogWarning("AudioManager: AudioSource is null. Call ignored.");
-            return;
-        }
-
-        Instance._audioSource.PlayOneShot(Instance.uiSoundList[(int)_audio], _volume);
+        if (Instance._soundDictionary.TryGetValue(_type, out AudioClip _clip))
+            Instance.sfxSource.PlayOneShot(_clip, _volume);
     }
 
 
     public static void SelectButton()
     {
-        PlayUISound(UIAudioType.ButtonSelect, 1f);
+        PlaySound(AudioType.ButtonSelect, 1f);
     }
 
 
     public static void PressButton()
     {
-        PlayUISound(UIAudioType.ButtonPress, 1f);
+        PlaySound(AudioType.ButtonPress, 1f);
     }
 
 
     public static void StopMusic()
     {
-        if (Instance == null || Instance._audioSource == null) return;
+        if (Instance == null || Instance.sfxSource == null) return;
 
-        Instance._audioSource.Stop();
+        Instance.sfxSource.Stop();
     }
 }
 
