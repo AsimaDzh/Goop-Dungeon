@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+
 
 public enum AudioType
 {
@@ -13,16 +15,13 @@ public enum AudioType
     FireballLaunch = 4,
     FireballHit = 5,
     ThrowItem = 6,
-}
 
-
-public enum UIAudioType
-{
-    ButtonSelect = 0,
-    ButtonPress = 1,
-    GameOver = 2,
-    GamePause = 3,
-    GameWin = 4
+    //UI
+    ButtonSelect = 7,
+    ButtonPress = 8,
+    GameOver = 9,
+    GamePause = 10,
+    GameWin = 11
 }
 
 
@@ -34,23 +33,19 @@ public class SoundData
 }
 
 
-[Serializable]
-public class UISoundData
-{
-    public UIAudioType type;
-    public AudioClip clip;
-}
-
-
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [SerializeField] private AudioClip[] soundList;
-    [SerializeField] private AudioClip[] uiSoundList;
+    [Header("========== AudioSources ==========")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
 
-    private AudioSource _audioSource;
+    [Header("========== Sounds ==========")]
+    [SerializeField] private SoundData[] sounds;
+
+    private readonly Dictionary<AudioType, AudioClip> _soundDictionary = new();
 
 
     private void Awake()
