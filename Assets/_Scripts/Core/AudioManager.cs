@@ -92,11 +92,31 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    public static void PlayMusic(AudioClip _clip, bool _loop = true)
+    {
+        if (Instance == null)
+        {
+            Debug.LogWarning("AudioManager: Instance is null. Call ignored.");
+            return;
+        }
+
+        if (Instance.musicSource.clip == null)
+        {
+            Debug.LogWarning("AudioManager: Clip in Music Source is null. Call ignored.");
+            return;
+        }
+
+        Instance.musicSource.clip = _clip;
+        Instance.musicSource.loop = _loop;
+        Instance.musicSource.Play();
+    }
+
+
     public static void StopMusic()
     {
-        if (Instance == null || Instance.sfxSource == null) return;
+        if (Instance == null || Instance.musicSource == null) return;
 
-        Instance.sfxSource.Stop();
+        Instance.musicSource.Stop();
     }
 }
 
