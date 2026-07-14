@@ -10,6 +10,7 @@ public enum GameState
     Won = 4
 }
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         EventBus.Instance.RaiseGamePaused();
 
-        AudioManager.PlayUISound(UIAudioType.GamePause);
+        AudioManager.PlaySound(AudioType.GamePause);
         Debug.Log("Game Paused");
     }
 
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
-        AudioManager.PlayUISound(UIAudioType.GameOver);
+        AudioManager.PlaySound(AudioType.GameOver);
         AudioManager.StopMusic();
         Debug.Log("Game lost");
     }
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
-        AudioManager.PlayUISound(UIAudioType.GameWin);
+        AudioManager.PlaySound(AudioType.GameWin);
         AudioManager.StopMusic();
         Debug.Log("Game won");
     }

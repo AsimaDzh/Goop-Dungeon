@@ -649,7 +649,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: SelectButton
           m_Mode: 1
@@ -665,7 +665,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: PressButton
           m_Mode: 1
@@ -966,7 +966,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: SelectButton
           m_Mode: 1
@@ -982,7 +982,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: PressButton
           m_Mode: 1
@@ -1003,8 +1003,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 979686878}
+  - component: {fileID: 979686879}
+  - component: {fileID: 979686880}
   - component: {fileID: 979686877}
-  - component: {fileID: 979686876}
   m_Layer: 0
   m_Name: AudioManaget
   m_TagString: Untagged
@@ -1012,22 +1013,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &979686876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 979686875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7420f6dcfd94d6943920032dc8e6786b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  soundList: []
-  uiSoundList:
-  - {fileID: 8300000, guid: 2b00b157540afa34e86f4fbe96204b02, type: 3}
-  - {fileID: 8300000, guid: 533d8914d8f78ae4b980f2172a2b5518, type: 3}
 --- !u!82 &979686877
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1039,11 +1024,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 5e1c1919c7ecd42439dce98d82e10bdc, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1140,6 +1125,142 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979686879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979686875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7420f6dcfd94d6943920032dc8e6786b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  musicSource: {fileID: 979686880}
+  sfxSource: {fileID: 979686877}
+  sounds:
+  - type: 0
+    clip: {fileID: 8300000, guid: 8560753710c0f9d4eab81e3c05fa80b7, type: 3}
+  - type: 1
+    clip: {fileID: 8300000, guid: c9e4c95441eba5b44acfa829ac277bf8, type: 3}
+  - type: 2
+    clip: {fileID: 8300000, guid: 5d8f1d6c67daca542aca95890031dc93, type: 3}
+  - type: 3
+    clip: {fileID: 8300000, guid: d12056f93f0602842a02863124cbcb54, type: 3}
+  - type: 4
+    clip: {fileID: 8300000, guid: e28a4911d6f63e4498884cb8600756c8, type: 3}
+  - type: 5
+    clip: {fileID: 8300000, guid: 5aa0d809ca283b14cbe0cf79a8160b40, type: 3}
+  - type: 6
+    clip: {fileID: 8300000, guid: 781181dcb89a0c94790b3b861ea8247f, type: 3}
+  - type: 7
+    clip: {fileID: 8300000, guid: 2b00b157540afa34e86f4fbe96204b02, type: 3}
+  - type: 8
+    clip: {fileID: 8300000, guid: 533d8914d8f78ae4b980f2172a2b5518, type: 3}
+  - type: 9
+    clip: {fileID: 8300000, guid: 75e86ae7a833ba54eb604d94a2a4be6b, type: 3}
+  - type: 10
+    clip: {fileID: 8300000, guid: 2f9a831875ea9fb469b59636b37cd097, type: 3}
+  - type: 11
+    clip: {fileID: 8300000, guid: 137fcbdeb2b25dc43865e645c0122626, type: 3}
+--- !u!82 &979686880
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979686875}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &995218027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1925,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: SelectButton
           m_Mode: 1
@@ -1820,7 +1941,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: PressButton
           m_Mode: 1
@@ -1984,7 +2105,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: SelectButton
           m_Mode: 1
@@ -2000,7 +2121,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 979686876}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
           m_MethodName: PressButton
           m_Mode: 1
