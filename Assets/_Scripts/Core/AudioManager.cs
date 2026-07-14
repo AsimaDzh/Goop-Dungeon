@@ -100,9 +100,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (Instance.musicSource.clip == null)
+        if (_clip == null)
         {
             Debug.LogWarning("AudioManager: Clip in Music Source is null. Call ignored.");
+            return;
+        }
+
+        if (Instance.musicSource == null)
+        {
+            Debug.LogWarning("AudioManager: MusicSource is not assigned in the inspector. Call ignored.");
             return;
         }
 
