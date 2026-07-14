@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public enum AudioType
 {
@@ -22,6 +23,22 @@ public enum UIAudioType
     GameOver = 2,
     GamePause = 3,
     GameWin = 4
+}
+
+
+[Serializable]
+public class SoundData
+{
+    public AudioType type;
+    public AudioClip clip;
+}
+
+
+[Serializable]
+public class UISoundData
+{
+    public UIAudioType type;
+    public AudioClip clip;
 }
 
 
