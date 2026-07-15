@@ -36,9 +36,9 @@ public class GameUIManager : MonoBehaviour
        _gameOverSequence = DOTween.Sequence();
 
        _gameOverSequence
-           .Append(gameOverBackground.DOFade(1f, _gameOverDur))
-           .Append(gameOverText.DOFade(1f, _gameOverDur))
-           .Append(gameOverButtons.DOFade(1f, _gameOverDur));
+           .Append(gameOverBackground.DOFade(1f, _gameOverDur).SetUpdate(true))
+           .Append(gameOverText.DOFade(1f, _gameOverDur).SetUpdate(true))
+           .Append(gameOverButtons.DOFade(1f, _gameOverDur).SetUpdate(true));
     }
 
 
@@ -47,9 +47,9 @@ public class GameUIManager : MonoBehaviour
         _winSequence = DOTween.Sequence();
 
         _winSequence
-            .Append(winBackground.DOFade(1f, _winDur))
-            .Append(winText.DOFade(1f, _winDur))
-            .Append(menuButton.DOFade(1f, _winDur));
+            .Append(winBackground.DOFade(1f, _winDur).SetUpdate(true))
+            .Append(winText.DOFade(1f, _winDur).SetUpdate(true))
+            .Append(menuButton.DOFade(1f, _winDur).SetUpdate(true));
     }
 
 

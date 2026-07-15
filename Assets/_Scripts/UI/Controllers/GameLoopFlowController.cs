@@ -16,13 +16,17 @@ public class GameLoopFlowController : MonoBehaviour
 
     [Header("========== Shared UI ==========")]
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GoopStats _playerStats;
+    [SerializeField] private GoopStats playerStats;
+    [SerializeField] private GameUIManager gameUIManager;
 
 
     private void Awake()
     {
-        if (_playerStats == null)
-            _playerStats = FindFirstObjectByType<GoopStats>();
+        if (playerStats == null)
+            playerStats = FindFirstObjectByType<GoopStats>();
+
+        if (gameUIManager == null)
+            gameUIManager = FindFirstObjectByType<GameUIManager>();
 
         ValidateReferences();
 
@@ -93,20 +97,20 @@ public class GameLoopFlowController : MonoBehaviour
 
     private void SubscribeToPlayerDeath()
     {
-        if (_playerStats == null)
+        if (playerStats == null)
         {
             Debug.LogWarning($"{name}: PlayerStats not found. Lose on death is disabled.", this);
             return;
         }
 
-        _playerStats.OnDeath += HandlePlayerDeath;
+        playerStats.OnDeath += HandlePlayerDeath;
     }
 
 
     private void UnsubscribeFromPlayerDeath()
     {
-        if (_playerStats != null)
-            _playerStats.OnDeath -= HandlePlayerDeath;
+        if (playerStats != null)
+            playerStats.OnDeath -= HandlePlayerDeath;
     }
 
 
@@ -122,11 +126,11 @@ public class GameLoopFlowController : MonoBehaviour
     private void HandlePlayerDeath()
     {
         pausePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+        gameUIManager.ShowGameOverUI();
 
         if (GameManager.Instance != null)
             GameManager.Instance.EnterLoseState();
-
-        gameOverPanel.SetActive(true);
 
         Debug.Log($"{name}: lose screen shown.", this);
     }
@@ -135,11 +139,11 @@ public class GameLoopFlowController : MonoBehaviour
     private void TriggerWin()
     {
         pausePanel.SetActive(false);
+        winPanel.SetActive(true);
+        gameUIManager.ShowWinUI();
 
         if (GameManager.Instance != null)
             GameManager.Instance.EnterWinState();
-
-        winPanel.SetActive(true);
 
         Debug.Log($"{name}: win screen shown.", this);
     }

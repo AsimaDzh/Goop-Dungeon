@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameState CurrentState { get; private set; } = GameState.Menu;
-    
-    [SerializeField] private GameUIManager gameUIManager;
+
 
 
     private void Awake()
@@ -92,18 +91,15 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
 
+        AudioManager.PlaySound(AudioType.GameOver, 1f);
+        AudioManager.StopMusic();
+
         CurrentState = GameState.Lost;
         Time.timeScale = 0f;
 
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
-        if (gameUIManager == null)
-            FindFirstObjectByType<GameUIManager>();
-
-        gameUIManager.ShowGameOverUI();
-        AudioManager.PlaySound(AudioType.GameOver);
-        AudioManager.StopMusic();
         Debug.Log("Game lost");
     }
 
@@ -112,18 +108,15 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
 
+        AudioManager.PlaySound(AudioType.GameWin, 1f);
+        AudioManager.StopMusic();
+
         CurrentState = GameState.Won;
         Time.timeScale = 0f;
 
         if (InputManager.Instance != null)
             InputManager.Instance.EnableUIInput();
 
-        if (gameUIManager == null)
-            FindFirstObjectByType<GameUIManager>();
-
-        gameUIManager.ShowWinUI();
-        AudioManager.PlaySound(AudioType.GameWin);
-        AudioManager.StopMusic();
         Debug.Log("Game won");
     }
 }
