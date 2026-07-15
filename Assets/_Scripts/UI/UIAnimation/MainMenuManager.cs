@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class UIManager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup title, playButton, optionsButton, extrasButton, leaveButton;
     [SerializeField] private RectTransform allButtons;
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void ClearAnimations()
+    private void ClearAnimations()
     {
         _titleTween?.Kill();
         _buttonsTween?.Kill();
