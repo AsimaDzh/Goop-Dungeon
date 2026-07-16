@@ -33,23 +33,35 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowGameOverUI()
     {
-       _gameOverSequence = DOTween.Sequence();
+        Debug.Log("GameUIManager: GameOver animation called");
+
+        _gameOverSequence?.Kill();
+
+        _gameOverSequence = DOTween.Sequence().SetUpdate(true);
 
        _gameOverSequence
-           .Append(gameOverBackground.DOFade(1f, _gameOverDur).SetUpdate(true))
-           .Append(gameOverText.DOFade(1f, _gameOverDur).SetUpdate(true))
-           .Append(gameOverButtons.DOFade(1f, _gameOverDur).SetUpdate(true));
+           .Append(gameOverBackground.DOFade(1f, _gameOverDur))
+           .Append(gameOverText.DOFade(1f, _gameOverDur))
+           .Append(gameOverButtons.DOFade(1f, _gameOverDur));
+
+        _gameOverSequence.Play();
     }
 
 
     public void ShowWinUI()
     {
-        _winSequence = DOTween.Sequence();
+        Debug.Log("GameUIManager: Win animation called");
+        
+        _winSequence?.Kill();
+
+        _winSequence = DOTween.Sequence().SetUpdate(true);
 
         _winSequence
-            .Append(winBackground.DOFade(1f, _winDur).SetUpdate(true))
-            .Append(winText.DOFade(1f, _winDur).SetUpdate(true))
-            .Append(menuButton.DOFade(1f, _winDur).SetUpdate(true));
+            .Append(winBackground.DOFade(1f, _winDur))
+            .Append(winText.DOFade(1f, _winDur))
+            .Append(menuButton.DOFade(1f, _winDur));
+
+        _winSequence.Play();
     }
 
 
