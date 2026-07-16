@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class GameUIManager : MonoBehaviour
 {
-    [Header("========== GameOver UI ==========")]
+    [Header("========== Game Over UI ==========")]
     [SerializeField] private CanvasGroup gameOverBackground;
     [SerializeField] private CanvasGroup gameOverText;
     [SerializeField] private CanvasGroup gameOverButtons;
@@ -11,12 +11,12 @@ public class GameUIManager : MonoBehaviour
     private float _gameOverDur = 1f;
     private Sequence _gameOverSequence;
 
-    [Header("========== Win UI ==========")]
+    [Header("========== Game Win UI ==========")]
     [SerializeField] private CanvasGroup winBackground;
-    [SerializeField] private CanvasGroup winText;
-    [SerializeField] private CanvasGroup menuButton;
+    [SerializeField] private CanvasGroup winTextAndButton;
 
-    private float _winDur = 0.5f;
+    private float _winBackgroundDur = 2f;
+    private float _textAndButtonDur = 0.2f;
     private Sequence _winSequence;
 
 
@@ -26,8 +26,7 @@ public class GameUIManager : MonoBehaviour
         gameOverText.alpha = 0f;
         gameOverButtons.alpha = 0f;
         winBackground.alpha = 0f;
-        winText.alpha = 0f;
-        menuButton.alpha = 0f;
+        winTextAndButton.alpha = 0f;
     }
 
 
@@ -57,9 +56,8 @@ public class GameUIManager : MonoBehaviour
         _winSequence = DOTween.Sequence().SetUpdate(true);
 
         _winSequence
-            .Append(winBackground.DOFade(1f, _winDur))
-            .Append(winText.DOFade(1f, _winDur))
-            .Append(menuButton.DOFade(1f, _winDur));
+            .Append(winBackground.DOFade(1f, _winBackgroundDur))
+            .Append(winTextAndButton.DOFade(1f, _textAndButtonDur));
 
         _winSequence.Play();
     }

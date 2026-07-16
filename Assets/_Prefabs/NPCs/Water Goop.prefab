@@ -303,7 +303,7 @@ MonoBehaviour:
   goopData: {fileID: 11400000, guid: 9e8ae71b044f6fe41a3459d6b7415243, type: 2}
   currentHealth: 100
   player: {fileID: 0}
-  stepsToFollow: 5
+  stepsToFollow: 3
   detectionTrigger: {fileID: 4039855767584865963}
   shieldPoint: {fileID: 0}
   bubbleTimerUI: {fileID: 0}
