@@ -48,7 +48,7 @@ Goop Dungeon is optimized for PC with keyboard controls.
 
 
 ## 📩 Download
-You can download the game in Latest Release section
+You can download the game in **Latest Release** section
 
 
 ## 👤 Authors
